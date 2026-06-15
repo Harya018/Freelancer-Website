@@ -477,17 +477,18 @@
     }
 
     .photo-ring {
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       background: conic-gradient(var(--cyan), var(--pink), var(--purple), var(--cyan));
       padding: 3px;
-      animation: spin-ring 8s linear infinite;
+      animation: glow-ring 3s ease-in-out infinite alternate;
       box-shadow: 0 0 40px rgba(0,245,255,.3);
     }
 
-    @keyframes spin-ring {
-      to { transform: rotate(360deg); }
+    @keyframes glow-ring {
+      from { box-shadow: 0 0 20px rgba(0,245,255,.3); }
+      to { box-shadow: 0 0 50px rgba(0,245,255,.7); }
     }
 
     .photo-inner {
@@ -1471,15 +1472,23 @@
     <div class="hero-photo-wrap">
       <div class="photo-ring">
         <div class="photo-inner">
-          <img
-            src="images/harya-profile.jpg"
+          <img 
+            src="images/harya-profile.jpg" 
             alt="Harya C R"
-            class="hero-photo"
-            id="hero-photo"
-            onerror="this.style.display='none'; document.getElementById('hero-fallback').style.display='flex';"
+            style="
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              object-fit: cover;
+              object-position: center 40%;
+              transform: scale(1.7);
+              transform-origin: center 60%;
+            "
+            onerror="this.style.display='none';
+                     this.nextElementSibling.style.display='flex';"
           />
           <div class="hero-photo-fallback" id="hero-fallback" style="display:none;">
-            👨‍💻
+            <i class="fa-solid fa-user"></i>
           </div>
         </div>
       </div>
@@ -1550,6 +1559,26 @@
       <div class="reveal-left">
         <span class="section-label">About</span>
         <h2 class="section-title">Building AI That<br>Actually Works</h2>
+        <div style="margin-bottom: 1.5rem; overflow: hidden; border-radius: 50%; width: 180px; height: 180px; margin-left: auto; margin-right: auto;">
+          <img 
+            src="images/harya-about.jpg" 
+            alt="Harya C R"
+            style="
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              object-fit: cover;
+              object-position: center 40%;
+              transform: scale(1.7);
+              transform-origin: center 60%;
+            "
+            onerror="this.style.display='none';
+                     this.nextElementSibling.style.display='flex';"
+          />
+          <div class="about-photo-fallback" style="display:none; width: 100%; height: 100%; border-radius: 50%; background: rgba(0,245,255,0.1); align-items: center; justify-content: center; font-size: 3rem;">
+            <i class="fa-solid fa-user"></i>
+          </div>
+        </div>
 
         <p class="about-bio">
           I'm Harya C R, a B.Tech CSE (AI &amp; ML) student at SRM Institute of Science and Technology,
