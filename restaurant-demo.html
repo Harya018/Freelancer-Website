@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sri Annapoorna Restaurant — Salem</title>
+<meta name="description" content="Authentic Tamil vegetarian food in Salem. Est. 1995. Book your table today."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#E8621A;--orange-dark:#C44E0F;--orange-light:#FFF0E6;
+  --cream:#FFF8F0;--green:#2D6A4F;--brown:#2C1810;
+  --brown-light:#5C3D2E;--tan:#F5E6D3;
+  --shadow:0 4px 20px rgba(44,24,16,.12);
+  --radius:12px;--transition:all .3s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lato',sans-serif;color:var(--brown);background:var(--cream);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,248,240,.95);backdrop-filter:blur(10px);border-bottom:2px solid var(--orange);padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--brown)}
+.nav-logo span{font-size:1.6rem}
+.nav-links{display:flex;align-items:center;gap:.25rem}
+.nav-link{padding:.45rem 1rem;font-size:.88rem;font-weight:700;color:var(--brown-light);border-radius:6px;transition:var(--transition);letter-spacing:.3px}
+.nav-link:hover{color:var(--orange);background:var(--orange-light)}
+.btn-nav{background:var(--orange);color:#fff;padding:.55rem 1.3rem;border-radius:8px;font-weight:700;font-size:.88rem;transition:var(--transition)}
+.btn-nav:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;transition:var(--transition)}
+.mobile-menu{display:none;position:absolute;top:68px;left:0;right:0;background:var(--cream);border-bottom:2px solid var(--orange);padding:1rem 2rem;flex-direction:column;gap:.5rem;box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.mobile-menu.open{display:flex}
+
+/* HERO */
+.hero{min-height:100vh;background:radial-gradient(ellipse at 30% 50%, #E8621A 0%, #C44E0F 30%, #8B2500 60%, #4A1200 100%);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:6rem 2rem}
+.hero-bg-emojis{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-bg-emojis span{position:absolute;font-size:clamp(3rem,6vw,7rem);opacity:.08;animation:floatEmoji linear infinite}
+@keyframes floatEmoji{0%{transform:translateY(0) rotate(0deg);opacity:.08}50%{opacity:.12}100%{transform:translateY(-20px) rotate(5deg);opacity:.08}}
+.hero-content{position:relative;z-index:1;max-width:700px}
+.hero-label{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:.35rem 1.1rem;border-radius:30px;margin-bottom:1.25rem}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:800;color:#fff;line-height:1.05;letter-spacing:-1px;margin-bottom:.5rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero-tagline{font-size:1.1rem;color:rgba(255,255,255,.85);margin-bottom:2rem;font-style:italic}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-hero-solid{background:#fff;color:var(--orange);padding:.8rem 2rem;border-radius:10px;font-weight:700;font-size:.95rem;transition:var(--transition)}
+.btn-hero-solid:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-hero-outline{border:2px solid rgba(255,255,255,.7);color:#fff;padding:.8rem 2rem;border-radius:10px;font-weight:700;font-size:.95rem;transition:var(--transition)}
+.btn-hero-outline:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
+
+/* SECTION COMMON */
+.section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-badge{display:inline-block;background:var(--orange-light);color:var(--orange);font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;color:var(--brown);line-height:1.2;margin-bottom:.75rem}
+.section-sub{color:var(--brown-light);font-size:1rem;max-width:540px;line-height:1.7;margin-bottom:2.5rem}
+.divider{width:60px;height:4px;background:var(--orange);border-radius:2px;margin-bottom:1.5rem}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:center}
+.about-visual{position:relative}
+.about-pattern-box{width:100%;aspect-ratio:1;background:var(--orange);border-radius:20px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.about-pattern-box::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle, rgba(255,255,255,.15) 1px, transparent 1px);background-size:24px 24px}
+.est-badge{position:relative;z-index:1;width:140px;height:140px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+.est-badge .year{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;color:var(--orange);line-height:1}
+.est-badge .label{font-size:.72rem;font-weight:700;letter-spacing:2px;color:var(--brown);text-transform:uppercase}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.stat-box{text-align:center;padding:1.25rem .75rem;background:#fff;border-radius:12px;border:1px solid var(--tan);box-shadow:var(--shadow)}
+.stat-box .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;color:var(--orange)}
+.stat-box .lbl{font-size:.78rem;font-weight:700;color:var(--brown-light);margin-top:.2rem}
+
+/* MENU */
+.filter-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+.filter-btn{padding:.45rem 1.2rem;border-radius:30px;font-size:.85rem;font-weight:700;border:2px solid var(--tan);color:var(--brown-light);cursor:pointer;background:#fff;transition:var(--transition);font-family:'Lato',sans-serif}
+.filter-btn.active,.filter-btn:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.menu-card{background:#fff;border-radius:16px;padding:1.75rem 1.5rem;border:1px solid var(--tan);box-shadow:var(--shadow);transition:var(--transition);text-align:center}
+.menu-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(232,98,26,.15);border-color:var(--orange)}
+.menu-emoji-wrap{width:80px;height:80px;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:2rem;background:linear-gradient(135deg,var(--orange-light),var(--tan))}
+.menu-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--brown);margin-bottom:.4rem}
+.menu-desc{font-size:.83rem;color:var(--brown-light);margin-bottom:.75rem;line-height:1.5}
+.menu-price{font-size:1.1rem;font-weight:700;color:var(--orange)}
+
+/* OFFERS */
+.offers-section{background:var(--brown);padding:4rem 2rem}
+.offers-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;margin:0 auto}
+.offer-card{border-radius:16px;padding:2.5rem 2rem;text-align:center;color:#fff;position:relative;overflow:hidden}
+.offer-card::before{content:'';position:absolute;inset:0;background:inherit;border-radius:inherit;opacity:.6}
+.offer-card-1{background:linear-gradient(135deg,#E8621A,#C44E0F)}
+.offer-card-2{background:linear-gradient(135deg,#2D6A4F,#1A3F2F)}
+.offer-content{position:relative;z-index:1}
+.offer-tag{display:inline-block;background:rgba(255,255,255,.2);font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.25rem .8rem;border-radius:20px;margin-bottom:.75rem}
+.offer-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;margin-bottom:.5rem}
+.offer-price{font-size:2rem;font-weight:900;margin-bottom:.5rem}
+.offer-desc{font-size:.88rem;opacity:.85;margin-bottom:1.25rem}
+.btn-offer{background:#fff;color:var(--brown);padding:.6rem 1.5rem;border-radius:8px;font-weight:700;font-size:.88rem;display:inline-block;transition:var(--transition)}
+.btn-offer:hover{transform:translateY(-2px)}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:1rem}
+.gallery-item{border-radius:14px;overflow:hidden;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;transition:var(--transition);cursor:pointer}
+.gallery-item:nth-child(1){background:linear-gradient(135deg,#E8621A,#C44E0F);grid-row:span 2}
+.gallery-item:nth-child(2){background:linear-gradient(135deg,#2D6A4F,#1A3F2F)}
+.gallery-item:nth-child(3){background:linear-gradient(135deg,#78350F,#4A1200)}
+.gallery-item:nth-child(4){background:linear-gradient(135deg,#92400E,#78350F)}
+.gallery-item:nth-child(5){background:linear-gradient(135deg,#166534,#2D6A4F)}
+.gallery-item:nth-child(6){background:linear-gradient(135deg,#9A3412,#E8621A)}
+.gallery-item:hover{transform:scale(1.02)}
+.gallery-emoji{font-size:3rem}
+.gallery-label{color:#fff;font-size:.83rem;font-weight:700;letter-spacing:.5px}
+
+/* TESTIMONIALS */
+.testi-section{background:var(--cream);padding:5rem 2rem}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testi-card{background:#fff;border-radius:16px;padding:2rem;border:1px solid var(--tan);box-shadow:var(--shadow);position:relative}
+.testi-card::before{content:'"';position:absolute;top:.75rem;left:1.25rem;font-family:'Playfair Display',serif;font-size:4rem;color:var(--orange);opacity:.2;line-height:1}
+.testi-stars{color:#F59E0B;font-size:.9rem;margin-bottom:.75rem}
+.testi-text{font-size:.9rem;color:var(--brown-light);line-height:1.7;font-style:italic;margin-bottom:1rem}
+.testi-name{font-weight:700;color:var(--brown);font-size:.88rem}
+.testi-tag{font-size:.75rem;color:var(--orange);margin-top:.15rem}
+
+/* LOCATION */
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.map-placeholder{border-radius:16px;height:280px;background:linear-gradient(135deg,var(--orange-light),var(--tan));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;border:2px solid var(--tan)}
+.map-placeholder .map-icon{font-size:3rem}
+.map-placeholder .map-addr{font-size:.9rem;font-weight:600;color:var(--brown);text-align:center;max-width:220px;line-height:1.5}
+.hours-table{width:100%;border-collapse:collapse}
+.hours-table tr{border-bottom:1px solid var(--tan)}
+.hours-table td{padding:.75rem .5rem;font-size:.88rem}
+.hours-table td:first-child{font-weight:700;color:var(--brown)}
+.hours-table td:last-child{color:var(--green);text-align:right;font-weight:600}
+.contact-info-item{display:flex;align-items:center;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--tan);font-size:.9rem;color:var(--brown-light)}
+.contact-info-item i{color:var(--orange);width:20px}
+
+/* BOOKING */
+.booking-section{background:linear-gradient(135deg,var(--orange),var(--orange-dark));padding:5rem 2rem}
+.booking-inner{max-width:600px;margin:0 auto;background:rgba(255,255,255,.97);border-radius:20px;padding:2.5rem;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.booking-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:800;color:var(--brown);margin-bottom:.4rem}
+.booking-sub{color:var(--brown-light);font-size:.9rem;margin-bottom:2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{margin-bottom:1.1rem}
+.form-group label{display:block;font-size:.82rem;font-weight:700;color:var(--brown);margin-bottom:.4rem}
+.form-group input,.form-group select{width:100%;padding:.65rem 1rem;border:1.5px solid var(--tan);border-radius:8px;font-size:.9rem;font-family:'Lato',sans-serif;color:var(--brown);background:var(--cream);outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{border-color:var(--orange)}
+.btn-submit{width:100%;padding:.85rem;background:var(--orange);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:1rem;font-family:'Lato',sans-serif;cursor:pointer;transition:var(--transition)}
+.btn-submit:hover{background:var(--orange-dark)}
+
+/* FOOTER */
+.footer{background:var(--brown);color:rgba(255,255,255,.75);padding:3rem 2rem 1.5rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:.75rem}
+.footer-desc{font-size:.85rem;line-height:1.7;color:rgba(255,255,255,.6)}
+.footer-head{font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:.85rem}
+.footer-links{display:flex;flex-direction:column;gap:.45rem}
+.footer-links a{font-size:.85rem;color:rgba(255,255,255,.6);transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.4)}
+.footer-bottom a{color:var(--orange)}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:1.75rem;right:1.75rem;z-index:2000;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--transition)}
+.wa-float:hover{transform:scale(1.1)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid,.location-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .menu-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-item:nth-child(1){grid-row:span 1}
+}
+@media(max-width:640px){
+  .nav-links,.btn-nav{display:none}
+  .hamburger{display:flex}
+  .menu-grid,.testi-grid,.offers-grid{grid-template-columns:1fr}
+  .about-stats{grid-template-columns:repeat(3,1fr)}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo"><span>🍽️</span> Sri Annapoorna</div>
+  <div class="nav-links">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#menu" class="nav-link">Menu</a>
+    <a href="#gallery" class="nav-link">Gallery</a>
+    <a href="#location" class="nav-link">Location</a>
+    <a href="#booking" class="btn-nav">Book Table</a>
+  </div>
+  <div class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mobile-menu">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#menu" class="nav-link">Menu</a>
+    <a href="#gallery" class="nav-link">Gallery</a>
+    <a href="#location" class="nav-link">Location</a>
+    <a href="#booking" class="nav-link">Book Table</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-emojis">
+    <span style="left:8%;top:20%;animation-duration:8s;animation-delay:0s">🥘</span>
+    <span style="left:80%;top:15%;animation-duration:10s;animation-delay:2s">🍛</span>
+    <span style="left:5%;top:70%;animation-duration:12s;animation-delay:1s">🫓</span>
+    <span style="left:88%;top:65%;animation-duration:9s;animation-delay:3s">🥗</span>
+    <span style="left:50%;top:85%;animation-duration:11s;animation-delay:1.5s">🍬</span>
+    <span style="left:35%;top:10%;animation-duration:13s;animation-delay:.5s">🍚</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label">🌟 Salem's Favourite Since 1995</div>
+    <h1 class="hero-title">Sri Annapoorna<br>Restaurant</h1>
+    <p class="hero-tagline">Authentic Tamil Flavors Since 1995 · Omalur Road, Salem</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-hero-solid">🍛 View Menu</a>
+      <a href="#booking" class="btn-hero-outline">📅 Book a Table</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-visual">
+          <div class="about-pattern-box">
+            <div class="est-badge">
+              <span class="year">1995</span>
+              <span class="label">Est.</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="num">30+</div>
+            <div class="lbl">Years of Service</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">50+</div>
+            <div class="lbl">Dishes Served</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">500+</div>
+            <div class="lbl">Daily Customers</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="section-badge">Our Story</span>
+        <div class="divider"></div>
+        <h2 class="section-title">A Legacy of Authentic<br>Tamil Cuisine</h2>
+        <p class="section-sub">Founded in 1995 by the Annapoorna family, we have been serving the most authentic, home-style South Indian vegetarian food in Salem for over three decades. Every dish is prepared fresh each morning using traditional recipes passed down through generations.</p>
+        <p style="color:var(--brown-light);font-size:.9rem;line-height:1.7;margin-bottom:1.5rem">From the humble Idli-Sambar breakfast to the grand afternoon Meals, our kitchen is a celebration of Tamil culinary heritage. We use only the freshest ingredients sourced locally every day.</p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:700;color:var(--green)"><i class="fa-solid fa-circle-check"></i> 100% Vegetarian</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:700;color:var(--green)"><i class="fa-solid fa-circle-check"></i> No Preservatives</div>
+          <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:700;color:var(--green)"><i class="fa-solid fa-circle-check"></i> Fresh Daily</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section" id="menu" style="background:var(--tan)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="section-badge">Our Menu</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="section-title">Menu Highlights</h2>
+      <p class="section-sub" style="margin:0 auto">Freshly prepared every day using traditional recipes and the finest ingredients.</p>
+    </div>
+    <div class="filter-bar reveal" style="justify-content:center">
+      <button class="filter-btn active" onclick="filterMenu('all',this)">All</button>
+      <button class="filter-btn" onclick="filterMenu('breakfast',this)">Breakfast</button>
+      <button class="filter-btn" onclick="filterMenu('lunch',this)">Lunch</button>
+      <button class="filter-btn" onclick="filterMenu('dinner',this)">Dinner</button>
+      <button class="filter-btn" onclick="filterMenu('sweets',this)">Sweets</button>
+    </div>
+    <div class="menu-grid" id="menu-grid">
+      <div class="menu-card reveal" data-cat="breakfast lunch">
+        <div class="menu-emoji-wrap">🍛</div>
+        <div class="menu-name">Sambar Rice</div>
+        <div class="menu-desc">Steamed rice with our signature piping-hot sambar, served with papad and pickle</div>
+        <div class="menu-price">₹80</div>
+      </div>
+      <div class="menu-card reveal" data-cat="breakfast">
+        <div class="menu-emoji-wrap">🥘</div>
+        <div class="menu-name">Ven Pongal</div>
+        <div class="menu-desc">Creamy rice-lentil dish tempered with ghee, pepper, cumin and cashews</div>
+        <div class="menu-price">₹70</div>
+      </div>
+      <div class="menu-card reveal" data-cat="dinner">
+        <div class="menu-emoji-wrap">🫓</div>
+        <div class="menu-name">Parotta & Kurma</div>
+        <div class="menu-desc">Flaky layered parotta with rich vegetable kurma — a Salem evening classic</div>
+        <div class="menu-price">₹90</div>
+      </div>
+      <div class="menu-card reveal" data-cat="lunch">
+        <div class="menu-emoji-wrap">🍚</div>
+        <div class="menu-name">Full Meals</div>
+        <div class="menu-desc">Unlimited traditional Tamil meals — rice, 3 curries, sambar, rasam, dessert</div>
+        <div class="menu-price">₹120</div>
+      </div>
+      <div class="menu-card reveal" data-cat="lunch dinner">
+        <div class="menu-emoji-wrap">🥗</div>
+        <div class="menu-name">Vegetable Biryani</div>
+        <div class="menu-desc">Aromatic basmati rice cooked with fresh vegetables and house spice blend</div>
+        <div class="menu-price">₹150</div>
+      </div>
+      <div class="menu-card reveal" data-cat="sweets">
+        <div class="menu-emoji-wrap">🍬</div>
+        <div class="menu-name">Kesari</div>
+        <div class="menu-desc">Silky semolina dessert with saffron, cashews and raisins — the perfect sweet ending</div>
+        <div class="menu-price">₹50</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL OFFERS -->
+<div class="offers-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2rem" class="reveal">
+      <span style="display:inline-block;background:rgba(255,255,255,.15);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem">Special Offers</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:#fff">Today's Specials</h2>
+    </div>
+    <div class="offers-grid reveal">
+      <div class="offer-card offer-card-1">
+        <div class="offer-content">
+          <div class="offer-tag">👨‍👩‍👧‍👦 Family Pack</div>
+          <div class="offer-title">Family Meals Pack</div>
+          <div class="offer-price">₹400</div>
+          <div class="offer-desc">Full meals for 4 people · Includes sambar, 2 curries, rice & dessert</div>
+          <a href="#booking" class="btn-offer">Reserve Now</a>
+        </div>
+      </div>
+      <div class="offer-card offer-card-2">
+        <div class="offer-content">
+          <div class="offer-tag">🎉 Weekend Special</div>
+          <div class="offer-title">Weekend Special Thali</div>
+          <div class="offer-price">₹150</div>
+          <div class="offer-desc">Sat & Sun only · Grand thali with 8 items, payasam & buttermilk</div>
+          <a href="#booking" class="btn-offer">Reserve Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="section" id="gallery">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="section-badge">Gallery</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="section-title">From Our Kitchen</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      <div class="gallery-item" style="aspect-ratio:unset;min-height:300px"><span class="gallery-emoji">🍳</span><span class="gallery-label">Our Kitchen</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🍽️</span><span class="gallery-label">Special Thali</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🌿</span><span class="gallery-label">Fresh Ingredients</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🥘</span><span class="gallery-label">Traditional Curries</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">☕</span><span class="gallery-label">Filter Coffee</span></div>
+      <div class="gallery-item"><span class="gallery-emoji">🎊</span><span class="gallery-label">Function Hall</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section" id="testimonials">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="section-badge">Testimonials</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="section-title">What Our Guests Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The full meals here are absolutely amazing — tastes just like home cooking. I've been coming here every lunch for 10 years and it never disappoints. The sambar is legendary!"</p>
+        <div class="testi-name">Rajendran K.</div>
+        <div class="testi-tag">Regular Customer, Siddapudur</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Best Pongal in Salem — hands down. The ghee flavour, the texture, everything is perfect. I specifically drive from Fairlands every Sunday morning for breakfast here."</p>
+        <div class="testi-name">Kavitha M.</div>
+        <div class="testi-tag">Customer, Fairlands</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★☆</div>
+        <p class="testi-text">"Hosted our family function here. The family pack was excellent value, food was served hot and fresh. Very clean kitchen and friendly staff. Highly recommended for events too!"</p>
+        <div class="testi-name">Murugesan P.</div>
+        <div class="testi-tag">Function Booking, Suramangalam</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION & HOURS -->
+<section class="section" id="location" style="background:var(--tan)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="section-badge">Find Us</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="section-title">Location & Hours</h2>
+    </div>
+    <div class="location-grid reveal">
+      <div>
+        <div class="map-placeholder">
+          <div class="map-icon">📍</div>
+          <div class="map-addr"><strong>Sri Annapoorna Restaurant</strong><br>12, Omalur Main Road<br>Near Bus Stand, Salem — 636002<br>Tamil Nadu</div>
+        </div>
+        <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="#" class="btn-nav" style="background:var(--orange);color:#fff;padding:.55rem 1.3rem;border-radius:8px;font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem"><i class="fa-solid fa-map-location-dot"></i> Get Directions</a>
+          <a href="#" class="btn-nav" style="background:var(--green);color:#fff;padding:.55rem 1.3rem;border-radius:8px;font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--brown);margin-bottom:1rem">Opening Hours</h3>
+        <table class="hours-table">
+          <tr><td>Monday – Friday</td><td>6:00 AM – 10:30 PM</td></tr>
+          <tr><td>Saturday</td><td>6:00 AM – 11:00 PM</td></tr>
+          <tr><td>Sunday</td><td>6:00 AM – 11:30 PM</td></tr>
+          <tr><td>Public Holidays</td><td>6:00 AM – 11:30 PM</td></tr>
+        </table>
+        <div style="margin-top:1.5rem">
+          <div class="contact-info-item"><i class="fa-solid fa-phone"></i> +91 98765 XXXXX</div>
+          <div class="contact-info-item"><i class="fa-solid fa-phone"></i> +91 94321 XXXXX</div>
+          <div class="contact-info-item"><i class="fa-solid fa-envelope"></i> annapoorna1995@gmail.com</div>
+          <div class="contact-info-item"><i class="fa-solid fa-location-dot"></i> Omalur Road, Salem — 636002</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<div class="booking-section" id="booking">
+  <div class="booking-inner reveal">
+    <div class="booking-title">📅 Reserve Your Table</div>
+    <p class="booking-sub">Book in advance to ensure the best experience. We'll confirm your booking within 30 minutes.</p>
+    <form onsubmit="handleBook(event)">
+      <div class="form-row">
+        <div class="form-group"><label>Your Name *</label><input type="text" placeholder="E.g. Ravi Kumar" required/></div>
+        <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="+91 98765 XXXXX" required/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Preferred Date</label><input type="date"/></div>
+        <div class="form-group"><label>Number of People</label>
+          <select><option>1-2 People</option><option>3-5 People</option><option>6-10 People</option><option>10+ (Event)</option></select>
+        </div>
+      </div>
+      <div class="form-group"><label>Preferred Time</label>
+        <select><option>Breakfast (6–11 AM)</option><option>Lunch (11 AM–3 PM)</option><option>Dinner (6–10 PM)</option></select>
+      </div>
+      <button type="submit" class="btn-submit">🍽️ Confirm Booking</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">🍽️ Sri Annapoorna</div>
+        <p class="footer-desc">Serving authentic Tamil vegetarian food in Salem since 1995. Come hungry, leave happy.</p>
+      </div>
+      <div>
+        <div class="footer-head">Quick Links</div>
+        <div class="footer-links">
+          <a href="#about">About Us</a>
+          <a href="#menu">Menu</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#booking">Book Table</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-head">Contact</div>
+        <div class="footer-links">
+          <a href="#">+91 98765 XXXXX</a>
+          <a href="#">Omalur Road, Salem</a>
+          <a href="#">Open 6AM – 11PM</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Sri Annapoorna Restaurant. All rights reserved.</span>
+      <span>Website designed by <a href="mailto:haryacr@gmail.com">Harya C R · haryacr@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+// Scroll reveal
+const revEls = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target)}
+  });
+},{threshold:.1});
+revEls.forEach(el=>revObs.observe(el));
+
+// Menu filter
+function filterMenu(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.menu-card').forEach(card=>{
+    const cats = card.dataset.cat||'';
+    card.style.display=(cat==='all'||cats.includes(cat))?'':'none';
+  });
+}
+
+// Booking form
+function handleBook(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.btn-submit');
+  btn.textContent='✅ Booking Confirmed! We\'ll call you shortly.';
+  btn.style.background='#2D6A4F';
+  setTimeout(()=>{btn.textContent='🍽️ Confirm Booking';btn.style.background='';e.target.reset();},4000);
+}
+</script>
+</body>
+</html>

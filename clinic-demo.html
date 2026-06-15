@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NutriCare Diet & Wellness Clinic — Salem</title>
+<meta name="description" content="Expert diet and nutrition consultation in Salem. Dr. Meena Sundaram. 500+ patients transformed."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#0D9488;--teal-dark:#0A7B70;--teal-light:#F0FDFA;--teal-mid:#CCFBF1;
+  --coral:#F97316;--coral-light:#FFF7ED;
+  --slate:#1E293B;--gray:#64748B;--gray-light:#F8FAFC;
+  --white:#fff;
+  --shadow:0 4px 20px rgba(13,148,136,.12);
+  --radius:14px;--transition:all .3s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--slate);background:#fff;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--teal-mid);padding:0 2rem;height:66px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:800;color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:.2rem}
+.nav-link{padding:.45rem .9rem;font-size:.85rem;font-weight:600;color:var(--gray);border-radius:6px;transition:var(--transition)}
+.nav-link:hover{color:var(--teal);background:var(--teal-light)}
+.btn-nav{background:var(--teal);color:#fff;padding:.55rem 1.25rem;border-radius:8px;font-weight:700;font-size:.85rem;transition:var(--transition)}
+.btn-nav:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;background:var(--slate);border-radius:2px}
+.mobile-menu{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;border-bottom:1px solid var(--teal-mid);padding:1rem 2rem;flex-direction:column;gap:.4rem;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,#0D9488 0%,#0A7B70 40%,#064E3B 80%,#022C22 100%);display:flex;align-items:center;padding:6rem 2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:.35rem 1rem;border-radius:30px;margin-bottom:1.25rem}
+.hero-title{font-family:'Nunito',sans-serif;font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:.75rem}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:2rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-hero-white{background:#fff;color:var(--teal);padding:.75rem 1.75rem;border-radius:10px;font-weight:700;font-size:.9rem;transition:var(--transition)}
+.btn-hero-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-hero-ghost{border:2px solid rgba(255,255,255,.5);color:#fff;padding:.75rem 1.75rem;border-radius:10px;font-weight:700;font-size:.9rem;transition:var(--transition)}
+.btn-hero-ghost:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap}
+.hero-stat .num{font-family:'Nunito',sans-serif;font-size:1.6rem;font-weight:900;color:#fff}
+.hero-stat .lbl{font-size:.78rem;color:rgba(255,255,255,.65);font-weight:600;margin-top:.1rem}
+
+.doctor-visual{display:flex;flex-direction:column;align-items:center;text-align:center}
+.doc-ring{width:200px;height:200px;border-radius:50%;background:linear-gradient(135deg,rgba(249,115,22,.8),rgba(13,148,136,.6));padding:4px;margin-bottom:1.5rem}
+.doc-inner{width:100%;height:100%;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:5rem;border:4px solid rgba(255,255,255,.15)}
+.doc-name{font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:.3rem}
+.doc-qual{font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:.5rem}
+.doc-exp-badge{background:rgba(249,115,22,.9);color:#fff;font-size:.78rem;font-weight:700;padding:.35rem 1rem;border-radius:30px;display:inline-block}
+
+/* SECTION */
+.section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.sec-badge{display:inline-block;background:var(--teal-light);color:var(--teal);font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
+.sec-title{font-family:'Nunito',sans-serif;font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:900;color:var(--slate);line-height:1.2;margin-bottom:.75rem}
+.sec-sub{color:var(--gray);font-size:.95rem;max-width:540px;line-height:1.7;margin-bottom:2.5rem}
+.divider{width:50px;height:4px;background:linear-gradient(90deg,var(--teal),var(--coral));border-radius:2px;margin-bottom:1.25rem}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.svc-card{background:#fff;border:1px solid var(--teal-mid);border-radius:var(--radius);padding:1.75rem 1.5rem;text-align:center;transition:var(--transition)}
+.svc-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(13,148,136,.15);border-color:var(--teal)}
+.svc-icon-wrap{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--teal-light),var(--teal-mid));display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem}
+.svc-title{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--slate);margin-bottom:.5rem}
+.svc-desc{font-size:.82rem;color:var(--gray);line-height:1.5;margin-bottom:.85rem}
+.svc-link{color:var(--teal);font-size:.83rem;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;transition:color .2s}
+.svc-link:hover{color:var(--coral)}
+
+/* HOW IT WORKS */
+.steps-section{background:var(--teal-light);padding:5rem 2rem}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:900px;margin:0 auto;position:relative}
+.steps-grid::before{content:'';position:absolute;top:45px;left:calc(16.6%);right:calc(16.6%);height:2px;background:linear-gradient(90deg,var(--teal),var(--coral));z-index:0}
+.step-card{text-align:center;padding:1.5rem 1rem;position:relative;z-index:1}
+.step-num{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dark));color:#fff;font-family:'Nunito',sans-serif;font-size:2.5rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 4px 20px rgba(13,148,136,.3)}
+.step-title{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;color:var(--slate);margin-bottom:.4rem}
+.step-desc{font-size:.82rem;color:var(--gray);line-height:1.5}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.price-card{background:#fff;border:2px solid var(--teal-mid);border-radius:16px;padding:2rem 1.75rem;text-align:center;transition:var(--transition);position:relative}
+.price-card.featured{border-color:var(--teal);transform:scale(1.03);box-shadow:0 8px 40px rgba(13,148,136,.2)}
+.price-card.featured::before{content:'✨ Recommended';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--teal);color:#fff;font-size:.7rem;font-weight:800;padding:.3rem 1rem;border-radius:20px;white-space:nowrap}
+.price-tier{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:.5rem}
+.price-num{font-family:'Nunito',sans-serif;font-size:2.2rem;font-weight:900;color:var(--slate)}
+.price-period{font-size:.85rem;color:var(--gray);margin-bottom:1.25rem}
+.price-list{text-align:left;margin-bottom:1.75rem}
+.price-list li{display:flex;align-items:flex-start;gap:.5rem;font-size:.85rem;color:var(--gray);margin-bottom:.5rem}
+.price-list li i{color:var(--teal);margin-top:2px;flex-shrink:0}
+.btn-price{display:block;width:100%;padding:.75rem;border-radius:10px;font-weight:700;font-size:.9rem;border:2px solid var(--teal);cursor:pointer;transition:var(--transition);font-family:'Inter',sans-serif}
+.btn-price-solid{background:var(--teal);color:#fff}
+.btn-price-solid:hover{background:var(--teal-dark)}
+.btn-price-outline{background:#fff;color:var(--teal)}
+.btn-price-outline:hover{background:var(--teal-light)}
+
+/* SUCCESS STORIES */
+.success-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.success-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:var(--transition)}
+.success-card:hover{transform:translateY(-4px)}
+.before-after{display:grid;grid-template-columns:1fr 1fr;height:120px}
+.before-side{background:linear-gradient(135deg,#FEE2E2,#FECACA);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem}
+.after-side{background:linear-gradient(135deg,var(--teal-light),var(--teal-mid));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem}
+.ba-label{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray)}
+.ba-emoji{font-size:2rem}
+.success-body{background:#fff;padding:1.25rem}
+.success-name{font-family:'Nunito',sans-serif;font-weight:800;color:var(--slate);margin-bottom:.25rem}
+.success-result{font-size:.9rem;font-weight:700;color:var(--teal);margin-bottom:.4rem}
+.success-quote{font-size:.82rem;color:var(--gray);font-style:italic;line-height:1.5;margin-bottom:.6rem}
+.success-stars{color:#F59E0B;font-size:.85rem}
+
+/* FAQ */
+.faq-section{background:var(--gray-light);padding:5rem 2rem}
+.faq-list{max-width:700px;margin:0 auto}
+.faq-item{background:#fff;border:1px solid var(--teal-mid);border-radius:10px;margin-bottom:.75rem;overflow:hidden;transition:var(--transition)}
+.faq-item:hover{border-color:var(--teal)}
+.faq-q{padding:1.1rem 1.25rem;font-weight:700;color:var(--slate);cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:.92rem}
+.faq-q i{color:var(--teal);transition:transform .3s;flex-shrink:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;font-size:.88rem;color:var(--gray);line-height:1.7;padding:0 1.25rem}
+.faq-item.open .faq-a{max-height:200px;padding:0 1.25rem 1.1rem}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+
+/* APPOINTMENT */
+.appt-section{background:linear-gradient(135deg,var(--teal),#064E3B);padding:5rem 2rem}
+.appt-inner{max-width:600px;margin:0 auto;background:#fff;border-radius:20px;padding:2.5rem;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.appt-title{font-family:'Nunito',sans-serif;font-size:1.7rem;font-weight:900;color:var(--slate);margin-bottom:.4rem}
+.appt-sub{color:var(--gray);font-size:.88rem;margin-bottom:2rem}
+.form-group{margin-bottom:1.1rem}
+.form-group label{display:block;font-size:.82rem;font-weight:600;color:var(--slate);margin-bottom:.4rem}
+.form-group input,.form-group select{width:100%;padding:.65rem 1rem;border:1.5px solid var(--teal-mid);border-radius:8px;font-size:.88rem;font-family:'Inter',sans-serif;color:var(--slate);background:var(--gray-light);outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{border-color:var(--teal)}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn-appt{width:100%;padding:.85rem;background:var(--teal);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.95rem;font-family:'Inter',sans-serif;cursor:pointer;transition:var(--transition)}
+.btn-appt:hover{background:var(--teal-dark)}
+
+/* FOOTER */
+.footer{background:var(--slate);color:rgba(255,255,255,.65);padding:3rem 2rem 1.5rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
+.footer-logo{font-family:'Nunito',sans-serif;font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:.6rem}
+.footer-desc{font-size:.83rem;line-height:1.7;color:rgba(255,255,255,.5)}
+.footer-head{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.85rem}
+.footer-links{display:flex;flex-direction:column;gap:.4rem}
+.footer-links a{font-size:.83rem;color:rgba(255,255,255,.5);transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.78rem}
+.footer-bottom a{color:var(--coral)}
+
+.wa-float{position:fixed;bottom:1.75rem;right:1.75rem;z-index:2000;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--transition)}
+.wa-float:hover{transform:scale(1.1)}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:1fr}
+  .price-card.featured{transform:scale(1)}
+  .success-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr}
+  .steps-grid::before{display:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links,.btn-nav{display:none}
+  .hamburger{display:flex}
+  .hero-inner{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .form-row2{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .doctor-visual{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo"><span>🌿</span> NutriCare</div>
+  <div class="nav-links">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#pricing" class="nav-link">Programs</a>
+    <a href="#success" class="nav-link">Success Stories</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#appointment" class="btn-nav">Book Consultation</a>
+  </div>
+  <div class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mobile-menu">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#pricing" class="nav-link">Programs</a>
+    <a href="#success" class="nav-link">Success Stories</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#appointment" class="nav-link">Book Consultation</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">🌿 Salem's Trusted Nutrition Clinic</div>
+      <h1 class="hero-title">Your Journey to a<br>Healthier You<br>Starts Here</h1>
+      <p class="hero-sub">Expert nutrition guidance by Dr. Meena Sundaram, M.Sc Nutrition & Dietetics. Personalized diet plans that actually work — for weight loss, diabetes, pregnancy, and more.</p>
+      <div class="hero-btns">
+        <a href="#appointment" class="btn-hero-white">📅 Book Appointment</a>
+        <a href="#pricing" class="btn-hero-ghost">🥗 View Programs</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">500+</div><div class="lbl">Patients Transformed</div></div>
+        <div class="hero-stat"><div class="num">10+</div><div class="lbl">Years Experience</div></div>
+        <div class="hero-stat"><div class="num">95%</div><div class="lbl">Success Rate</div></div>
+      </div>
+    </div>
+    <div class="doctor-visual">
+      <div class="doc-ring">
+        <div class="doc-inner">👩‍⚕️</div>
+      </div>
+      <div class="doc-name">Dr. Meena Sundaram</div>
+      <div class="doc-qual">M.Sc Nutrition & Dietetics</div>
+      <div class="doc-exp-badge">🏆 10+ Years Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Our Services</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Specialized Nutrition Programs</h2>
+      <p class="sec-sub" style="margin:0 auto">Tailored nutrition solutions for every health goal, backed by science and delivered with care.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal"><div class="svc-icon-wrap">🥗</div><div class="svc-title">Weight Loss Program</div><div class="svc-desc">Sustainable weight loss with customized meal plans, no starvation — just smart eating.</div><a href="#" class="svc-link">Know More <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="svc-card reveal"><div class="svc-icon-wrap">🤱</div><div class="svc-title">Pregnancy Nutrition</div><div class="svc-desc">Safe, complete nutrition guidance for mother and baby through all trimesters.</div><a href="#" class="svc-link">Know More <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="svc-card reveal"><div class="svc-icon-wrap">💪</div><div class="svc-title">Sports Nutrition</div><div class="svc-desc">Performance-focused meal plans for athletes — maximize energy, recovery, and endurance.</div><a href="#" class="svc-link">Know More <i class="fa-solid fa-arrow-right"></i></a></div>
+      <div class="svc-card reveal"><div class="svc-icon-wrap">🫀</div><div class="svc-title">Diabetic Diet Management</div><div class="svc-desc">Scientific diet control for managing blood sugar with delicious, culturally adapted meals.</div><a href="#" class="svc-link">Know More <i class="fa-solid fa-arrow-right"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="steps-section" id="process">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem" class="reveal">
+      <span class="sec-badge">Our Process</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">How It Works</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">📋</div>
+        <div class="step-title">Initial Consultation</div>
+        <div class="step-desc">Detailed assessment of your health history, goals, lifestyle and current eating patterns.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">🥙</div>
+        <div class="step-title">Personalized Diet Plan</div>
+        <div class="step-desc">Custom meal plan tailored to your taste, budget, and health targets — practical & sustainable.</div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">📈</div>
+        <div class="step-title">Track & Achieve Goals</div>
+        <div class="step-desc">Regular follow-ups to track progress, adjust the plan and celebrate your milestones together.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Programs & Pricing</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Choose Your Health Plan</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-tier">Basic</div>
+        <div class="price-num">₹1,500</div>
+        <div class="price-period">per month</div>
+        <ul class="price-list">
+          <li><i class="fa-solid fa-check"></i> 1 Consultation session</li>
+          <li><i class="fa-solid fa-check"></i> Personalized diet chart</li>
+          <li><i class="fa-solid fa-check"></i> Dietary guidelines booklet</li>
+          <li><i class="fa-solid fa-check"></i> WhatsApp support (weekdays)</li>
+        </ul>
+        <button class="btn-price btn-price-outline" onclick="document.getElementById('appointment').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="price-tier">Standard</div>
+        <div class="price-num">₹3,000</div>
+        <div class="price-period">per month</div>
+        <ul class="price-list">
+          <li><i class="fa-solid fa-check"></i> 4 Weekly consultations</li>
+          <li><i class="fa-solid fa-check"></i> Fully customized meal plan</li>
+          <li><i class="fa-solid fa-check"></i> Grocery shopping guide</li>
+          <li><i class="fa-solid fa-check"></i> Progress tracking & reports</li>
+          <li><i class="fa-solid fa-check"></i> Daily WhatsApp support</li>
+        </ul>
+        <button class="btn-price btn-price-solid" onclick="document.getElementById('appointment').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-tier">Premium</div>
+        <div class="price-num">₹5,000</div>
+        <div class="price-period">per month</div>
+        <ul class="price-list">
+          <li><i class="fa-solid fa-check"></i> Unlimited consultations</li>
+          <li><i class="fa-solid fa-check"></i> Daily support & guidance</li>
+          <li><i class="fa-solid fa-check"></i> Meal prep guidance</li>
+          <li><i class="fa-solid fa-check"></i> Full body composition analysis</li>
+          <li><i class="fa-solid fa-check"></i> Recipe customization</li>
+          <li><i class="fa-solid fa-check"></i> Priority 24/7 support</li>
+        </ul>
+        <button class="btn-price btn-price-outline" onclick="document.getElementById('appointment').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section class="section" id="success" style="background:var(--teal-light)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Success Stories</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Real Results, Real People</h2>
+    </div>
+    <div class="success-grid">
+      <div class="success-card reveal">
+        <div class="before-after"><div class="before-side"><div class="ba-label">Before</div><div class="ba-emoji">😔</div></div><div class="after-side"><div class="ba-label">After</div><div class="ba-emoji">😄</div></div></div>
+        <div class="success-body">
+          <div class="success-name">Priya S.</div>
+          <div class="success-result">Lost 12 kg in 3 months</div>
+          <div class="success-quote">"I never thought weight loss could feel this natural. Dr. Meena's plan fit perfectly into my lifestyle."</div>
+          <div class="success-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="success-card reveal">
+        <div class="before-after"><div class="before-side"><div class="ba-label">Before</div><div class="ba-emoji">😰</div></div><div class="after-side"><div class="ba-label">After</div><div class="ba-emoji">💪</div></div></div>
+        <div class="success-body">
+          <div class="success-name">Suresh M.</div>
+          <div class="success-result">Blood sugar normalized in 6 weeks</div>
+          <div class="success-quote">"Reduced my HbA1c from 9.2 to 6.8 without medication changes. The diet plan was truly life-changing."</div>
+          <div class="success-stars">★★★★★</div>
+        </div>
+      </div>
+      <div class="success-card reveal">
+        <div class="before-after"><div class="before-side"><div class="ba-label">Before</div><div class="ba-emoji">😓</div></div><div class="after-side"><div class="ba-label">After</div><div class="ba-emoji">🤸</div></div></div>
+        <div class="success-body">
+          <div class="success-name">Lakshmi R.</div>
+          <div class="success-result">Healthy pregnancy — baby born 3.4 kg</div>
+          <div class="success-quote">"Followed NutriCare's pregnancy plan throughout. Both baby and I were perfectly healthy throughout."</div>
+          <div class="success-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="faq-section" id="faq">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">FAQ</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How soon will I see results? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">Most patients notice changes within the first 2–3 weeks. Significant, sustainable results are typically seen within 4–8 weeks depending on your program and consistency.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do I need to stop eating my favourite foods? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">Absolutely not! We believe in sustainable dieting. Dr. Meena designs plans that include your favourite foods in moderation — no starvation, no extreme restrictions.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is the diet plan customized for me? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">Yes — every plan is 100% personalized. We consider your medical history, taste preferences, budget, cooking habits and lifestyle before creating your plan.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How many times do I meet the doctor? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">This depends on your plan — Basic includes 1 monthly session, Standard includes weekly sessions, and Premium offers unlimited consultations as needed.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you offer online consultations? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">Yes! We offer video consultations via WhatsApp or Google Meet for patients outside Salem or those who prefer remote sessions. Contact us to schedule.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPOINTMENT -->
+<div class="appt-section" id="appointment">
+  <div class="appt-inner reveal">
+    <div class="appt-title">📅 Book a Consultation</div>
+    <p class="appt-sub">Take the first step towards a healthier life. Fill in your details and we'll confirm your appointment within 2 hours.</p>
+    <form onsubmit="handleAppt(event)">
+      <div class="form-row2">
+        <div class="form-group"><label>Full Name *</label><input type="text" placeholder="E.g. Vijaya Lakshmi" required/></div>
+        <div class="form-group"><label>Age</label><input type="number" placeholder="E.g. 34" min="1" max="120"/></div>
+      </div>
+      <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="+91 98765 XXXXX" required/></div>
+      <div class="form-group"><label>Primary Health Goal</label>
+        <select><option>Weight Loss</option><option>Diabetes Management</option><option>Pregnancy Nutrition</option><option>Sports Performance</option><option>General Wellness</option></select>
+      </div>
+      <div class="form-group"><label>Preferred Date</label><input type="date"/></div>
+      <button type="submit" class="btn-appt">🌿 Book My Consultation</button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">🌿 NutriCare</div>
+        <p class="footer-desc">Salem's trusted diet & wellness clinic. Helping you achieve your health goals with science-backed, personalized nutrition.</p>
+      </div>
+      <div>
+        <div class="footer-head">Services</div>
+        <div class="footer-links">
+          <a href="#">Weight Loss</a>
+          <a href="#">Diabetic Diet</a>
+          <a href="#">Pregnancy Nutrition</a>
+          <a href="#">Sports Nutrition</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-head">Contact</div>
+        <div class="footer-links">
+          <a href="#">+91 98765 XXXXX</a>
+          <a href="#">Junction Main Road, Salem</a>
+          <a href="#">Mon–Sat · 9AM–7PM</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 NutriCare Diet & Wellness Clinic. All rights reserved.</span>
+      <span>Website designed by <a href="mailto:haryacr@gmail.com">Harya C R · haryacr@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+const revEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:.1});
+revEls.forEach(el=>obs.observe(el));
+
+function toggleFaq(el){
+  const item=el.parentElement;
+  document.querySelectorAll('.faq-item').forEach(i=>{if(i!==item)i.classList.remove('open')});
+  item.classList.toggle('open');
+}
+
+function handleAppt(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.btn-appt');
+  btn.textContent='✅ Appointment Booked! We\'ll call to confirm.';
+  btn.style.background='#2D6A4F';
+  setTimeout(()=>{btn.textContent='🌿 Book My Consultation';btn.style.background='';e.target.reset();},4000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Zephyr Style Co. — Wear Your Story | Salem</title>
+<meta name="description" content="Modern casual clothing brand from Tamil Nadu. Contemporary fashion with local soul. Shop new collection 2026."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --charcoal:#111827;--charcoal-mid:#1F2937;--charcoal-light:#374151;
+  --rose:#E879A0;--rose-dark:#BE185D;--rose-light:#FDF2F8;
+  --gold:#D4A853;--gold-light:#FEF9EE;
+  --white:#FFFFFF;--off-white:#FAFAFA;--gray:#6B7280;--light-gray:#F3F4F6;
+  --shadow:0 4px 24px rgba(17,24,39,.10);
+  --radius:12px;--transition:all .3s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--charcoal);background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #E5E7EB;padding:0 2rem;height:66px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--charcoal);letter-spacing:3px;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:.2rem}
+.nav-link{padding:.45rem .9rem;font-size:.82rem;font-weight:500;color:var(--gray);border-radius:6px;transition:var(--transition);letter-spacing:.3px}
+.nav-link:hover{color:var(--charcoal)}
+.nav-icon{font-size:1.1rem;color:var(--gray);padding:.45rem .6rem;transition:color .2s;cursor:pointer}
+.nav-icon:hover{color:var(--rose)}
+.btn-nav{background:var(--rose);color:#fff;padding:.55rem 1.35rem;border-radius:8px;font-weight:700;font-size:.82rem;letter-spacing:.5px;transition:var(--transition)}
+.btn-nav:hover{background:var(--rose-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;background:var(--charcoal);border-radius:2px}
+.mobile-menu{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;border-bottom:1px solid #E5E7EB;padding:1rem 2rem;flex-direction:column;gap:.4rem;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.hero-left{background:var(--charcoal);display:flex;flex-direction:column;justify-content:center;padding:6rem 4rem;position:relative;overflow:hidden}
+.hero-left::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,121,160,.05) 0%,transparent 60%)}
+.hero-vert-text{position:absolute;right:2rem;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:rgba(255,255,255,.04);letter-spacing:8px;white-space:nowrap;pointer-events:none}
+.hero-season{font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--rose);margin-bottom:1rem}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,5.5rem);font-weight:700;color:#fff;line-height:1.05;margin-bottom:.75rem}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:2.5rem;max-width:380px}
+.hero-btn-shop{background:var(--rose);color:#fff;padding:.85rem 2.5rem;border-radius:8px;font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;gap:.5rem;transition:var(--transition)}
+.hero-btn-shop:hover{background:var(--rose-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,121,160,.4)}
+
+.hero-right{background:linear-gradient(135deg,#1F2937 0%,#111827 50%,#0F172A 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:2rem}
+.hero-right-abstract{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center}
+.abstract-circle{position:absolute;border-radius:50%;opacity:.5}
+.circle-1{width:280px;height:280px;background:conic-gradient(var(--rose),var(--gold),var(--rose));top:10%;right:10%}
+.circle-2{width:200px;height:200px;background:linear-gradient(135deg,var(--gold),rgba(212,168,83,.3));bottom:15%;left:5%;border-radius:50%}
+.circle-3{width:120px;height:120px;background:var(--rose);top:55%;right:30%}
+.abstract-line{position:absolute;width:2px;background:linear-gradient(180deg,var(--rose),transparent);height:60%;top:0;right:50%;opacity:.3}
+.hero-emoji-overlay{position:absolute;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:2rem}
+.hero-emoji-item{font-size:3.5rem;filter:drop-shadow(0 4px 20px rgba(232,121,160,.5));animation:floatItem 4s ease-in-out infinite}
+.hero-emoji-item:nth-child(2){animation-delay:1s}
+.hero-emoji-item:nth-child(3){animation-delay:2s}
+.hero-emoji-item:nth-child(4){animation-delay:3s}
+@keyframes floatItem{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.new-col-badge{position:absolute;top:2rem;left:2rem;background:var(--rose);color:#fff;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;padding:.5rem 1rem;border-radius:6px;letter-spacing:2px;z-index:3}
+
+/* SECTION */
+.section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.sec-badge{display:inline-block;background:var(--rose-light);color:var(--rose);font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--charcoal);line-height:1.2;margin-bottom:.75rem}
+.sec-sub{color:var(--gray);font-size:.95rem;max-width:520px;line-height:1.7;margin-bottom:2.5rem}
+.divider-rose{width:40px;height:3px;background:var(--rose);border-radius:2px;margin-bottom:1.25rem}
+
+/* CATEGORIES */
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.cat-tile{border-radius:16px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden}
+.cat-tile::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.3);transition:background .3s}
+.cat-tile:hover::after{background:rgba(0,0,0,.15)}
+.cat-tile:hover{transform:scale(1.02)}
+.cat-tile-content{position:relative;z-index:1;text-align:center}
+.cat-emoji{font-size:3.5rem;display:block;margin-bottom:.5rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
+.cat-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:1px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.cat-tile-1{background:linear-gradient(135deg,#E879A0,#BE185D)}
+.cat-tile-2{background:linear-gradient(135deg,#1F2937,#374151)}
+.cat-tile-3{background:linear-gradient(135deg,#D4A853,#92400E)}
+.cat-tile-4{background:linear-gradient(135deg,#7C3AED,#4C1D95)}
+
+/* PRODUCTS */
+.prod-filter{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+.pf-btn{padding:.4rem 1.1rem;border-radius:30px;font-size:.82rem;font-weight:600;border:1.5px solid #E5E7EB;color:var(--gray);cursor:pointer;background:#fff;transition:var(--transition);font-family:'DM Sans',sans-serif}
+.pf-btn.active,.pf-btn:hover{background:var(--charcoal);border-color:var(--charcoal);color:#fff}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.prod-card{border-radius:16px;overflow:hidden;background:#fff;border:1px solid #E5E7EB;transition:var(--transition)}
+.prod-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--rose)}
+.prod-visual{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;position:relative}
+.prod-emoji-large{font-size:4rem;filter:drop-shadow(0 8px 16px rgba(0,0,0,.2))}
+.prod-badge{position:absolute;top:.75rem;left:.75rem;background:var(--rose);color:#fff;font-size:.65rem;font-weight:800;padding:.2rem .6rem;border-radius:20px;letter-spacing:1px;text-transform:uppercase}
+.prod-body{padding:1.25rem}
+.prod-cat{font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:.3rem}
+.prod-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--charcoal);margin-bottom:.3rem}
+.prod-material{font-size:.78rem;color:var(--gray);margin-bottom:.75rem;font-style:italic}
+.prod-footer{display:flex;align-items:center;justify-content:space-between}
+.prod-price{font-size:1.1rem;font-weight:700;color:var(--charcoal)}
+.btn-cart{background:var(--charcoal);color:#fff;padding:.45rem 1rem;border-radius:7px;font-size:.78rem;font-weight:700;border:none;cursor:pointer;transition:var(--transition);font-family:'DM Sans',sans-serif}
+.btn-cart:hover{background:var(--rose)}
+
+/* BRAND STORY */
+.brand-section{background:var(--charcoal);padding:5rem 2rem}
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.brand-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;font-style:italic;color:#fff;line-height:1.3}
+.brand-quote em{color:var(--rose);font-style:normal}
+.brand-values{display:flex;flex-direction:column;gap:1.25rem}
+.brand-val{display:flex;align-items:center;gap:1rem}
+.val-icon{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.val-text strong{display:block;color:#fff;font-size:.95rem;font-weight:600;margin-bottom:.15rem}
+.val-text span{color:rgba(255,255,255,.5);font-size:.82rem}
+
+/* OFFERS BANNER */
+.offer-banner{background:linear-gradient(135deg,var(--rose),var(--rose-dark));padding:1.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.offer-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1px);background-size:20px 20px}
+.offer-text{position:relative;z-index:1;font-size:1.05rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
+.offer-code{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);padding:.2rem .75rem;border-radius:6px;font-family:'Courier New',monospace;font-size:.95rem;letter-spacing:2px}
+
+/* LOOKBOOK */
+.lookbook-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.look-item{border-radius:14px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden}
+.look-item:hover{transform:scale(1.02)}
+.look-item:nth-child(1){background:linear-gradient(135deg,#1F2937,#374151)}
+.look-item:nth-child(2){background:linear-gradient(135deg,#E879A0,#7C3AED)}
+.look-item:nth-child(3){background:linear-gradient(135deg,#D4A853,#92400E)}
+.look-item:nth-child(4){background:linear-gradient(135deg,#4C1D95,#1E3A5F)}
+.look-item:nth-child(5){background:linear-gradient(135deg,#064E3B,#065F46)}
+.look-item:nth-child(6){background:linear-gradient(135deg,#7C3AED,#E879A0)}
+.look-emoji{font-size:3rem;z-index:1}
+.look-label{color:#fff;font-size:.85rem;font-weight:700;z-index:1;letter-spacing:.5px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+
+/* SIZE GUIDE */
+.size-section{background:var(--light-gray);padding:5rem 2rem}
+.size-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid #E5E7EB;background:#fff;box-shadow:var(--shadow)}
+.size-table{width:100%;border-collapse:collapse}
+.size-table th{padding:1rem 1.25rem;background:var(--charcoal);color:#fff;font-size:.82rem;font-weight:600;letter-spacing:.5px;text-align:center}
+.size-table th:first-child{text-align:left}
+.size-table td{padding:.85rem 1.25rem;border-bottom:1px solid #F3F4F6;font-size:.88rem;color:var(--charcoal);text-align:center}
+.size-table td:first-child{font-weight:700;text-align:left}
+.size-table tr:hover td{background:var(--rose-light)}
+.size-highlight{background:rgba(232,121,160,.1);font-weight:700!important;color:var(--rose)!important}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testi-card{background:#fff;border-radius:var(--radius);padding:1.75rem;border:1px solid #E5E7EB;box-shadow:var(--shadow);transition:var(--transition)}
+.testi-card:hover{border-color:var(--rose);transform:translateY(-3px)}
+.testi-ig{font-size:.82rem;font-weight:700;color:var(--rose);margin-bottom:.75rem}
+.testi-stars{color:#F59E0B;font-size:.88rem;margin-bottom:.5rem}
+.testi-text{font-size:.88rem;color:var(--gray);line-height:1.7;font-style:italic;margin-bottom:.85rem}
+.testi-name{font-weight:700;color:var(--charcoal);font-size:.85rem}
+
+/* NEWSLETTER */
+.newsletter-section{background:var(--gold-light);border-top:1px solid rgba(212,168,83,.2);padding:4rem 2rem;text-align:center}
+.nl-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--charcoal);margin-bottom:.5rem}
+.nl-sub{font-size:.9rem;color:var(--gray);margin-bottom:2rem}
+.nl-form{display:flex;gap:.75rem;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.nl-input{flex:1;min-width:200px;padding:.75rem 1.25rem;border:1.5px solid #E5E7EB;border-radius:8px;font-size:.9rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.nl-input:focus{border-color:var(--rose)}
+.btn-subscribe{background:var(--charcoal);color:#fff;padding:.75rem 1.75rem;border-radius:8px;font-weight:700;font-size:.88rem;border:none;cursor:pointer;transition:var(--transition);font-family:'DM Sans',sans-serif}
+.btn-subscribe:hover{background:var(--rose)}
+.nl-offer{margin-top:.75rem;font-size:.8rem;color:var(--gray)}
+
+/* FOOTER */
+.footer{background:var(--charcoal);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:2rem}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:#fff;letter-spacing:3px;text-transform:uppercase;margin-bottom:.5rem}
+.footer-ig{font-size:.82rem;color:var(--rose);margin-bottom:.6rem}
+.footer-desc{font-size:.82rem;line-height:1.7;color:rgba(255,255,255,.4)}
+.footer-head{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.85rem}
+.footer-links{display:flex;flex-direction:column;gap:.4rem}
+.footer-links a{font-size:.82rem;color:rgba(255,255,255,.4);transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-payments{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.75rem}
+.pay-tag{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-size:.7rem;font-weight:700;padding:.2rem .65rem;border-radius:4px;letter-spacing:.5px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.78rem}
+.footer-bottom a{color:var(--rose)}
+
+.wa-float{position:fixed;bottom:1.75rem;right:1.75rem;z-index:2000;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--transition)}
+.wa-float:hover{transform:scale(1.1)}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-right{min-height:50vw}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .brand-grid{grid-template-columns:1fr}
+  .lookbook-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links,.btn-nav,.nav-icon{display:none}
+  .hamburger{display:flex}
+  .hero-left{padding:4rem 1.5rem}
+  .cat-grid,.prod-grid{grid-template-columns:1fr}
+  .lookbook-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo">ZEPHYR</div>
+  <div class="nav-links">
+    <a href="#categories" class="nav-link">Collections</a>
+    <a href="#products" class="nav-link">Shop</a>
+    <a href="#lookbook" class="nav-link">Lookbook</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-icon"><i class="fa-solid fa-cart-shopping"></i></a>
+    <a href="#products" class="btn-nav">Shop Now</a>
+  </div>
+  <div class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mobile-menu">
+    <a href="#categories" class="nav-link">Collections</a>
+    <a href="#products" class="nav-link">Shop</a>
+    <a href="#lookbook" class="nav-link">Lookbook</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-vert-text">NEW COLLECTION</div>
+    <div class="hero-season">✦ New Collection 2026</div>
+    <h1 class="hero-title">Dress Bold.<br>Live Free.</h1>
+    <p class="hero-sub">Contemporary fashion rooted in Tamil Nadu's vibrant culture. Designed in Salem. Worn everywhere.</p>
+    <a href="#products" class="hero-btn-shop"><i class="fa-solid fa-arrow-right"></i> Shop the Collection</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-abstract">
+      <div class="abstract-circle circle-1"></div>
+      <div class="abstract-circle circle-2"></div>
+      <div class="abstract-circle circle-3"></div>
+      <div class="abstract-line"></div>
+      <div class="hero-emoji-overlay">
+        <span class="hero-emoji-item">👗</span>
+        <span class="hero-emoji-item">👔</span>
+        <span class="hero-emoji-item">👖</span>
+        <span class="hero-emoji-item">🧣</span>
+      </div>
+    </div>
+    <div class="new-col-badge">NEW SEASON</div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Collections</span>
+      <div class="divider-rose" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Shop by Category</h2>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-tile cat-tile-1 reveal"><div class="cat-tile-content"><span class="cat-emoji">👗</span><span class="cat-name">Women's Wear</span></div></div>
+      <div class="cat-tile cat-tile-2 reveal"><div class="cat-tile-content"><span class="cat-emoji">👔</span><span class="cat-name">Men's Wear</span></div></div>
+      <div class="cat-tile cat-tile-3 reveal"><div class="cat-tile-content"><span class="cat-emoji">🧣</span><span class="cat-name">Accessories</span></div></div>
+      <div class="cat-tile cat-tile-4 reveal"><div class="cat-tile-content"><span class="cat-emoji">👶</span><span class="cat-name">Kids Wear</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section" id="products" style="background:var(--off-white)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2rem" class="reveal">
+      <span class="sec-badge">Featured Products</span>
+      <div class="divider-rose" style="margin:1rem auto"></div>
+      <h2 class="sec-title">New Arrivals</h2>
+    </div>
+    <div class="prod-filter reveal" style="justify-content:center">
+      <button class="pf-btn active" onclick="filterProd('all',this)">All</button>
+      <button class="pf-btn" onclick="filterProd('women',this)">Women</button>
+      <button class="pf-btn" onclick="filterProd('men',this)">Men</button>
+      <button class="pf-btn" onclick="filterProd('accessories',this)">Accessories</button>
+      <button class="pf-btn" onclick="filterProd('sale',this)">Sale</button>
+    </div>
+    <div class="prod-grid" id="prod-grid">
+      <div class="prod-card reveal" data-cat="women">
+        <div class="prod-visual" style="background:linear-gradient(135deg,#FDF2F8,#F9A8D4)">
+          <span class="prod-badge">New</span>
+          <span class="prod-emoji-large">👗</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Women's Wear</div>
+          <div class="prod-name">Ethnic Fusion Kurti</div>
+          <div class="prod-material">Breathable cotton-silk blend</div>
+          <div class="prod-footer"><span class="prod-price">₹899</span><button class="btn-cart" onclick="addToCart(this)">Add to Cart</button></div>
+        </div>
+      </div>
+      <div class="prod-card reveal" data-cat="men">
+        <div class="prod-visual" style="background:linear-gradient(135deg,#EFF6FF,#BFDBFE)">
+          <span class="prod-emoji-large">👔</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Men's Wear</div>
+          <div class="prod-name">Linen Casual Shirt</div>
+          <div class="prod-material">Premium linen, relaxed fit</div>
+          <div class="prod-footer"><span class="prod-price">₹1,299</span><button class="btn-cart" onclick="addToCart(this)">Add to Cart</button></div>
+        </div>
+      </div>
+      <div class="prod-card reveal" data-cat="men">
+        <div class="prod-visual" style="background:linear-gradient(135deg,#F8FAFC,#E2E8F0)">
+          <span class="prod-emoji-large">👖</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Men's Wear</div>
+          <div class="prod-name">Slim Fit Chinos</div>
+          <div class="prod-material">Cotton-stretch blend</div>
+          <div class="prod-footer"><span class="prod-price">₹1,099</span><button class="btn-cart" onclick="addToCart(this)">Add to Cart</button></div>
+        </div>
+      </div>
+      <div class="prod-card reveal" data-cat="women sale">
+        <div class="prod-visual" style="background:linear-gradient(135deg,#FEF9EE,#FDE68A)">
+          <span class="prod-badge" style="background:var(--gold)">Sale</span>
+          <span class="prod-emoji-large">🧣</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Accessories</div>
+          <div class="prod-name">Handwoven Silk Dupatta</div>
+          <div class="prod-material">Pure handloom silk</div>
+          <div class="prod-footer"><span class="prod-price" style="color:var(--rose)">₹1,499 <span style="text-decoration:line-through;color:var(--gray);font-size:.85rem">₹1,999</span></span><button class="btn-cart" onclick="addToCart(this)">Add to Cart</button></div>
+        </div>
+      </div>
+      <div class="prod-card reveal" data-cat="men accessories">
+        <div class="prod-visual" style="background:linear-gradient(135deg,#F0FFF4,#BBFDE8)">
+          <span class="prod-emoji-large">👟</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Footwear</div>
+          <div class="prod-name">Canvas Sneakers</div>
+          <div class="prod-material">Eco-cotton canvas upper</div>
+          <div class="prod-footer"><span class="prod-price">₹2,499</span><button class="btn-cart" onclick="addToCart(this)">Add to Cart</button></div>
+        </div>
+      </div>
+      <div class="prod-card reveal" data-cat="accessories women">
+        <div class="prod-visual" style="background:linear-gradient(135deg,#FDF2F8,#E879A0)">
+          <span class="prod-emoji-large">👜</span>
+        </div>
+        <div class="prod-body">
+          <div class="prod-cat">Accessories</div>
+          <div class="prod-name">Canvas Tote Bag</div>
+          <div class="prod-material">Organic cotton, screen printed</div>
+          <div class="prod-footer"><span class="prod-price">₹599</span><button class="btn-cart" onclick="addToCart(this)">Add to Cart</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND STORY -->
+<div class="brand-section" id="story">
+  <div class="container">
+    <div class="brand-grid">
+      <div class="reveal">
+        <div style="color:rgba(255,255,255,.35);font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem">✦ Our Philosophy</div>
+        <div class="brand-quote">"Fashion is not just clothing. It is <em>identity</em>."</div>
+        <p style="color:rgba(255,255,255,.5);font-size:.9rem;margin-top:1.5rem;line-height:1.7">At Zephyr Style Co., we believe your wardrobe should tell your story — boldly, beautifully, and authentically.</p>
+      </div>
+      <div class="brand-values reveal">
+        <div style="color:rgba(255,255,255,.35);font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:1.25rem">Our Values</div>
+        <div class="brand-val"><div class="val-icon">✂️</div><div class="val-text"><strong>Locally Designed</strong><span>Every piece designed in Salem by Tamil Nadu's finest talents</span></div></div>
+        <div class="brand-val"><div class="val-icon">🌿</div><div class="val-text"><strong>Sustainable Fabrics</strong><span>Thoughtfully sourced materials — gentle on the earth</span></div></div>
+        <div class="brand-val"><div class="val-icon">💫</div><div class="val-text"><strong>Affordable Luxury</strong><span>Premium quality at prices that make fashion accessible to all</span></div></div>
+        <div class="brand-val"><div class="val-icon">🇮🇳</div><div class="val-text"><strong>Made in Tamil Nadu</strong><span>Empowering local weavers and craftspeople</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OFFERS BANNER -->
+<div class="offer-banner">
+  <div class="offer-text">🔥 Monsoon Sale — Up to 40% Off &nbsp;·&nbsp; Use code <span class="offer-code">ZEPHYR40</span> &nbsp;·&nbsp; Limited Time Only!</div>
+</div>
+
+<!-- LOOKBOOK -->
+<section class="section" id="lookbook">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Lookbook</span>
+      <div class="divider-rose" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Style Gallery</h2>
+    </div>
+    <div class="lookbook-grid">
+      <div class="look-item reveal"><span class="look-emoji">💼</span><span class="look-label">Office Look</span></div>
+      <div class="look-item reveal"><span class="look-emoji">🪔</span><span class="look-label">Festive Wear</span></div>
+      <div class="look-item reveal"><span class="look-emoji">😎</span><span class="look-label">Casual Weekend</span></div>
+      <div class="look-item reveal"><span class="look-emoji">🌙</span><span class="look-label">Date Night</span></div>
+      <div class="look-item reveal"><span class="look-emoji">🌿</span><span class="look-label">Eco Essentials</span></div>
+      <div class="look-item reveal"><span class="look-emoji">✨</span><span class="look-label">Party Ready</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIZE GUIDE -->
+<div class="size-section" id="sizeguide">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Size Guide</span>
+      <div class="divider-rose" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Find Your Perfect Fit</h2>
+    </div>
+    <div class="size-table-wrap reveal">
+      <table class="size-table">
+        <thead>
+          <tr><th>Size</th><th>Chest (inches)</th><th>Waist (inches)</th><th>Hip (inches)</th><th>Fits Body Weight</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>XS</td><td>32–34</td><td>26–28</td><td>34–36</td><td>45–55 kg</td></tr>
+          <tr><td>S</td><td>34–36</td><td>28–30</td><td>36–38</td><td>55–65 kg</td></tr>
+          <tr class="size-highlight"><td>M (Popular)</td><td>36–38</td><td>30–32</td><td>38–40</td><td>65–75 kg</td></tr>
+          <tr><td>L</td><td>38–40</td><td>32–34</td><td>40–42</td><td>75–85 kg</td></tr>
+          <tr><td>XL</td><td>40–42</td><td>34–36</td><td>42–44</td><td>85–95 kg</td></tr>
+          <tr><td>XXL</td><td>42–44</td><td>36–38</td><td>44–46</td><td>95–110 kg</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;color:var(--gray);font-size:.82rem;margin-top:1rem">Not sure about your size? Chat with us on WhatsApp for personalized guidance.</p>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Reviews</span>
+      <div class="divider-rose" style="margin:1rem auto"></div>
+      <h2 class="sec-title">What Customers Say</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal"><div class="testi-ig">@priya_stylediaries</div><div class="testi-stars">★★★★★</div><p class="testi-text">"The Ethnic Fusion Kurti is absolutely gorgeous! The fabric quality is premium and the fit is perfect. Already planning my next order."</p><div class="testi-name">Priya Ramachandran, Chennai</div></div>
+      <div class="testi-card reveal"><div class="testi-ig">@salemnstyle</div><div class="testi-stars">★★★★★</div><p class="testi-text">"Finally a Salem brand that truly understands modern Tamil fashion. The linen shirt is my go-to for everything — office, casual, even weddings."</p><div class="testi-name">Vijay Kumar, Salem</div></div>
+      <div class="testi-card reveal"><div class="testi-ig">@kavitha.looks</div><div class="testi-stars">★★★★☆</div><p class="testi-text">"Love the silk dupatta! Colors are vibrant and exactly as shown. Delivery was very fast. Would recommend to anyone looking for quality ethnic wear."</p><div class="testi-name">Kavitha S., Namakkal</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="nl-title">Stay in Style</div>
+      <p class="nl-sub">Subscribe to our newsletter and get 10% off your first order. New collections, exclusive deals — straight to your inbox.</p>
+      <div class="nl-form">
+        <input type="email" class="nl-input" placeholder="your@email.com"/>
+        <button class="btn-subscribe" onclick="subscribeNL(this)">Subscribe</button>
+      </div>
+      <p class="nl-offer">🎁 Get <strong>10% off</strong> your first order when you subscribe</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">ZEPHYR</div>
+        <div class="footer-ig">📸 @zephyrstyleco</div>
+        <p class="footer-desc">Wear Your Story. Contemporary fashion from Tamil Nadu with local soul and global style.</p>
+        <div class="footer-payments">
+          <span class="pay-tag">VISA</span>
+          <span class="pay-tag">UPI</span>
+          <span class="pay-tag">PhonePe</span>
+          <span class="pay-tag">COD</span>
+          <span class="pay-tag">EMI</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-head">Shop</div>
+        <div class="footer-links">
+          <a href="#">Women's Wear</a>
+          <a href="#">Men's Wear</a>
+          <a href="#">Accessories</a>
+          <a href="#">Kids Wear</a>
+          <a href="#">Sale</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-head">Help</div>
+        <div class="footer-links">
+          <a href="#">Size Guide</a>
+          <a href="#">Returns & Exchanges</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Four Roads, Salem</a>
+          <a href="#">+91 98765 XXXXX</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Zephyr Style Co. All rights reserved.</span>
+      <span>Website designed by <a href="mailto:haryacr@gmail.com">Harya C R · haryacr@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+const revEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:.1});
+revEls.forEach(el=>obs.observe(el));
+
+function filterProd(cat,btn){
+  document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.prod-card').forEach(c=>{
+    const cats=c.dataset.cat||'';
+    c.style.display=(cat==='all'||cats.includes(cat))?'':'none';
+  });
+}
+
+function addToCart(btn){
+  btn.textContent='✓ Added!';
+  btn.style.background='#2D6A4F';
+  setTimeout(()=>{btn.textContent='Add to Cart';btn.style.background='';},2000);
+}
+
+function subscribeNL(btn){
+  btn.textContent='✓ Subscribed!';
+  btn.style.background='#2D6A4F';
+  setTimeout(()=>{btn.textContent='Subscribe';btn.style.background='';},3000);
+}
+</script>
+</body>
+</html>

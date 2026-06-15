@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SalemBiz Solutions — Your Local Business Growth Partner</title>
+<meta name="description" content="GST filing, business registration, digital marketing, accounting and website development for Salem businesses. Free consultation available."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1E3A5F;--navy-dark:#0F2040;--navy-mid:#2D5280;
+  --blue:#3B82F6;--blue-dark:#2563EB;--blue-light:#EFF6FF;
+  --amber:#F59E0B;--amber-light:#FFFBEB;
+  --slate:#0F172A;--gray:#64748B;--gray-light:#F8FAFC;--border:#E2E8F0;
+  --white:#fff;
+  --shadow:0 4px 20px rgba(30,58,95,.12);
+  --radius:12px;--transition:all .3s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;color:var(--slate);background:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:66px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:.5rem;font-size:1.3rem;font-weight:800;color:var(--navy)}
+.nav-logo .logo-icon{font-size:1.4rem}
+.nav-links{display:flex;align-items:center;gap:.2rem}
+.nav-link{padding:.45rem .9rem;font-size:.83rem;font-weight:500;color:var(--gray);border-radius:6px;transition:var(--transition)}
+.nav-link:hover{color:var(--navy);background:var(--blue-light)}
+.btn-nav{background:var(--blue);color:#fff;padding:.55rem 1.25rem;border-radius:8px;font-weight:700;font-size:.83rem;transition:var(--transition)}
+.btn-nav:hover{background:var(--blue-dark);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px}
+.mobile-menu{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:1rem 2rem;flex-direction:column;gap:.4rem;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 50%,var(--navy-mid) 100%);display:flex;align-items:center;padding:6rem 2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-20%;right:-10%;width:500px;height:500px;border-radius:50%;background:rgba(59,130,246,.08);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-5%;width:350px;height:350px;border-radius:50%;background:rgba(245,158,11,.05);pointer-events:none}
+.hero-grid{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-label{display:inline-flex;align-items:center;gap:.5rem;background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.35);color:#93C5FD;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.35rem 1rem;border-radius:30px;margin-bottom:1.25rem}
+.hero-title{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:.85rem}
+.hero-title em{color:var(--amber);font-style:normal}
+.hero-sub{font-size:.92rem;color:rgba(255,255,255,.65);line-height:1.8;margin-bottom:2rem;max-width:460px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-hero-blue{background:var(--blue);color:#fff;padding:.75rem 1.75rem;border-radius:10px;font-weight:700;font-size:.9rem;transition:var(--transition)}
+.btn-hero-blue:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,130,246,.4)}
+.btn-hero-ghost{border:1.5px solid rgba(255,255,255,.35);color:#fff;padding:.75rem 1.75rem;border-radius:10px;font-weight:600;font-size:.9rem;transition:var(--transition)}
+.btn-hero-ghost:hover{background:rgba(255,255,255,.08);transform:translateY(-2px)}
+.hero-trust{display:flex;gap:2.5rem;flex-wrap:wrap}
+.trust-item .num{font-size:1.75rem;font-weight:800;color:var(--amber)}
+.trust-item .lbl{font-size:.75rem;color:rgba(255,255,255,.55);font-weight:500;margin-top:.1rem}
+
+/* Hero Right graphic */
+.hero-graphic{position:relative;height:340px;display:flex;align-items:center;justify-content:center}
+.hg-circle{position:absolute;border-radius:50%;opacity:.7}
+.hg-c1{width:260px;height:260px;border:2px solid rgba(59,130,246,.3);top:50%;left:50%;transform:translate(-50%,-50%)}
+.hg-c2{width:200px;height:200px;background:rgba(59,130,246,.1);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulseCircle 3s ease-in-out infinite}
+.hg-c3{width:320px;height:320px;border:1px solid rgba(245,158,11,.2);top:50%;left:50%;transform:translate(-50%,-50%)}
+@keyframes pulseCircle{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.05)}}
+.hg-emojis{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.hg-emoji-item{position:absolute;font-size:2.2rem;filter:drop-shadow(0 4px 12px rgba(59,130,246,.3))}
+.hg-main{font-size:4rem}
+
+/* SECTION */
+.section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.sec-badge{display:inline-block;background:var(--blue-light);color:var(--blue);font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem}
+.sec-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800;color:var(--slate);line-height:1.2;margin-bottom:.75rem}
+.sec-sub{color:var(--gray);font-size:.92rem;max-width:520px;line-height:1.7;margin-bottom:2.5rem}
+.divider{width:48px;height:4px;background:linear-gradient(90deg,var(--blue),var(--amber));border-radius:2px;margin-bottom:1.25rem}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.svc-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:var(--transition);position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--amber));opacity:0;transition:opacity .3s}
+.svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(59,130,246,.3)}
+.svc-card:hover::before{opacity:1}
+.svc-icon-box{width:52px;height:52px;border-radius:12px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1rem}
+.svc-title{font-size:.95rem;font-weight:700;color:var(--slate);margin-bottom:.4rem}
+.svc-desc{font-size:.82rem;color:var(--gray);line-height:1.5}
+
+/* WHY US */
+.why-section{background:var(--navy);padding:5rem 2rem}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem}
+.why-card{text-align:center;padding:2rem 1.25rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);transition:var(--transition)}
+.why-card:hover{background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.3)}
+.why-icon{font-size:2.5rem;margin-bottom:.85rem}
+.why-title{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.4rem}
+.why-desc{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.5}
+
+/* PROCESS */
+.process-section{background:var(--gray-light);padding:5rem 2rem}
+.process-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:900px;margin:0 auto;position:relative}
+.process-steps::before{content:'';position:absolute;top:40px;left:calc(16.6%);right:calc(16.6%);height:2px;background:linear-gradient(90deg,var(--blue),var(--amber))}
+.proc-step{text-align:center;position:relative;z-index:1}
+.proc-num{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;font-size:2rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 4px 16px rgba(59,130,246,.3)}
+.proc-title{font-size:.92rem;font-weight:700;color:var(--slate);margin-bottom:.4rem}
+.proc-desc{font-size:.8rem;color:var(--gray);line-height:1.5}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.price-card{background:#fff;border:2px solid var(--border);border-radius:16px;padding:2rem 1.75rem;text-align:center;transition:var(--transition);position:relative}
+.price-card.featured{border-color:var(--blue);box-shadow:0 8px 40px rgba(59,130,246,.15)}
+.price-card.featured::before{content:'⭐ Most Popular';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:.68rem;font-weight:800;padding:.3rem 1.1rem;border-radius:20px;white-space:nowrap}
+.p-tier{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:.5rem}
+.p-num{font-size:2.2rem;font-weight:800;color:var(--slate)}
+.p-period{font-size:.82rem;color:var(--gray);margin-bottom:1.25rem}
+.p-list{text-align:left;margin-bottom:1.75rem}
+.p-list li{display:flex;align-items:flex-start;gap:.5rem;font-size:.83rem;color:var(--gray);margin-bottom:.5rem}
+.p-list li i{color:var(--blue);margin-top:2px;flex-shrink:0}
+.btn-p{display:block;width:100%;padding:.75rem;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;transition:var(--transition);border:2px solid var(--blue);font-family:'Poppins',sans-serif}
+.btn-p-solid{background:var(--blue);color:#fff}
+.btn-p-solid:hover{background:var(--blue-dark)}
+.btn-p-outline{background:#fff;color:var(--blue)}
+.btn-p-outline:hover{background:var(--blue-light)}
+.p-note{text-align:center;margin-top:1.5rem;font-size:.82rem;color:var(--gray)}
+.p-note strong{color:var(--amber)}
+
+/* SUCCESS STORIES */
+.stories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.story-card{background:#fff;border-radius:var(--radius);padding:1.75rem;border:1px solid var(--border);box-shadow:var(--shadow);transition:var(--transition)}
+.story-card:hover{transform:translateY(-3px);border-color:var(--blue)}
+.story-type{display:inline-flex;align-items:center;gap:.4rem;background:var(--blue-light);color:var(--blue);font-size:.72rem;font-weight:700;padding:.25rem .75rem;border-radius:20px;margin-bottom:.85rem}
+.story-result{font-size:1rem;font-weight:700;color:var(--slate);margin-bottom:.5rem;line-height:1.3}
+.story-quote{font-size:.82rem;color:var(--gray);line-height:1.6;font-style:italic;margin-bottom:.75rem}
+.story-biz{font-size:.78rem;font-weight:700;color:var(--blue)}
+
+/* FAQ */
+.faq-section{background:var(--gray-light);padding:5rem 2rem}
+.faq-list{max-width:700px;margin:0 auto}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:.75rem;overflow:hidden}
+.faq-item:hover{border-color:rgba(59,130,246,.4)}
+.faq-q{padding:1.1rem 1.25rem;font-weight:600;color:var(--slate);cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:.9rem}
+.faq-q i{color:var(--blue);transition:transform .3s;flex-shrink:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;font-size:.85rem;color:var(--gray);line-height:1.7;padding:0 1.25rem}
+.faq-item.open .faq-a{max-height:200px;padding:0 1.25rem 1.1rem}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:start}
+.contact-form{background:#fff;border:1px solid var(--border);border-radius:16px;padding:2rem;box-shadow:var(--shadow)}
+.form-group{margin-bottom:1.1rem}
+.form-group label{display:block;font-size:.8rem;font-weight:600;color:var(--slate);margin-bottom:.4rem}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.65rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:.88rem;font-family:'Poppins',sans-serif;color:var(--slate);background:var(--gray-light);outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);background:#fff}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn-contact{width:100%;padding:.8rem;background:var(--blue);color:#fff;border:none;border-radius:10px;font-weight:700;font-size:.9rem;font-family:'Poppins',sans-serif;cursor:pointer;transition:var(--transition)}
+.btn-contact:hover{background:var(--blue-dark)}
+.contact-info{display:flex;flex-direction:column;gap:1.25rem}
+.info-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.info-card-title{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:1rem}
+.info-row{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem;font-size:.85rem;color:var(--gray)}
+.info-row i{color:var(--blue);width:18px}
+.info-row:last-child{margin-bottom:0}
+.map-box{border-radius:12px;background:linear-gradient(135deg,var(--blue-light),#DBEAFE);height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;border:1px solid rgba(59,130,246,.2)}
+.map-box i{font-size:2rem;color:var(--blue)}
+.map-box p{font-size:.82rem;font-weight:600;color:var(--navy);text-align:center;max-width:200px;line-height:1.4}
+
+/* FOOTER */
+.footer{background:var(--navy-dark);color:rgba(255,255,255,.55);padding:3rem 2rem 1.5rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2rem}
+.footer-logo{font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:.5rem}
+.footer-logo .fi{color:var(--amber)}
+.footer-desc{font-size:.8rem;line-height:1.7;color:rgba(255,255,255,.4)}
+.footer-head{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.85rem}
+.footer-links{display:flex;flex-direction:column;gap:.4rem}
+.footer-links a{font-size:.8rem;color:rgba(255,255,255,.4);transition:color .2s}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-size:.76rem}
+.footer-bottom a{color:var(--amber)}
+
+.wa-float{position:fixed;bottom:1.75rem;right:1.75rem;z-index:2000;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--transition)}
+.wa-float:hover{transform:scale(1.1)}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-graphic{display:none}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:1fr}
+  .price-card.featured{transform:scale(1)}
+  .stories-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .nav-links,.btn-nav{display:none}
+  .hamburger{display:flex}
+  .services-grid,.why-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr}
+  .process-steps::before{display:none}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo"><span class="logo-icon">💼</span> SalemBiz</div>
+  <div class="nav-links">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#success" class="nav-link">Success Stories</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#contact" class="btn-nav">Free Consultation</a>
+  </div>
+  <div class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mobile-menu">
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#pricing" class="nav-link">Pricing</a>
+    <a href="#success" class="nav-link">Success Stories</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-label"><i class="fa-solid fa-shield-halved"></i> Salem's Trusted Business Partner</div>
+      <h1 class="hero-title">Grow Your Business<br>with <em>Confidence</em></h1>
+      <p class="hero-sub">From GST filing and business registration to digital marketing and website development — we handle all the paperwork and digital growth for Salem's small businesses so you can focus on what matters most.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-hero-blue"><i class="fa-solid fa-phone"></i> Get Free Consultation</a>
+        <a href="#services" class="btn-hero-ghost"><i class="fa-solid fa-list"></i> Our Services</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><div class="num">200+</div><div class="lbl">Clients Served</div></div>
+        <div class="trust-item"><div class="num">5</div><div class="lbl">Years in Salem</div></div>
+        <div class="trust-item"><div class="num">#1</div><div class="lbl">Salem's Choice</div></div>
+      </div>
+    </div>
+    <div class="hero-graphic">
+      <div class="hg-circle hg-c3"></div>
+      <div class="hg-circle hg-c1"></div>
+      <div class="hg-circle hg-c2"></div>
+      <div class="hg-emojis">
+        <span class="hg-emoji-item hg-main">📊</span>
+        <span class="hg-emoji-item" style="top:15%;left:25%;font-size:1.8rem">💼</span>
+        <span class="hg-emoji-item" style="bottom:15%;left:20%;font-size:1.8rem">📈</span>
+        <span class="hg-emoji-item" style="top:20%;right:20%;font-size:1.8rem">📋</span>
+        <span class="hg-emoji-item" style="bottom:20%;right:25%;font-size:1.8rem">💻</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">What We Do</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Our Services</h2>
+      <p class="sec-sub" style="margin:0 auto">Everything your growing Salem business needs — under one roof.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal"><div class="svc-icon-box">📋</div><div class="svc-title">GST Registration & Filing</div><div class="svc-desc">New GST registration, monthly/quarterly returns, reconciliation, and compliance management. Error-free and on time.</div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box">🏢</div><div class="svc-title">Business Registration</div><div class="svc-desc">Proprietorship, LLP, Pvt Ltd company registration — from documentation to certificate, we handle it all.</div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box">💻</div><div class="svc-title">Website Development</div><div class="svc-desc">Professional business websites built for Salem companies. Mobile-first, SEO-ready, fast delivery.</div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box">📱</div><div class="svc-title">Digital Marketing</div><div class="svc-desc">Google Ads, Meta Ads, SEO, and WhatsApp marketing to get more customers for your local Salem business.</div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box">📊</div><div class="svc-title">Accounting & Bookkeeping</div><div class="svc-desc">Monthly bookkeeping, profit & loss statements, balance sheets and financial management for SMEs.</div></div>
+      <div class="svc-card reveal"><div class="svc-icon-box">📜</div><div class="svc-title">License & Compliance</div><div class="svc-desc">FSSAI, Shop Act, Trade License, MSME Udyam registration and all regulatory compliance made easy.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<div class="why-section" id="about">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2rem" class="reveal">
+      <span style="display:inline-block;background:rgba(59,130,246,.2);color:#93C5FD;font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:.75rem">Why Choose Us</span>
+      <h2 style="font-size:2rem;font-weight:800;color:#fff">Why SalemBiz Solutions?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal"><div class="why-icon">✅</div><div class="why-title">Local Salem Experts</div><div class="why-desc">We understand Salem's business landscape — regulations, opportunities, and growth strategies specific to our city.</div></div>
+      <div class="why-card reveal"><div class="why-icon">⚡</div><div class="why-title">Fast & Reliable</div><div class="why-desc">Most tasks completed within 2–5 working days. No delays, no excuses — your business can't afford to wait.</div></div>
+      <div class="why-card reveal"><div class="why-icon">💰</div><div class="why-title">Transparent Pricing</div><div class="why-desc">No hidden fees. No surprise charges. You know exactly what you pay — and we deliver more than expected.</div></div>
+      <div class="why-card reveal"><div class="why-icon">📞</div><div class="why-title">24/7 Support</div><div class="why-desc">WhatsApp us anytime — day or night. Your queries get answered fast. We treat your business like our own.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div class="process-section" id="process">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem" class="reveal">
+      <span class="sec-badge">How It Works</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">3 Simple Steps to Business Growth</h2>
+    </div>
+    <div class="process-steps">
+      <div class="proc-step reveal"><div class="proc-num">📞</div><div class="proc-title">Free Consultation Call</div><div class="proc-desc">Tell us about your business needs. We'll assess your situation and recommend the best solutions — for free.</div></div>
+      <div class="proc-step reveal"><div class="proc-num">📋</div><div class="proc-title">Customized Plan</div><div class="proc-desc">We prepare a clear, affordable plan tailored to your business goals and budget. No jargon, just results.</div></div>
+      <div class="proc-step reveal"><div class="proc-num">🚀</div><div class="proc-title">Execute & Grow</div><div class="proc-desc">We get to work immediately. Regular updates, fast delivery, and ongoing support as your business grows.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Transparent Pricing</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Choose Your Growth Package</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="p-tier">Starter</div>
+        <div class="p-num">₹2,999</div>
+        <div class="p-period">per month</div>
+        <ul class="p-list">
+          <li><i class="fa-solid fa-check"></i> Monthly GST filing</li>
+          <li><i class="fa-solid fa-check"></i> Basic bookkeeping</li>
+          <li><i class="fa-solid fa-check"></i> 1 compliance service</li>
+          <li><i class="fa-solid fa-check"></i> WhatsApp support</li>
+          <li><i class="fa-solid fa-check"></i> Quarterly reports</li>
+        </ul>
+        <button class="btn-p btn-p-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+      <div class="price-card featured reveal">
+        <div class="p-tier">Growth</div>
+        <div class="p-num">₹5,999</div>
+        <div class="p-period">per month</div>
+        <ul class="p-list">
+          <li><i class="fa-solid fa-check"></i> All Starter features</li>
+          <li><i class="fa-solid fa-check"></i> Digital marketing (Meta + Google)</li>
+          <li><i class="fa-solid fa-check"></i> Website maintenance</li>
+          <li><i class="fa-solid fa-check"></i> Social media management</li>
+          <li><i class="fa-solid fa-check"></i> Monthly business review</li>
+          <li><i class="fa-solid fa-check"></i> Priority support</li>
+        </ul>
+        <button class="btn-p btn-p-solid" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+      <div class="price-card reveal">
+        <div class="p-tier">Premium</div>
+        <div class="p-num">₹9,999</div>
+        <div class="p-period">per month</div>
+        <ul class="p-list">
+          <li><i class="fa-solid fa-check"></i> All Growth features</li>
+          <li><i class="fa-solid fa-check"></i> Full business support package</li>
+          <li><i class="fa-solid fa-check"></i> Dedicated account manager</li>
+          <li><i class="fa-solid fa-check"></i> Legal & compliance advisory</li>
+          <li><i class="fa-solid fa-check"></i> Business expansion planning</li>
+          <li><i class="fa-solid fa-check"></i> 24/7 priority support</li>
+        </ul>
+        <button class="btn-p btn-p-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+    </div>
+    <p class="p-note">Need something specific? <strong>Custom packages available</strong> — contact us to discuss your exact needs.</p>
+  </div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section class="section" id="success" style="background:var(--gray-light)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Client Wins</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Businesses We've Helped Grow</h2>
+    </div>
+    <div class="stories-grid">
+      <div class="story-card reveal">
+        <div class="story-type"><i class="fa-solid fa-utensils"></i> Restaurant</div>
+        <div class="story-result">3× more online enquiries in 60 days</div>
+        <p class="story-quote">"SalemBiz set up our Google Business and Instagram ads. In 2 months we went from 5 calls/week to 15+ daily. Completely transformed our business."</p>
+        <div class="story-biz">Murugan Hotel — Salem Old Bus Stand</div>
+      </div>
+      <div class="story-card reveal">
+        <div class="story-type"><i class="fa-solid fa-store"></i> Retail Shop</div>
+        <div class="story-result">GST compliance sorted in 48 hours</div>
+        <p class="story-quote">"Had pending GST issues for 6 months that other CAs couldn't solve. SalemBiz resolved everything in 2 days. No more notices, no penalties."</p>
+        <div class="story-biz">Lakshmi Textiles — Four Roads</div>
+      </div>
+      <div class="story-card reveal">
+        <div class="story-type"><i class="fa-solid fa-hospital"></i> Clinic</div>
+        <div class="story-result">Professional website + 40% more appointments</div>
+        <p class="story-quote">"Got a complete website with online appointment booking in just 7 days. Patients now find us on Google and appointment bookings have gone up 40%."</p>
+        <div class="story-biz">Dr. Ravi's Clinic — Shevapet, Salem</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="faq-section" id="faq">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">FAQ</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Common Questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What types of businesses do you work with? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">We work with all types of small and medium businesses in Salem — restaurants, retail shops, clinics, salons, contractors, consultants, startups and more.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How long does GST registration take? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">GST registration typically takes 7–10 working days from document submission. We handle the entire process — document preparation, portal filing, ARN tracking, and certificate delivery.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you offer one-time services or only monthly packages? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">Both! We offer one-time services (GST registration, company registration, website creation) and monthly retainer packages for ongoing support. Contact us to discuss what suits your needs.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I meet you in person in Salem? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">Absolutely! Our office is at Saradha College Road, Salem. Walk-ins are welcome during business hours (Mon–Sat 9AM–7PM), or call/WhatsApp to schedule an appointment.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What documents do I need to bring for the first consultation? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-a">For the initial free consultation, no documents are needed — just come with your questions! If you're ready to proceed with a service, we'll provide you a clear document checklist based on your specific requirement.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem" class="reveal">
+      <span class="sec-badge">Get in Touch</span>
+      <div class="divider" style="margin:1rem auto"></div>
+      <h2 class="sec-title">Start Your Free Consultation</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-form reveal">
+        <h3 style="font-size:1.1rem;font-weight:700;color:var(--slate);margin-bottom:1.5rem">Tell Us About Your Business</h3>
+        <form onsubmit="handleContact(event)">
+          <div class="form-row">
+            <div class="form-group"><label>Your Name *</label><input type="text" placeholder="E.g. Ramesh Kumar" required/></div>
+            <div class="form-group"><label>Phone *</label><input type="tel" placeholder="+91 98765 XXXXX" required/></div>
+          </div>
+          <div class="form-group"><label>Business Name</label><input type="text" placeholder="E.g. Ramesh Hardware"/></div>
+          <div class="form-group"><label>Service Needed</label>
+            <select><option>GST Registration / Filing</option><option>Business Registration</option><option>Website Development</option><option>Digital Marketing</option><option>Accounting & Bookkeeping</option><option>Multiple Services</option></select>
+          </div>
+          <div class="form-group"><label>Message</label><textarea placeholder="Briefly describe what you need help with..."></textarea></div>
+          <button type="submit" class="btn-contact">💼 Book Free Consultation</button>
+        </form>
+      </div>
+      <div class="contact-info reveal">
+        <div class="info-card">
+          <div class="info-card-title">Office Information</div>
+          <div class="info-row"><i class="fa-solid fa-location-dot"></i> 22, Saradha College Road, Salem — 636005</div>
+          <div class="info-row"><i class="fa-solid fa-phone"></i> +91 98765 XXXXX</div>
+          <div class="info-row"><i class="fa-solid fa-envelope"></i> info@salembiz.in</div>
+          <div class="info-row"><i class="fa-solid fa-clock"></i> Mon–Sat: 9AM – 7PM</div>
+          <div class="info-row"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i> WhatsApp 24/7</div>
+        </div>
+        <div class="map-box">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <p>Saradha College Road, Salem — 636005, Tamil Nadu</p>
+        </div>
+        <div class="info-card" style="background:linear-gradient(135deg,var(--blue-light),var(--amber-light));border-color:rgba(59,130,246,.2)">
+          <div style="font-weight:700;color:var(--navy);margin-bottom:.4rem">🎯 Free Consultation Offer</div>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.6">No obligation. No payment required. Just a free call to understand your business needs and how we can help you grow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">💼 Salem<span class="fi">Biz</span></div>
+        <p class="footer-desc">Your local business growth partner. Helping Salem's small businesses with GST, registration, digital marketing, and more since 2019.</p>
+      </div>
+      <div>
+        <div class="footer-head">Services</div>
+        <div class="footer-links">
+          <a href="#">GST Filing</a>
+          <a href="#">Business Registration</a>
+          <a href="#">Digital Marketing</a>
+          <a href="#">Website Development</a>
+          <a href="#">Accounting</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-head">Company</div>
+        <div class="footer-links">
+          <a href="#">About Us</a>
+          <a href="#">Success Stories</a>
+          <a href="#">Pricing</a>
+          <a href="#">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-head">Contact</div>
+        <div class="footer-links">
+          <a href="#">+91 98765 XXXXX</a>
+          <a href="#">Saradha College Road, Salem</a>
+          <a href="#">Mon–Sat · 9AM–7PM</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SalemBiz Solutions. All rights reserved.</span>
+      <span>Website designed by <a href="mailto:haryacr@gmail.com">Harya C R · haryacr@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+const revEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:.1});
+revEls.forEach(el=>obs.observe(el));
+
+function toggleFaq(el){
+  const item=el.parentElement;
+  document.querySelectorAll('.faq-item').forEach(i=>{if(i!==item)i.classList.remove('open')});
+  item.classList.toggle('open');
+}
+
+function handleContact(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.btn-contact');
+  btn.textContent='✅ Received! We\'ll call you within 2 hours.';
+  btn.style.background='#2D6A4F';
+  setTimeout(()=>{btn.textContent='💼 Book Free Consultation';btn.style.background='';e.target.reset();},5000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Harya C R | Web Dev, Automation & AI Integration</title>
+  <meta name="description" content="Professional digital services by Harya C R — website development, business automation, and AI integration. Based in Tamil Nadu. Affordable pricing." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="shared.css" />
+
+  <style>
+    /* ====== SERVICES PAGE SPECIFIC ====== */
+
+    /* ---- Tab Navigation ---- */
+    .tab-nav-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 64px;
+      z-index: 900;
+    }
+
+    .tab-nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tab-nav::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      padding: 1rem 1.25rem;
+      font-size: .88rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: var(--transition);
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    .tab-btn.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    /* ---- Tab Content ---- */
+    .tab-content {
+      display: none;
+      animation: fadeTab .35s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeTab {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Services Hero ---- */
+    .services-hero {
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(37,99,235,.07) 0%, transparent 70%),
+        var(--gray-50);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .services-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -1px;
+      margin-bottom: .75rem;
+    }
+
+    .services-hero p {
+      color: var(--gray-600);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .location-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 30px;
+      padding: .35rem 1rem;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: .75rem;
+    }
+
+    /* ---- Service Cards (All tab) ---- */
+    .service-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .svc-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      transition: all .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .svc-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--blue), #60A5FA);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .svc-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(37,99,235,.12);
+      border-color: transparent;
+    }
+
+    .svc-card:hover::before { opacity: 1; }
+
+    .svc-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .svc-price {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: .5px;
+      margin-bottom: .4rem;
+      text-transform: uppercase;
+    }
+
+    .svc-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: .75rem;
+    }
+
+    .svc-list {
+      font-size: .88rem;
+      color: var(--gray-600);
+      line-height: 1.8;
+      padding-left: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .svc-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      margin-bottom: .25rem;
+    }
+
+    .svc-list li::before {
+      content: '✓';
+      color: var(--blue);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ---- Trust Bar ---- */
+    .trust-bar {
+      background: var(--blue);
+      padding: 1.25rem 2rem;
+    }
+
+    .trust-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .trust-item {
+      color: #fff;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+
+    .trust-item span {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: .25rem;
+    }
+
+    /* ---- Pricing Tables ---- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .price-card {
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      text-align: center;
+      transition: all .3s;
+      position: relative;
+    }
+
+    .price-card.featured {
+      border-color: var(--blue);
+      transform: scale(1.03);
+      box-shadow: 0 8px 32px rgba(37,99,235,.18);
+    }
+
+    .price-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: .25rem .9rem;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    .price-tier {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      margin-bottom: .5rem;
+    }
+
+    .price-num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: .25rem;
+    }
+
+    .price-num span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gray-400);
+    }
+
+    .price-features {
+      text-align: left;
+      margin: 1.25rem 0 1.75rem;
+      font-size: .88rem;
+      color: var(--gray-600);
+      line-height: 1.9;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+
+    .price-features li i {
+      color: var(--blue);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .btn-price {
+      width: 100%;
+      padding: .75rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: .95rem;
+      background: var(--blue);
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 2px solid var(--blue);
+      display: block;
+      text-align: center;
+    }
+
+    .btn-price:hover {
+      background: var(--blue-dark);
+      border-color: var(--blue-dark);
+    }
+
+    .btn-price-outline {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--gray-200);
+    }
+
+    .btn-price-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    /* ---- Sample Work Cards ---- */
+    .work-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all .3s;
+    }
+
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.10);
+    }
+
+    .work-thumb {
+      width: 100%;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: linear-gradient(135deg, var(--blue-light), #DBEAFE);
+    }
+
+    /* ---- Live iframe demo preview ---- */
+    .demo-preview-wrap {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+      background: #f1f5f9;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .demo-preview-wrap iframe {
+      width: 1280px;
+      height: 720px;
+      border: none;
+      transform: scale(0.28);
+      transform-origin: top left;
+      pointer-events: none;
+      display: block;
+    }
+
+    .demo-preview-wrap:hover iframe {
+      filter: brightness(0.85);
+      transition: filter 0.3s ease;
+    }
+
+    /* shimmer while loading */
+    .demo-preview-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        #f1f5f9 25%,
+        #e2e8f0 50%,
+        #f1f5f9 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      z-index: 1;
+    }
+
+    .demo-preview-wrap.loaded::before {
+      display: none;
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .work-body {
+      padding: 1.25rem;
+    }
+
+    .work-type {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: .3rem;
+    }
+
+    .work-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .4rem;
+    }
+
+    .work-desc {
+      font-size: .83rem;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .btn-view {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: .4rem .9rem;
+      border-radius: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-view:hover {
+      background: var(--blue);
+      color: #fff;
+    }
+
+    /* ---- Automation Mockups ---- */
+    .auto-mockup {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      font-family: inherit;
+    }
+
+    /* WhatsApp Mockup */
+    .wa-mockup {
+      background: #ECE5DD;
+    }
+    .wa-header {
+      background: #075E54;
+      color: #fff;
+      padding: .6rem 1rem;
+      font-size: .85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .wa-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .wa-bubble {
+      max-width: 85%;
+      padding: .5rem .8rem;
+      border-radius: 8px;
+      font-size: .75rem;
+      line-height: 1.4;
+      position: relative;
+      box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    }
+    .wa-bubble.right {
+      background: #DCF8C6;
+      align-self: flex-end;
+      border-top-right-radius: 0;
+    }
+    .wa-bubble.left {
+      background: #FFFFFF;
+      align-self: flex-start;
+      border-top-left-radius: 0;
+    }
+
+    /* Spreadsheet Mockup */
+    .sheet-mockup {
+      background: #fff;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .sheet-header-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      background: #F8FAFC;
+      border-bottom: 2px solid #E2E8F0;
+      padding: .5rem .75rem;
+      font-size: .65rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+    }
+    .sheet-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      padding: .6rem .75rem;
+      font-size: .75rem;
+      border-bottom: 1px solid #F1F5F9;
+      color: #334155;
+    }
+    .sheet-badge {
+      position: absolute;
+      bottom: .75rem;
+      right: .75rem;
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: .65rem;
+      font-weight: 700;
+      padding: .2rem .6rem;
+      border-radius: 20px;
+    }
+
+    /* ---- Section Header inside tab ---- */
+    .tab-section-header {
+      margin-bottom: 2rem;
+    }
+
+    /* ---- Portfolio Filter ---- */
+    .filter-bar {
+      display: flex;
+      gap: .6rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: .45rem 1.1rem;
+      border-radius: 30px;
+      font-size: .83rem;
+      font-weight: 600;
+      border: 1.5px solid var(--gray-200);
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--white);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .portfolio-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all .3s;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue);
+    }
+
+    .port-emoji {
+      font-size: 2rem;
+      margin-bottom: .75rem;
+      display: block;
+    }
+
+    .port-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .4rem;
+    }
+
+    .port-desc {
+      font-size: .83rem;
+      color: var(--gray-600);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
+    .tag {
+      font-size: .7rem;
+      font-weight: 600;
+      padding: .2rem .6rem;
+      border-radius: 20px;
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    /* ---- Contact Tab ---- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-form {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: .7rem 1rem;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      font-size: .9rem;
+      font-family: inherit;
+      color: var(--navy);
+      background: var(--gray-50);
+      transition: border-color .2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      background: var(--white);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: .85rem;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+    }
+
+    .btn-submit:hover {
+      background: var(--blue-dark);
+      transform: translateY(-1px);
+    }
+
+    .contact-info {
+      padding-top: .5rem;
+    }
+
+    .contact-info-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: .5rem;
+    }
+
+    .contact-info-sub {
+      font-size: .9rem;
+      color: var(--gray-600);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--blue-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .info-text {
+      font-size: .9rem;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    .info-text a { color: var(--blue); }
+
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: .82rem;
+      font-weight: 700;
+      padding: .4rem 1rem;
+      border-radius: 30px;
+      margin-top: 1.5rem;
+    }
+
+    .available-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #22C55E;
+      border-radius: 50%;
+      animation: pulse-green 2s infinite;
+    }
+
+    .btn-wa-large {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+      width: 100%;
+      padding: .9rem;
+      background: #25D366;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .btn-wa-large:hover {
+      background: #1EA952;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37,211,102,.35);
+    }
+
+    .response-note {
+      text-align: center;
+      font-size: .82rem;
+      color: var(--gray-400);
+      margin-top: 1rem;
+    }
+
+    /* ---- What you get ---- */
+    .what-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .what-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: 1rem 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+    }
+
+    .what-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--blue-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+
+    .what-text strong {
+      display: block;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .2rem;
+    }
+
+    .what-text span {
+      font-size: .82rem;
+      color: var(--gray-600);
+    }
+
+    /* ---- Use cases ---- */
+    .use-cases {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      margin-bottom: 2rem;
+    }
+
+    .use-case-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .5rem 1.1rem;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 30px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      transition: var(--transition);
+    }
+
+    .use-case-chip:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    /* AI note */
+    .ai-note {
+      background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+      border: 1px solid #BFDBFE;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      font-size: .9rem;
+      color: var(--navy);
+    }
+
+    .ai-note strong { color: var(--blue); }
+
+    /* ---- Status form ---- */
+    #form-status {
+      display: none;
+      padding: .75rem 1rem;
+      border-radius: 8px;
+      font-size: .88rem;
+      font-weight: 600;
+      margin-top: .75rem;
+      text-align: center;
+    }
+
+    #form-status.success {
+      display: block;
+      background: #DCFCE7;
+      color: #15803D;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .service-cards-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.featured { transform: scale(1); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .trust-inner { grid-template-columns: repeat(2, 1fr); }
+      .what-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .tab-btn { font-size: .78rem; padding: .8rem .9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- ======= NAVBAR ======= -->
+<nav class="navbar" id="main-nav">
+  <a href="index.html" class="navbar-logo">H<span>C</span>R</a>
+
+  <div class="navbar-actions">
+    <a href="index.html" class="btn btn-ghost">Home</a>
+    <a href="services.html" class="btn btn-outline-blue">
+      <i class="fa-solid fa-briefcase"></i> My Services
+    </a>
+    <a href="aiml.html" class="btn btn-primary">
+      <i class="fa-solid fa-robot"></i> AI/ML Portfolio
+    </a>
+  </div>
+
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="nav-mobile-menu" id="mobile-menu">
+  <a href="index.html" class="btn btn-ghost">Home</a>
+  <a href="services.html" class="btn btn-outline-blue">My Services</a>
+  <a href="aiml.html" class="btn btn-primary">AI/ML Portfolio</a>
+</div>
+
+<!-- ======= TAB NAVIGATION ======= -->
+<div class="tab-nav-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('all', this)" id="tab-all">All Services</button>
+    <button class="tab-btn" onclick="switchTab('web', this)" id="tab-web">Website Development</button>
+    <button class="tab-btn" onclick="switchTab('auto', this)" id="tab-auto">Automation</button>
+    <button class="tab-btn" onclick="switchTab('ai', this)" id="tab-ai">AI Integration</button>
+    <button class="tab-btn" onclick="switchTab('work', this)" id="tab-work">My Work</button>
+    <button class="tab-btn" onclick="switchTab('contact', this)" id="tab-contact">Contact</button>
+  </div>
+</div>
+
+<!-- ======================== TAB: ALL SERVICES ======================== -->
+<div id="content-all" class="tab-content active">
+
+  <!-- Hero -->
+  <div class="services-hero">
+    <div class="location-chip">
+      <i class="fa-solid fa-location-dot" style="color:var(--blue)"></i>
+      Based in Tamil Nadu · Available Online
+    </div>
+    <h1>Professional Digital Services<br>for Your Business</h1>
+    <p>Fast delivery · Affordable pricing · Quality guaranteed</p>
+    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
+      <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));return false;" class="btn btn-primary" style="border-radius:10px;padding:.7rem 1.75rem;">
+        <i class="fa-solid fa-paper-plane"></i> Get a Free Quote
+      </a>
+      <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="btn btn-outline" style="border-radius:10px;padding:.7rem 1.75rem;color:#15803D;border-color:#22C55E;">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="service-cards-grid">
+
+        <!-- Web Dev -->
+        <div class="svc-card reveal">
+          <span class="svc-icon">🌐</span>
+          <div class="svc-price">Starting ₹5,000</div>
+          <h2 class="svc-title">Website Development</h2>
+          <ul class="svc-list">
+            <li>Business website — mobile friendly</li>
+            <li>Google-ready (SEO basics)</li>
+            <li>Contact form integration</li>
+            <li>WhatsApp button built-in</li>
+            <li>5–7 day delivery</li>
+          </ul>
+          <a href="#" onclick="switchTab('web', document.getElementById('tab-web'));window.scrollTo(0,0);return false;" class="btn btn-primary" style="border-radius:8px;padding:.6rem 1.3rem;font-size:.88rem;">
+            Learn More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Automation -->
+        <div class="svc-card reveal">
+          <span class="svc-icon">⚡</span>
+          <div class="svc-price">Starting ₹3,000</div>
+          <h2 class="svc-title">Business Automation</h2>
+          <ul class="svc-list">
+            <li>WhatsApp auto-reply bot</li>
+            <li>Google Sheets automation</li>
+            <li>Email sequences setup</li>
+            <li>Order confirmation systems</li>
+            <li>Workflow optimization</li>
+          </ul>
+          <a href="#" onclick="switchTab('auto', document.getElementById('tab-auto'));window.scrollTo(0,0);return false;" class="btn btn-primary" style="border-radius:8px;padding:.6rem 1.3rem;font-size:.88rem;">
+            Learn More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- AI Integration -->
+        <div class="svc-card reveal">
+          <span class="svc-icon">🤖</span>
+          <div class="svc-price">Custom Quote</div>
+          <h2 class="svc-title">AI Integration</h2>
+          <ul class="svc-list">
+            <li>AI chatbot for your website</li>
+            <li>Smart recommendations</li>
+            <li>Data insights dashboard</li>
+            <li>LLM-powered automation</li>
+            <li>GPT / LangChain powered</li>
+          </ul>
+          <a href="#" onclick="switchTab('ai', document.getElementById('tab-ai'));window.scrollTo(0,0);return false;" class="btn btn-primary" style="border-radius:8px;padding:.6rem 1.3rem;font-size:.88rem;">
+            Learn More <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <div class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item reveal">
+        <span>⚡</span>5–7 Day Delivery
+      </div>
+      <div class="trust-item reveal">
+        <span>💰</span>Affordable Pricing
+      </div>
+      <div class="trust-item reveal">
+        <span>📱</span>Mobile Friendly
+      </div>
+      <div class="trust-item reveal">
+        <span>🛠️</span>Free Revisions
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======================== TAB: WEBSITE DEVELOPMENT ======================== -->
+<div id="content-web" class="tab-content">
+  <div class="services-hero" style="padding:3rem 2rem 2rem;">
+    <h1 style="font-size:2rem;">Website Development</h1>
+    <p>Professional websites built for Tamil Nadu businesses. Fast, affordable, mobile-first.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="tab-section-header reveal">
+        <span class="section-label">What You Get</span>
+        <h2 class="section-title">Everything Your Business Needs Online</h2>
+      </div>
+
+      <div class="what-grid">
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-mobile-screen"></i></div><div class="what-text"><strong>Mobile Responsive</strong><span>Looks perfect on phones, tablets, and desktops</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-magnifying-glass"></i></div><div class="what-text"><strong>Google-Ready SEO</strong><span>Basic SEO setup so customers can find you</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i></div><div class="what-text"><strong>WhatsApp Integration</strong><span>One-click WhatsApp button for instant inquiries</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-envelope"></i></div><div class="what-text"><strong>Contact Form</strong><span>Leads go straight to your email</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-bolt"></i></div><div class="what-text"><strong>Fast Loading</strong><span>Optimized for speed — happy visitors, better rankings</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-rotate"></i></div><div class="what-text"><strong>Free Revisions</strong><span>Minor changes included after delivery</span></div></div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="tab-section-header reveal">
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Basic -->
+        <div class="price-card reveal">
+          <div class="price-tier">Basic</div>
+          <div class="price-num">₹5,000 <span>onwards</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check"></i> 3 Pages (Home, About, Contact)</li>
+            <li><i class="fa-solid fa-check"></i> Contact form</li>
+            <li><i class="fa-solid fa-check"></i> Mobile responsive</li>
+            <li><i class="fa-solid fa-check"></i> WhatsApp button</li>
+            <li><i class="fa-solid fa-check"></i> 5-day delivery</li>
+          </ul>
+          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price btn-price-outline">Get Started</a>
+        </div>
+
+        <!-- Standard -->
+        <div class="price-card featured reveal">
+          <div class="price-tier">Standard</div>
+          <div class="price-num">₹8,000 <span>onwards</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check"></i> 5 Pages</li>
+            <li><i class="fa-solid fa-check"></i> Photo gallery section</li>
+            <li><i class="fa-solid fa-check"></i> WhatsApp chat button</li>
+            <li><i class="fa-solid fa-check"></i> Google Maps embed</li>
+            <li><i class="fa-solid fa-check"></i> 7-day delivery</li>
+            <li><i class="fa-solid fa-check"></i> 2 free revisions</li>
+          </ul>
+          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price">Get Started</a>
+        </div>
+
+        <!-- Premium -->
+        <div class="price-card reveal">
+          <div class="price-tier">Premium</div>
+          <div class="price-num">₹12,000 <span>onwards</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check"></i> Unlimited pages</li>
+            <li><i class="fa-solid fa-check"></i> Blog / news section</li>
+            <li><i class="fa-solid fa-check"></i> Full SEO setup</li>
+            <li><i class="fa-solid fa-check"></i> Speed optimization</li>
+            <li><i class="fa-solid fa-check"></i> 10-day delivery</li>
+            <li><i class="fa-solid fa-check"></i> 5 free revisions</li>
+          </ul>
+          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price btn-price-outline">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Sample Work -->
+      <div class="tab-section-header reveal">
+        <span class="section-label">Sample Work</span>
+        <h2 class="section-title">Demo Projects</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="work-card reveal">
+          <a href="restaurant-demo.html" target="_blank" aria-label="View Sri Annapoorna Restaurant demo">
+            <div class="demo-preview-wrap">
+              <iframe
+                src="restaurant-demo.html"
+                scrolling="no"
+                tabindex="-1"
+                aria-hidden="true"
+                title="Sri Annapoorna Restaurant preview">
+              </iframe>
+            </div>
+          </a>
+          <div class="work-body">
+            <div class="work-type">Restaurant</div>
+            <div class="work-title">Sri Annapoorna Restaurant</div>
+            <div class="work-desc">Full restaurant website with menu, gallery, and online order inquiry form.</div>
+            <a href="restaurant-demo.html" target="_blank" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
+          </div>
+        </div>
+
+        <div class="work-card reveal">
+          <a href="clinic-demo.html" target="_blank" aria-label="View NutriCare Clinic demo">
+            <div class="demo-preview-wrap">
+              <iframe
+                src="clinic-demo.html"
+                scrolling="no"
+                tabindex="-1"
+                aria-hidden="true"
+                title="NutriCare Clinic preview">
+              </iframe>
+            </div>
+          </a>
+          <div class="work-body">
+            <div class="work-type">Healthcare</div>
+            <div class="work-title">Lakshmi Clinic</div>
+            <div class="work-desc">Medical clinic website with appointment booking, doctor info, and contact map.</div>
+            <a href="clinic-demo.html" target="_blank" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
+          </div>
+        </div>
+
+        <div class="work-card reveal">
+          <a href="salon-demo.html" target="_blank" aria-label="View StyleZone Salon demo">
+            <div class="demo-preview-wrap">
+              <iframe
+                src="salon-demo.html"
+                scrolling="no"
+                tabindex="-1"
+                aria-hidden="true"
+                title="StyleZone Salon preview">
+              </iframe>
+            </div>
+          </a>
+          <div class="work-body">
+            <div class="work-type">Salon</div>
+            <div class="work-title">StyleZone Salon</div>
+            <div class="work-desc">Trendy salon website with services menu, pricing, and gallery of styles.</div>
+            <a href="salon-demo.html" target="_blank" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ======================== TAB: AUTOMATION ======================== -->
+<div id="content-auto" class="tab-content">
+  <div class="services-hero" style="padding:3rem 2rem 2rem;">
+    <h1 style="font-size:2rem;">Business Automation</h1>
+    <p>Automate repetitive tasks. Save time. Grow your business faster.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="tab-section-header reveal">
+        <span class="section-label">What You Get</span>
+        <h2 class="section-title">Smart Automation for Your Business</h2>
+      </div>
+
+      <div class="what-grid">
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i></div><div class="what-text"><strong>WhatsApp Auto-Reply</strong><span>Instant responses to customer inquiries 24/7</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-table"></i></div><div class="what-text"><strong>Google Sheets Automation</strong><span>Auto-sync orders, contacts, and inventory</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-envelope-open-text"></i></div><div class="what-text"><strong>Email Sequences</strong><span>Automated follow-up emails and confirmations</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-box"></i></div><div class="what-text"><strong>Order Management</strong><span>Auto-confirmations and status updates</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-chart-line"></i></div><div class="what-text"><strong>Reports & Analytics</strong><span>Auto-generated weekly business reports</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-plug"></i></div><div class="what-text"><strong>App Integrations</strong><span>Connect your tools — forms, CRMs, messaging</span></div></div>
+      </div>
+
+      <!-- Use Cases -->
+      <div class="tab-section-header reveal">
+        <span class="section-label">Use Cases</span>
+        <h2 class="section-title">Perfect For...</h2>
+      </div>
+
+      <div class="use-cases">
+        <div class="use-case-chip"><i class="fa-solid fa-store"></i> Retail Shops</div>
+        <div class="use-case-chip"><i class="fa-solid fa-utensils"></i> Restaurants</div>
+        <div class="use-case-chip"><i class="fa-solid fa-scissors"></i> Salons</div>
+        <div class="use-case-chip"><i class="fa-solid fa-stethoscope"></i> Clinics</div>
+        <div class="use-case-chip"><i class="fa-solid fa-graduation-cap"></i> Coaching Centers</div>
+        <div class="use-case-chip"><i class="fa-solid fa-truck"></i> Delivery Services</div>
+        <div class="use-case-chip"><i class="fa-solid fa-home"></i> Real Estate</div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="tab-section-header reveal">
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title">Automation Packages</h2>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <div class="price-tier">Basic</div>
+          <div class="price-num">₹3,000 <span>onwards</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check"></i> WhatsApp auto-reply setup</li>
+            <li><i class="fa-solid fa-check"></i> Business hour messages</li>
+            <li><i class="fa-solid fa-check"></i> Welcome message flow</li>
+            <li><i class="fa-solid fa-check"></i> Setup & testing</li>
+          </ul>
+          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price btn-price-outline">Get Started</a>
+        </div>
+
+        <div class="price-card featured reveal">
+          <div class="price-tier">Standard</div>
+          <div class="price-num">₹6,000 <span>onwards</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check"></i> Full WhatsApp workflow</li>
+            <li><i class="fa-solid fa-check"></i> Google Sheets auto-sync</li>
+            <li><i class="fa-solid fa-check"></i> Email confirmations</li>
+            <li><i class="fa-solid fa-check"></i> Order tracking system</li>
+            <li><i class="fa-solid fa-check"></i> 2 weeks of support</li>
+          </ul>
+          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price">Get Started</a>
+        </div>
+
+        <div class="price-card reveal">
+          <div class="price-tier">Premium</div>
+          <div class="price-num">₹10,000 <span>onwards</span></div>
+          <ul class="price-features">
+            <li><i class="fa-solid fa-check"></i> Custom multi-step automation</li>
+            <li><i class="fa-solid fa-check"></i> All Standard features</li>
+            <li><i class="fa-solid fa-check"></i> CRM integration</li>
+            <li><i class="fa-solid fa-check"></i> Analytics dashboard</li>
+            <li><i class="fa-solid fa-check"></i> 1 month support</li>
+          </ul>
+          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price btn-price-outline">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Sample Work -->
+      <div class="tab-section-header reveal">
+        <span class="section-label">Sample Work</span>
+        <h2 class="section-title">Automation Projects</h2>
+      </div>
+
+      <div class="grid-2">
+        <div class="work-card reveal">
+          <div class="auto-mockup wa-mockup">
+            <div class="wa-header"><i class="fa-brands fa-whatsapp"></i> WhatsApp Bot</div>
+            <div class="wa-body">
+              <div class="wa-bubble right">Hi, I want to book a table for 4</div>
+              <div class="wa-bubble left">Sure! What time works for you? 🍽️</div>
+              <div class="wa-bubble right">7 PM tonight please</div>
+            </div>
+          </div>
+          <div class="work-body">
+            <div class="work-type">WhatsApp Bot</div>
+            <div class="work-title">Restaurant Order Bot</div>
+            <div class="work-desc">WhatsApp auto-reply bot for a restaurant — handles menu inquiries, table bookings, and order confirmations automatically.</div>
+            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
+          </div>
+        </div>
+
+        <div class="work-card reveal">
+          <div class="auto-mockup sheet-mockup">
+            <div class="sheet-header-row">
+              <div>Product</div><div>Stock</div><div>Status</div><div>Alert</div>
+            </div>
+            <div class="sheet-row">
+              <div>Rice (25kg)</div><div>45 bags</div><div>✅ Good</div><div style="color:var(--gray-400)">—</div>
+            </div>
+            <div class="sheet-row">
+              <div>Cooking Oil</div><div>8 units</div><div>⚠️ Low</div><div style="color:#D97706">Alert Sent</div>
+            </div>
+            <div class="sheet-row">
+              <div>Sugar</div><div>2 bags</div><div>🔴 Critical</div><div style="color:#DC2626;font-weight:600">Reorder Now</div>
+            </div>
+            <div class="sheet-badge">✅ Auto-updated</div>
+          </div>
+          <div class="work-body">
+            <div class="work-type">Sheets Automation</div>
+            <div class="work-title">Inventory Manager</div>
+            <div class="work-desc">Automated Google Sheets system that tracks stock levels, sends low-stock alerts, and generates daily inventory reports.</div>
+            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ======================== TAB: AI INTEGRATION ======================== -->
+<div id="content-ai" class="tab-content">
+  <div class="services-hero" style="padding:3rem 2rem 2rem;">
+    <h1 style="font-size:2rem;">AI Integration</h1>
+    <p>Bring the power of AI to your business — chatbots, smart search, and intelligent automation.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="tab-section-header reveal">
+        <span class="section-label">What You Get</span>
+        <h2 class="section-title">AI-Powered Business Solutions</h2>
+      </div>
+
+      <div class="what-grid">
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-comment-dots"></i></div><div class="what-text"><strong>Website Chatbot</strong><span>AI chatbot that answers customer questions 24/7</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><div class="what-text"><strong>Smart Recommendations</strong><span>Suggest products or services based on user behavior</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-chart-bar"></i></div><div class="what-text"><strong>Data Insights</strong><span>AI-powered analytics to understand your customers</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-search"></i></div><div class="what-text"><strong>Smart Search</strong><span>Semantic search that understands natural language</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-robot"></i></div><div class="what-text"><strong>LLM Automation</strong><span>Automate writing, replies, and content with AI</span></div></div>
+        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-plug"></i></div><div class="what-text"><strong>Custom Integration</strong><span>Plug AI into your existing website or workflow</span></div></div>
+      </div>
+
+      <!-- Use Cases -->
+      <div class="tab-section-header reveal">
+        <span class="section-label">Use Cases</span>
+        <h2 class="section-title">AI Applications</h2>
+      </div>
+
+      <div class="use-cases">
+        <div class="use-case-chip"><i class="fa-solid fa-robot"></i> AI Customer Support</div>
+        <div class="use-case-chip"><i class="fa-solid fa-magnifying-glass"></i> Semantic Search</div>
+        <div class="use-case-chip"><i class="fa-solid fa-star"></i> Product Recommendations</div>
+        <div class="use-case-chip"><i class="fa-solid fa-pen-to-square"></i> AI Content Generation</div>
+        <div class="use-case-chip"><i class="fa-solid fa-chart-pie"></i> Business Analytics</div>
+        <div class="use-case-chip"><i class="fa-solid fa-language"></i> Multi-language Chatbot</div>
+      </div>
+
+      <!-- Pricing -->
+      <div class="tab-section-header reveal">
+        <span class="section-label">Pricing</span>
+        <h2 class="section-title">Custom AI Solutions</h2>
+      </div>
+
+      <div class="price-card reveal" style="max-width:500px;margin:0 auto 2rem;text-align:center;">
+        <div class="price-tier">All AI Projects</div>
+        <div class="price-num" style="font-size:1.6rem;">Custom Quote</div>
+        <p style="color:var(--gray-600);font-size:.9rem;margin:.75rem 0 1.25rem;">
+          AI integration pricing depends on complexity, API costs, and your business needs. Contact me for a free consultation.
+        </p>
+        <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price">Get a Free Quote</a>
+      </div>
+
+      <div class="ai-note reveal">
+        <strong>🤖 Powered by Latest AI Technology</strong><br><br>
+        All AI integrations are built using <strong>GPT-4, LangChain, and custom-trained models</strong>.
+        I'm an AI/ML undergraduate at SRM Chennai specializing in LLM applications and multi-agent systems —
+        you're getting cutting-edge AI expertise at freelancer prices.
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<!-- ======================== TAB: MY WORK ======================== -->
+<div id="content-work" class="tab-content">
+  <div class="services-hero" style="padding:3rem 2rem 2rem;">
+    <h1 style="font-size:2rem;">My Work</h1>
+    <p>A collection of freelance projects and development work.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="filter-bar" id="portfolio-filter">
+        <button class="filter-btn active" onclick="filterPortfolio('all', this)">All</button>
+        <button class="filter-btn" onclick="filterPortfolio('website', this)">Websites</button>
+        <button class="filter-btn" onclick="filterPortfolio('automation', this)">Automation</button>
+        <button class="filter-btn" onclick="filterPortfolio('ai', this)">AI</button>
+      </div>
+
+      <div class="portfolio-grid" id="portfolio-grid">
+
+        <div class="portfolio-card reveal" data-category="website">
+          <span class="port-emoji">🍛</span>
+          <div class="port-title">Sri Annapoorna Restaurant</div>
+          <div class="port-desc">Restaurant website with online menu, gallery, and WhatsApp ordering integration.</div>
+          <div class="tags">
+            <span class="tag">Website</span>
+            <span class="tag">Restaurant</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal" data-category="website">
+          <span class="port-emoji">🏥</span>
+          <div class="port-title">Lakshmi Clinic</div>
+          <div class="port-desc">Medical clinic site with appointment booking and doctor profile pages.</div>
+          <div class="tags">
+            <span class="tag">Website</span>
+            <span class="tag">Healthcare</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal" data-category="automation">
+          <span class="port-emoji">⚡</span>
+          <div class="port-title">Restaurant Order Bot</div>
+          <div class="port-desc">WhatsApp automation handling menu queries and order confirmations 24/7.</div>
+          <div class="tags">
+            <span class="tag">Automation</span>
+            <span class="tag">WhatsApp</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal" data-category="ai">
+          <span class="port-emoji">🤖</span>
+          <div class="port-title">AI Customer Support Bot</div>
+          <div class="port-desc">LLM-powered chatbot for e-commerce — handles FAQs, returns, and product queries.</div>
+          <div class="tags">
+            <span class="tag">AI</span>
+            <span class="tag">LLM</span>
+            <span class="tag">Chatbot</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================== TAB: CONTACT ======================== -->
+<div id="content-contact" class="tab-content">
+  <div class="services-hero" style="padding:3rem 2rem 2rem;">
+    <h1 style="font-size:2rem;">Let's Build Something Together</h1>
+    <p>Tell me about your project and I'll get back within 24 hours.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Form -->
+        <div class="contact-form reveal-left">
+          <h3 style="font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:1.5rem;">
+            Send a Message
+          </h3>
+
+          <form id="contact-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name">Your Name *</label>
+                <input type="text" id="cf-name" placeholder="John Doe" required />
+              </div>
+              <div class="form-group">
+                <label for="cf-phone">Phone Number</label>
+                <input type="tel" id="cf-phone" placeholder="+91 XXXXX XXXXX" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cf-email">Email Address *</label>
+              <input type="email" id="cf-email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="cf-service">Service Needed</label>
+              <select id="cf-service">
+                <option value="">Select a service...</option>
+                <option value="website">Website Development</option>
+                <option value="automation">Business Automation</option>
+                <option value="ai">AI Integration</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cf-message">Your Message *</label>
+              <textarea id="cf-message" placeholder="Tell me about your project, business, and what you need..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submit-btn">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+
+            <div id="form-status"></div>
+          </form>
+
+          <p class="response-note">
+            <i class="fa-solid fa-clock"></i> I typically respond within 24 hours
+          </p>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info reveal-right">
+          <div class="contact-info-title">Get in Touch</div>
+          <p class="contact-info-sub">
+            I'm available for freelance projects, website builds, and business automation.
+            Reach out however you prefer!
+          </p>
+
+          <div class="info-row">
+            <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="info-text">
+              <a href="mailto:haryacr@gmail.com">haryacr@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+            <div class="info-text">
+              <a href="https://linkedin.com/in/haryacr" target="_blank">linkedin.com/in/haryacr</a>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="info-text">Salem, Tamil Nadu (Home)<br>Chennai (Studies)</div>
+          </div>
+
+          <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="btn-wa-large">
+            <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i>
+            Chat on WhatsApp
+          </a>
+
+          <div class="available-badge">
+            Available for new projects
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= FOOTER ======= -->
+<footer class="footer">
+  <p>© 2026 Harya C R &nbsp;·&nbsp; Web Developer &amp; AI Engineer</p>
+  <p style="margin-top:.4rem;font-size:.8rem;opacity:.6;">Salem, Tamil Nadu · haryacr@gmail.com</p>
+</footer>
+
+<!-- ======= WHATSAPP FLOAT ======= -->
+<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp">
+  <span class="wa-tooltip">Chat on WhatsApp</span>
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- ======= SCRIPTS ======= -->
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  // Scroll progress
+  window.addEventListener('scroll', () => {
+    const p = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('scroll-progress').style.width = p + '%';
+  });
+
+  // Tab switching
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('content-' + id).classList.add('active');
+    if (btn) btn.classList.add('active');
+    // Trigger reveal for new content
+    setTimeout(initReveal, 50);
+  }
+
+  // Scroll reveal
+  function initReveal() {
+    const els = document.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible)');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), 50);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(el => obs.observe(el));
+  }
+
+  initReveal();
+
+  // Portfolio filter
+  function filterPortfolio(cat, btn) {
+    document.querySelectorAll('#portfolio-filter .filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+      if (cat === 'all' || card.dataset.category === cat) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Contact form handler
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = '✓ Sent!';
+      const status = document.getElementById('form-status');
+      status.className = 'success';
+      status.textContent = '🎉 Message sent! I\'ll get back to you within 24 hours.';
+      document.getElementById('contact-form').reset();
+      setTimeout(() => { btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message'; btn.disabled = false; status.className = ''; }, 4000);
+    }, 1200);
+  }
+
+  // Navbar shrink
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 50 ? '0 2px 12px rgba(0,0,0,.10)' : 'none';
+  });
+
+  // Remove shimmer overlay once iframe demo previews have loaded
+  document.querySelectorAll('.demo-preview-wrap iframe').forEach(iframe => {
+    iframe.addEventListener('load', () => {
+      iframe.parentElement.classList.add('loaded');
+    });
+  });
+</script>
+
+</body>
+</html>

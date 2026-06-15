@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Demo Websites by Harya C R — Sample Work Portfolio</title>
+<meta name="description" content="Sample demo websites built by Harya C R — freelance web developer from Salem, Tamil Nadu. View 5 complete business websites."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0F1E;--bg2:#111827;--bg3:#1A2235;
+  --blue:#3B82F6;--cyan:#06B6D4;--purple:#8B5CF6;
+  --white:#fff;--gray:rgba(255,255,255,.6);--dim:rgba(255,255,255,.35);
+  --border:rgba(255,255,255,.08);
+  --radius:16px;--transition:all .3s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--white);background:var(--bg);overflow-x:hidden;min-height:100vh}
+a{text-decoration:none;color:inherit}
+
+/* SUBTLE GRID BG */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(59,130,246,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+/* SCROLL PROGRESS */
+#sp{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple));z-index:9999;transition:width .1s linear}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:1000;background:rgba(10,15,30,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:100}
+.nav-logo{font-size:1.3rem;font-weight:800;color:var(--white);letter-spacing:-0.5px}
+.nav-logo em{color:var(--blue);font-style:normal}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.nav-tag{display:inline-flex;align-items:center;gap:.4rem;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);color:var(--blue);font-size:.78rem;font-weight:600;padding:.3rem .85rem;border-radius:20px}
+.btn-hire{background:var(--blue);color:#fff;padding:.5rem 1.25rem;border-radius:8px;font-weight:700;font-size:.83rem;transition:var(--transition)}
+.btn-hire:hover{background:#2563EB;transform:translateY(-1px)}
+
+/* HERO */
+.hero{padding:6rem 2rem 4rem;text-align:center;position:relative;z-index:1}
+.hero::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(59,130,246,.12) 0%,transparent 70%);pointer-events:none}
+.hero-available{display:inline-flex;align-items:center;gap:.5rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#86EFAC;font-size:.75rem;font-weight:700;padding:.35rem 1rem;border-radius:30px;margin-bottom:1.5rem;letter-spacing:.3px}
+.hero-available::before{content:'';width:7px;height:7px;background:#22C55E;border-radius:50%;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--white);line-height:1.1;letter-spacing:-1.5px;margin-bottom:.75rem}
+.hero-title .gradient{background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.05rem;color:var(--gray);max-width:540px;margin:0 auto 1rem;line-height:1.7}
+.hero-note{font-size:.85rem;color:var(--dim);margin-bottom:3rem;font-style:italic}
+.hero-stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;padding:2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:1rem}
+.hstat .num{font-size:1.8rem;font-weight:900;color:var(--blue);display:block}
+.hstat .lbl{font-size:.75rem;color:var(--dim);font-weight:500;margin-top:.15rem}
+
+/* FILTER */
+.filter-section{position:relative;z-index:1;padding:1rem 2rem 2rem;text-align:center}
+.filter-label{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:.85rem}
+.filter-row{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.fb{padding:.4rem 1.1rem;border-radius:30px;font-size:.8rem;font-weight:600;border:1px solid var(--border);color:var(--dim);cursor:pointer;background:transparent;transition:var(--transition);font-family:'Inter',sans-serif}
+.fb.active,.fb:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.1)}
+
+/* DEMO GRID */
+.demos-section{padding:0 2rem 5rem;position:relative;z-index:1}
+.demos-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+
+/* DEMO CARD */
+.demo-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition);position:relative}
+.demo-card:hover{transform:translateY(-6px);border-color:rgba(59,130,246,.4);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.demo-card:hover .demo-preview{opacity:.9}
+
+/* Preview area — colored gradient simulating website */
+.demo-preview{width:100%;height:200px;position:relative;overflow:hidden;transition:opacity .3s}
+.dp-navbar{position:absolute;top:0;left:0;right:0;height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 1rem;background:rgba(0,0,0,.2)}
+.dp-logo{font-size:.55rem;font-weight:800;color:rgba(255,255,255,.9);letter-spacing:.5px}
+.dp-links{display:flex;gap:6px}
+.dp-link{width:20px;height:3px;border-radius:2px;background:rgba(255,255,255,.35)}
+.dp-btn{width:32px;height:6px;border-radius:3px;background:rgba(255,255,255,.7)}
+.dp-hero{position:absolute;top:28px;bottom:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.dp-emoji{font-size:2.5rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
+.dp-htitle{font-size:.52rem;font-weight:800;color:rgba(255,255,255,.9);letter-spacing:.5px;text-align:center}
+.dp-hsub{font-size:.42rem;color:rgba(255,255,255,.6);text-align:center}
+.dp-cta-row{display:flex;gap:4px}
+.dp-cta{height:8px;border-radius:3px}
+
+/* browser chrome */
+.demo-browser{background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.06);padding:.4rem .75rem;display:flex;align-items:center;gap:.5rem}
+.browser-dots{display:flex;gap:4px}
+.browser-dots span{width:8px;height:8px;border-radius:50%}
+.browser-url{flex:1;background:rgba(255,255,255,.06);border-radius:4px;height:16px;margin:0 .5rem;display:flex;align-items:center;padding:0 .5rem}
+.browser-url span{font-size:.45rem;color:rgba(255,255,255,.4);font-family:'Courier New',monospace}
+
+/* Card body */
+.demo-body{padding:1.5rem}
+.demo-type{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:.4rem}
+.demo-name{font-size:1.05rem;font-weight:800;color:var(--white);margin-bottom:.3rem}
+.demo-tagline{font-size:.8rem;color:var(--dim);font-style:italic;margin-bottom:.85rem}
+.demo-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
+.demo-tag{font-size:.68rem;font-weight:600;padding:.18rem .6rem;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6)}
+.demo-actions{display:flex;gap:.6rem}
+.btn-view{flex:1;padding:.6rem 1rem;border-radius:8px;font-weight:700;font-size:.83rem;text-align:center;transition:var(--transition);display:inline-flex;align-items:center;justify-content:center;gap:.4rem}
+.btn-view-primary{background:var(--blue);color:#fff}
+.btn-view-primary:hover{background:#2563EB;transform:translateY(-1px)}
+.btn-view-ghost{border:1px solid var(--border);color:var(--dim)}
+.btn-view-ghost:hover{border-color:rgba(255,255,255,.3);color:#fff}
+
+/* ABOUT SECTION */
+.about-section{padding:4rem 2rem;position:relative;z-index:1;border-top:1px solid var(--border)}
+.about-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-photo-wrap{position:relative;display:flex;justify-content:center}
+.about-photo-ring{width:180px;height:180px;border-radius:50%;background:conic-gradient(var(--blue),var(--cyan),var(--purple),var(--blue));padding:3px;animation:spin 10s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.about-photo-inner{width:100%;height:100%;border-radius:50%;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:5rem}
+.about-text .label{font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem}
+.about-text h2{font-size:1.7rem;font-weight:800;color:var(--white);line-height:1.2;margin-bottom:.75rem}
+.about-text p{font-size:.88rem;color:var(--gray);line-height:1.8;margin-bottom:1.25rem}
+.about-contact{display:flex;flex-direction:column;gap:.5rem}
+.ac-item{display:flex;align-items:center;gap:.6rem;font-size:.83rem;color:var(--gray)}
+.ac-item i{color:var(--blue);width:16px}
+.ac-item a{color:var(--blue)}
+
+/* CTA SECTION */
+.cta-section{padding:5rem 2rem;text-align:center;position:relative;z-index:1}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 0%,rgba(59,130,246,.1),transparent 70%)}
+.cta-content{position:relative;z-index:1;max-width:580px;margin:0 auto}
+.cta-title{font-size:clamp(1.6rem,3.5vw,2.5rem);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:.75rem}
+.cta-sub{font-size:.92rem;color:var(--gray);line-height:1.7;margin-bottom:2rem}
+.cta-btns{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap}
+.btn-cta-solid{background:var(--blue);color:#fff;padding:.8rem 2rem;border-radius:10px;font-weight:700;font-size:.92rem;transition:var(--transition)}
+.btn-cta-solid:hover{background:#2563EB;transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,130,246,.4)}
+.btn-cta-wa{background:#25D366;color:#fff;padding:.8rem 2rem;border-radius:10px;font-weight:700;font-size:.92rem;transition:var(--transition)}
+.btn-cta-wa:hover{background:#1EA952;transform:translateY(-2px)}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:1.75rem 2rem;text-align:center;position:relative;z-index:1}
+.footer p{font-size:.82rem;color:var(--dim)}
+.footer a{color:var(--blue)}
+
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:1.75rem;right:1.75rem;z-index:2000;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:var(--transition)}
+.wa-float:hover{transform:scale(1.1)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:640px){
+  .demos-grid{grid-template-columns:1fr}
+  .about-inner{grid-template-columns:1fr;text-align:center}
+  .about-photo-wrap{justify-content:center}
+  .about-contact{align-items:center}
+  .hero-stats{gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div id="sp"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo">Harya <em>C R</em></div>
+  <div class="nav-right">
+    <div class="nav-tag"><i class="fa-solid fa-circle" style="font-size:.5rem;color:#22C55E"></i> Open to Freelance</div>
+    <a href="mailto:haryacr@gmail.com" class="btn-hire"><i class="fa-solid fa-envelope"></i> Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-available">
+    <i class="fa-brands fa-html5"></i> Sample Work Showcase
+  </div>
+  <h1 class="hero-title">
+    Demo Websites by<br><span class="gradient">Harya C R</span>
+  </h1>
+  <p class="hero-sub">
+    5 complete, professional website demos for local businesses — built with pure HTML, CSS &amp; JavaScript. No frameworks. No templates.
+  </p>
+  <p class="hero-note">📣 Showing potential clients the quality and variety of work I deliver</p>
+  <div class="hero-stats">
+    <div class="hstat"><span class="num">5</span><span class="lbl">Demo Sites</span></div>
+    <div class="hstat"><span class="num">5</span><span class="lbl">Unique Themes</span></div>
+    <div class="hstat"><span class="num">100%</span><span class="lbl">Pure HTML/CSS/JS</span></div>
+    <div class="hstat"><span class="num">0</span><span class="lbl">External Dependencies</span></div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="filter-section">
+  <div class="filter-label">Filter by type</div>
+  <div class="filter-row">
+    <button class="fb active" onclick="filterCards('all',this)">All (5)</button>
+    <button class="fb" onclick="filterCards('restaurant',this)">🍽️ Restaurant</button>
+    <button class="fb" onclick="filterCards('clinic',this)">🌿 Healthcare</button>
+    <button class="fb" onclick="filterCards('ecommerce',this)">🛍️ Retail</button>
+    <button class="fb" onclick="filterCards('b2b',this)">💼 Business</button>
+  </div>
+</div>
+
+<!-- DEMOS GRID -->
+<div class="demos-section">
+  <div class="demos-grid" id="demos-grid">
+
+    <!-- 1. Restaurant -->
+    <div class="demo-card reveal" data-cat="restaurant">
+      <div class="demo-browser">
+        <div class="browser-dots"><span style="background:#FF5F57"></span><span style="background:#FFBD2E"></span><span style="background:#28C940"></span></div>
+        <div class="browser-url"><span>restaurant-demo.html</span></div>
+      </div>
+      <div class="demo-preview" style="background:radial-gradient(ellipse at 30% 50%, #E8621A, #C44E0F 40%, #4A1200)">
+        <div class="dp-navbar"><div class="dp-logo">🍽️ SRI ANNAPOORNA</div><div class="dp-links"><div class="dp-link"></div><div class="dp-link"></div><div class="dp-link"></div></div><div class="dp-btn" style="background:rgba(255,255,255,.6)"></div></div>
+        <div class="dp-hero">
+          <div class="dp-emoji">🍛</div>
+          <div class="dp-htitle">SRI ANNAPOORNA RESTAURANT</div>
+          <div class="dp-hsub">Authentic Tamil Flavors Since 1995</div>
+          <div class="dp-cta-row"><div class="dp-cta" style="width:55px;background:rgba(255,255,255,.9)"></div><div class="dp-cta" style="width:55px;background:rgba(255,255,255,.25)"></div></div>
+        </div>
+      </div>
+      <div class="demo-body">
+        <div class="demo-type" style="color:#E8621A">🍽️ Restaurant</div>
+        <div class="demo-name">Sri Annapoorna Restaurant</div>
+        <div class="demo-tagline">"Authentic Tamil Flavors Since 1995"</div>
+        <div class="demo-tags">
+          <span class="demo-tag">Menu Filter</span>
+          <span class="demo-tag">Table Booking</span>
+          <span class="demo-tag">Gallery</span>
+          <span class="demo-tag">Testimonials</span>
+          <span class="demo-tag">Warm Orange</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--dim);margin-bottom:1rem;line-height:1.5">Full restaurant site with interactive menu, special offers, gallery, hours & reservation form.</div>
+        <div class="demo-actions">
+          <a href="restaurant-demo.html" class="btn-view btn-view-primary"><i class="fa-solid fa-eye"></i> View Demo</a>
+          <a href="mailto:haryacr@gmail.com" class="btn-view btn-view-ghost"><i class="fa-solid fa-envelope"></i> Request</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Clinic -->
+    <div class="demo-card reveal" data-cat="clinic">
+      <div class="demo-browser">
+        <div class="browser-dots"><span style="background:#FF5F57"></span><span style="background:#FFBD2E"></span><span style="background:#28C940"></span></div>
+        <div class="browser-url"><span>clinic-demo.html</span></div>
+      </div>
+      <div class="demo-preview" style="background:linear-gradient(135deg,#0D9488,#0A7B70 40%,#022C22)">
+        <div class="dp-navbar"><div class="dp-logo">🌿 NUTRICARE</div><div class="dp-links"><div class="dp-link"></div><div class="dp-link"></div><div class="dp-link"></div></div><div class="dp-btn" style="background:rgba(255,255,255,.6)"></div></div>
+        <div class="dp-hero">
+          <div class="dp-emoji">👩‍⚕️</div>
+          <div class="dp-htitle">NUTRICARE DIET & WELLNESS</div>
+          <div class="dp-hsub">Your Journey to a Healthier You</div>
+          <div class="dp-cta-row"><div class="dp-cta" style="width:60px;background:rgba(255,255,255,.9)"></div><div class="dp-cta" style="width:50px;background:rgba(255,255,255,.2)"></div></div>
+        </div>
+      </div>
+      <div class="demo-body">
+        <div class="demo-type" style="color:#0D9488">🌿 Diet Clinic</div>
+        <div class="demo-name">NutriCare Diet & Wellness Clinic</div>
+        <div class="demo-tagline">"Your Journey to a Healthier You"</div>
+        <div class="demo-tags">
+          <span class="demo-tag">FAQ Accordion</span>
+          <span class="demo-tag">Pricing Cards</span>
+          <span class="demo-tag">Before/After</span>
+          <span class="demo-tag">Appointment Form</span>
+          <span class="demo-tag">Teal Theme</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--dim);margin-bottom:1rem;line-height:1.5">Healthcare site with doctor profile, services, pricing, success stories, FAQ, and booking form.</div>
+        <div class="demo-actions">
+          <a href="clinic-demo.html" class="btn-view btn-view-primary"><i class="fa-solid fa-eye"></i> View Demo</a>
+          <a href="mailto:haryacr@gmail.com" class="btn-view btn-view-ghost"><i class="fa-solid fa-envelope"></i> Request</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Coir -->
+    <div class="demo-card reveal" data-cat="ecommerce b2b">
+      <div class="demo-browser">
+        <div class="browser-dots"><span style="background:#FF5F57"></span><span style="background:#FFBD2E"></span><span style="background:#28C940"></span></div>
+        <div class="browser-url"><span>coir-demo.html</span></div>
+      </div>
+      <div class="demo-preview" style="background:linear-gradient(135deg,#78350F,#92400E 30%,#1C0A00)">
+        <div class="dp-navbar"><div class="dp-logo">🌾 SALEM COIR WORKS</div><div class="dp-links"><div class="dp-link"></div><div class="dp-link"></div><div class="dp-link"></div></div><div class="dp-btn" style="background:rgba(255,255,255,.5)"></div></div>
+        <div class="dp-hero">
+          <div class="dp-emoji">🧶</div>
+          <div class="dp-htitle">HANDCRAFTED COIR PRODUCTS</div>
+          <div class="dp-hsub">Natural · Durable · Made in Salem</div>
+          <div class="dp-cta-row"><div class="dp-cta" style="width:55px;background:rgba(255,255,255,.9)"></div><div class="dp-cta" style="width:55px;background:rgba(101,163,13,.7)"></div></div>
+        </div>
+      </div>
+      <div class="demo-body">
+        <div class="demo-type" style="color:#D97706">🌾 Coir Products Shop</div>
+        <div class="demo-name">Salem Coir Works</div>
+        <div class="demo-tagline">"Natural. Durable. Made in Salem."</div>
+        <div class="demo-tags">
+          <span class="demo-tag">Product Grid</span>
+          <span class="demo-tag">Process Timeline</span>
+          <span class="demo-tag">Wholesale Section</span>
+          <span class="demo-tag">Filter System</span>
+          <span class="demo-tag">Earthy Theme</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--dim);margin-bottom:1rem;line-height:1.5">B2B/B2C product site with 8 product cards, filterable catalog, wholesale section and contact form.</div>
+        <div class="demo-actions">
+          <a href="coir-demo.html" class="btn-view btn-view-primary"><i class="fa-solid fa-eye"></i> View Demo</a>
+          <a href="mailto:haryacr@gmail.com" class="btn-view btn-view-ghost"><i class="fa-solid fa-envelope"></i> Request</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Clothing -->
+    <div class="demo-card reveal" data-cat="ecommerce">
+      <div class="demo-browser">
+        <div class="browser-dots"><span style="background:#FF5F57"></span><span style="background:#FFBD2E"></span><span style="background:#28C940"></span></div>
+        <div class="browser-url"><span>clothing-demo.html</span></div>
+      </div>
+      <div class="demo-preview" style="background:linear-gradient(to right, #111827 50%, linear-gradient(135deg,#E879A0,#7C3AED) 50%)">
+        <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr">
+          <div style="background:#111827;display:flex;flex-direction:column;justify-content:center;padding:.75rem">
+            <div style="font-size:.4rem;font-weight:700;color:#E879A0;letter-spacing:2px;margin-bottom:.25rem">NEW COLLECTION 2026</div>
+            <div style="font-size:.65rem;font-weight:900;color:#fff;line-height:1.2;margin-bottom:.5rem">Dress Bold.<br>Live Free.</div>
+            <div style="width:40px;height:8px;border-radius:3px;background:#E879A0"></div>
+          </div>
+          <div style="background:linear-gradient(135deg,#1F2937,#0F172A);display:flex;align-items:center;justify-content:center;position:relative">
+            <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,rgba(232,121,160,.5),rgba(212,168,83,.4));position:absolute"></div>
+            <div style="font-size:2.5rem;position:relative;z-index:1">👗</div>
+          </div>
+        </div>
+        <div class="dp-navbar" style="z-index:2"><div class="dp-logo" style="font-size:.6rem;letter-spacing:3px">ZEPHYR</div><div class="dp-links"><div class="dp-link"></div><div class="dp-link"></div></div><div class="dp-btn" style="background:#E879A0"></div></div>
+      </div>
+      <div class="demo-body">
+        <div class="demo-type" style="color:#E879A0">👗 Fashion Brand</div>
+        <div class="demo-name">Zephyr Style Co.</div>
+        <div class="demo-tagline">"Wear Your Story"</div>
+        <div class="demo-tags">
+          <span class="demo-tag">Split Hero</span>
+          <span class="demo-tag">Product Catalog</span>
+          <span class="demo-tag">Size Guide</span>
+          <span class="demo-tag">Newsletter</span>
+          <span class="demo-tag">Editorial Style</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--dim);margin-bottom:1rem;line-height:1.5">Fashion brand site with lookbook, product grid with cart, size guide table, and newsletter signup.</div>
+        <div class="demo-actions">
+          <a href="clothing-demo.html" class="btn-view btn-view-primary"><i class="fa-solid fa-eye"></i> View Demo</a>
+          <a href="mailto:haryacr@gmail.com" class="btn-view btn-view-ghost"><i class="fa-solid fa-envelope"></i> Request</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Business -->
+    <div class="demo-card reveal" data-cat="b2b">
+      <div class="demo-browser">
+        <div class="browser-dots"><span style="background:#FF5F57"></span><span style="background:#FFBD2E"></span><span style="background:#28C940"></span></div>
+        <div class="browser-url"><span>business-demo.html</span></div>
+      </div>
+      <div class="demo-preview" style="background:linear-gradient(135deg,#0F2040,#1E3A5F 40%,#2D5280)">
+        <div class="dp-navbar"><div class="dp-logo">💼 SALEMBIZ</div><div class="dp-links"><div class="dp-link"></div><div class="dp-link"></div><div class="dp-link"></div></div><div class="dp-btn" style="background:#3B82F6"></div></div>
+        <div class="dp-hero">
+          <div class="dp-emoji">📊</div>
+          <div class="dp-htitle">GROW YOUR BUSINESS WITH CONFIDENCE</div>
+          <div class="dp-hsub">GST · Registration · Digital Marketing · Websites</div>
+          <div class="dp-cta-row"><div class="dp-cta" style="width:65px;background:#3B82F6"></div><div class="dp-cta" style="width:50px;background:rgba(255,255,255,.2)"></div></div>
+        </div>
+      </div>
+      <div class="demo-body">
+        <div class="demo-type" style="color:#3B82F6">💼 Business Consultancy</div>
+        <div class="demo-name">SalemBiz Solutions</div>
+        <div class="demo-tagline">"Your Local Business Growth Partner"</div>
+        <div class="demo-tags">
+          <span class="demo-tag">Services Grid</span>
+          <span class="demo-tag">Pricing Tables</span>
+          <span class="demo-tag">FAQ Accordion</span>
+          <span class="demo-tag">Contact Form</span>
+          <span class="demo-tag">Navy Corporate</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--dim);margin-bottom:1rem;line-height:1.5">Corporate consultancy site with 10 sections — services, process, pricing, success stories, FAQ and contact.</div>
+        <div class="demo-actions">
+          <a href="business-demo.html" class="btn-view btn-view-primary"><i class="fa-solid fa-eye"></i> View Demo</a>
+          <a href="mailto:haryacr@gmail.com" class="btn-view btn-view-ghost"><i class="fa-solid fa-envelope"></i> Request</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT ME -->
+<section class="about-section">
+  <div class="about-inner">
+    <div class="about-photo-wrap reveal">
+      <div class="about-photo-ring">
+        <div class="about-photo-inner">👨‍💻</div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="label">The Developer Behind These Sites</div>
+      <h2>Hi, I'm Harya C R</h2>
+      <p>I'm a B.Tech CSE (AI & ML) student at SRM Institute of Science and Technology, Chennai and a freelance web developer based in Salem, Tamil Nadu.</p>
+      <p>Every site you see here was built by me from scratch — pure HTML, CSS and JavaScript. No page builders. No templates. Just clean, hand-coded websites that perform and impress.</p>
+      <div class="about-contact">
+        <div class="ac-item"><i class="fa-solid fa-envelope"></i> <a href="mailto:haryacr@gmail.com">haryacr@gmail.com</a></div>
+        <div class="ac-item"><i class="fa-brands fa-github"></i> <a href="https://github.com/Harya018" target="_blank">github.com/Harya018</a></div>
+        <div class="ac-item"><i class="fa-brands fa-linkedin"></i> <a href="https://linkedin.com/in/haryacr" target="_blank">linkedin.com/in/haryacr</a></div>
+        <div class="ac-item"><i class="fa-solid fa-location-dot"></i> Salem, Tamil Nadu · Chennai (Studies)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-content reveal">
+    <h2 class="cta-title">Want a Website Like These for Your Business?</h2>
+    <p class="cta-sub">Starting from ₹5,000. Fast delivery. Affordable pricing. Made specifically for your business — not a generic template.</p>
+    <div class="cta-btns">
+      <a href="mailto:haryacr@gmail.com" class="btn-cta-solid"><i class="fa-solid fa-envelope"></i> Email Me</a>
+      <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="btn-cta-wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 Harya C R &nbsp;·&nbsp; All demos are for portfolio purposes only. Businesses are fictional.</p>
+  <p style="margin-top:.4rem">Built with ❤️ by <a href="mailto:haryacr@gmail.com">Harya C R · haryacr@gmail.com</a></p>
+</footer>
+
+<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+// Scroll progress
+window.addEventListener('scroll',()=>{
+  const p=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  document.getElementById('sp').style.width=p+'%';
+});
+
+// Scroll reveal
+const revEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*80);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.1});
+revEls.forEach(el=>obs.observe(el));
+
+// Filter
+function filterCards(cat,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.demo-card').forEach(c=>{
+    const cats=c.dataset.cat||'';
+    const show=(cat==='all'||cats.includes(cat));
+    c.style.display=show?'':'none';
+  });
+}
+</script>
+</body>
+</html>
