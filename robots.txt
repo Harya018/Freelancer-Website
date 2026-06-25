@@ -1,0 +1,3 @@
+﻿User-agent: *
+Allow: /
+Sitemap: https://haryadev.netlify.app/sitemap.xml
