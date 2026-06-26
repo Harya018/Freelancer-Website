@@ -29,655 +29,619 @@
   }
   </script>
 
+  <!-- Search Console verification -->
+  <meta name="google-site-verification" content="71f314ac90ecb460" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
 
-  <!-- Shared CSS -->
-  <link rel="stylesheet" href="shared.css" />
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
-    /* ====== INDEX-SPECIFIC STYLES ====== */
+    *, *::before, *::after { box-sizing: border-box; }
 
-    /* Subtle hero background */
-    .hero-section {
-      min-height: calc(100vh - 64px);
+    :root {
+      --bg:     #ffffff;
+      --surface: #f7f6f3;
+      --border: #e8e6e1;
+      --text:   #16161a;
+      --text-dim: #6b6b72;
+      --accent-blue: #2563eb;
+      --accent-orange: #ff5a36;
+      --green: #16a34a;
+      --radius: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- Nav ---- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__logo {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .nav__logo span { color: var(--accent-blue); }
+
+    .nav__links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav__link {
+      padding: 7px 14px;
+      border-radius: 100px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-dim);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav__link:hover { color: var(--text); background: var(--surface); }
+
+    .nav__link--blue {
+      background: var(--accent-blue);
+      color: #fff;
+      font-weight: 600;
+    }
+    .nav__link--blue:hover { background: #1d4ed8; color: #fff; }
+
+    .nav__link--orange {
+      background: var(--accent-orange);
+      color: #fff;
+      font-weight: 600;
+    }
+    .nav__link--orange:hover { background: #e04020; color: #fff; }
+
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav__hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-dim); border-radius: 2px;
+    }
+
+    @media (max-width: 640px) {
+      .nav__links { display: none; }
+      .nav__hamburger { display: flex; }
+    }
+
+    .nav__mobile {
+      display: none;
+      position: fixed;
+      top: 60px; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 49;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 2rem;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      padding: 8px 0;
+    }
+    .nav__mobile a:hover { color: var(--text); }
+
+    /* ---- Hero ---- */
+    .hero {
+      padding: 80px 28px 72px;
+      max-width: 920px;
+      margin: 0 auto;
       text-align: center;
-      padding: 4rem 2rem;
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(37,99,235,.07) 0%, transparent 70%),
-        #F8FAFC;
-      position: relative;
-      overflow: hidden;
     }
 
-    /* Subtle grid pattern */
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--gray-200) 1px, transparent 1px),
-        linear-gradient(90deg, var(--gray-200) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: .4;
-      pointer-events: none;
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      margin-bottom: 32px;
+    }
+    .hero__badge .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: dot-pulse 2s ease-in-out infinite;
+    }
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-    }
-
-    /* Profile photo */
-    .profile-circle {
-      width: 180px;
-      height: 180px;
+    .hero__photo {
+      width: 120px; height: 120px;
       border-radius: 50%;
       overflow: hidden;
-      margin: 0 auto 1.5rem;
-      border: 3px solid #2563EB;
-      box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.15);
-      flex-shrink: 0;
-      position: relative;
+      margin: 0 auto 28px;
+      border: 3px solid var(--border);
+      box-shadow: 0 0 0 6px var(--surface);
     }
-
-    .profile-circle img {
-      width: 100%;
-      height: 100%;
+    .hero__photo img {
+      width: 100%; height: 100%;
       object-fit: cover;
       object-position: center 40%;
       transform: scale(1.7);
       transform-origin: center 60%;
-      border-radius: 50%;
     }
 
-    .online-dot {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      width: 18px;
-      height: 18px;
-      background: #22C55E;
-      border-radius: 50%;
-      border: 3px solid #fff;
-      animation: pulse-green 2s infinite;
-    }
-
-    @keyframes pulse-green {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,.4); }
-      50%       { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
-    }
-
-    /* Name */
-    .hero-name {
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
+    .hero__name {
+      font-size: clamp(2.4rem, 6vw, 4rem);
       font-weight: 900;
-      color: var(--navy);
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-      margin-bottom: .5rem;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 0 0 14px;
     }
 
-    .hero-tagline {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--blue);
-      margin-bottom: .75rem;
+    .hero__tagline {
+      font-size: 18px;
+      color: var(--text-dim);
+      font-weight: 500;
+      margin-bottom: 12px;
     }
 
-    .hero-bio {
-      font-size: 1rem;
-      color: var(--gray-600);
-      margin-bottom: 2rem;
+    .hero__bio {
+      font-size: 15px;
+      color: var(--text-dim);
       line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 36px;
     }
 
-    .hero-cta {
+    /* Social links */
+    .hero__socials {
       display: flex;
-      gap: 1rem;
+      gap: 10px;
       justify-content: center;
-      flex-wrap: wrap;
+      margin-bottom: 40px;
     }
-
-    .btn-hero-primary {
-      padding: .8rem 2rem;
-      font-size: 1rem;
+    .social-btn {
+      width: 40px; height: 40px;
       border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: var(--text-dim);
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .social-btn:hover {
+      border-color: var(--text);
+      color: var(--text);
+      transform: translateY(-2px);
     }
 
-    .btn-hero-outline {
-      padding: .8rem 2rem;
-      font-size: 1rem;
-      border-radius: 10px;
-    }
-
-    /* ===== CARDS SECTION ===== */
-    .cards-section {
-      padding: 4rem 2rem 5rem;
-      background: var(--gray-100);
-    }
-
-    .cards-grid {
-      max-width: 900px;
-      margin: 0 auto;
+    /* ---- Routing cards ---- */
+    .route-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.75rem;
+      gap: 20px;
+      max-width: 860px;
+      margin: 0 auto 72px;
+      padding: 0 28px;
     }
 
-    .service-card {
-      border-radius: 16px;
-      padding: 2.25rem 2rem;
-      transition: all .3s ease;
-      position: relative;
-      overflow: hidden;
+    @media (max-width: 600px) {
+      .route-grid { grid-template-columns: 1fr; }
     }
 
-    .service-card::after {
-      content: '';
-      position: absolute;
-      bottom: -40px;
-      right: -40px;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      opacity: .08;
-      background: currentColor;
+    .route-card {
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      text-align: left;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .route-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
     }
 
-    .card-blue {
-      background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
-      border: 1px solid #BFDBFE;
+    .route-card--blue {
+      background: #eff6ff;
+      border: 1.5px solid #bfdbfe;
+    }
+    .route-card--dark {
+      background: #0f172a;
+      border: 1.5px solid #1e293b;
+      color: #f1f5f9;
     }
 
-    .card-navy {
-      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-      color: #fff;
-    }
-
-    .card-navy .card-text {
-      color: rgba(255,255,255,.75);
-    }
-
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .card-tag {
-      font-size: .7rem;
+    .route-card__icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+    .route-card__label {
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: .5rem;
+      margin-bottom: 8px;
     }
+    .route-card--blue .route-card__label { color: var(--accent-blue); }
+    .route-card--dark .route-card__label { color: #60a5fa; }
 
-    .card-navy .card-tag {
-      color: #60A5FA;
-    }
-
-    .card-title {
-      font-size: 1.25rem;
+    .route-card__title {
+      font-size: 22px;
       font-weight: 800;
-      color: var(--navy);
-      margin-bottom: .75rem;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
     }
+    .route-card--blue .route-card__title { color: #1e3a8a; }
 
-    .card-navy .card-title {
-      color: #fff;
+    .route-card__desc {
+      font-size: 14px;
+      line-height: 1.65;
+      margin-bottom: 24px;
+      flex: 1;
     }
+    .route-card--blue .route-card__desc { color: #475569; }
+    .route-card--dark .route-card__desc { color: #94a3b8; }
 
-    .card-text {
-      font-size: .95rem;
-      color: var(--gray-600);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    .card-blue .btn-card {
-      background: var(--blue);
-      color: #fff;
-      padding: .6rem 1.4rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: .9rem;
-      transition: var(--transition);
+    .route-card__cta {
       display: inline-flex;
       align-items: center;
-      gap: .4rem;
-    }
-
-    .card-blue .btn-card:hover {
-      background: var(--blue-dark);
-      transform: translateX(3px);
-    }
-
-    .card-navy .btn-card {
-      border: 2px solid rgba(255,255,255,.3);
-      color: #fff;
-      padding: .6rem 1.4rem;
-      border-radius: 8px;
+      gap: 6px;
+      padding: 11px 22px;
+      border-radius: 100px;
+      font-size: 14px;
       font-weight: 600;
-      font-size: .9rem;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
+      transition: background 0.2s;
+      align-self: flex-start;
     }
-
-    .card-navy .btn-card:hover {
-      background: rgba(255,255,255,.1);
-      border-color: rgba(255,255,255,.6);
-      transform: translateX(3px);
+    .route-card--blue .route-card__cta {
+      background: var(--accent-blue);
+      color: #fff;
     }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0,0,0,.12);
+    .route-card--blue .route-card__cta:hover { background: #1d4ed8; }
+    .route-card--dark .route-card__cta {
+      background: #334155;
+      color: #e2e8f0;
     }
+    .route-card--dark .route-card__cta:hover { background: #475569; }
 
-    /* ===== QUICK STATS ===== */
-    .stats-bar {
-      background: var(--white);
-      border-top: 1px solid var(--gray-200);
-      border-bottom: 1px solid var(--gray-200);
-      padding: 2.5rem 2rem;
+    /* ---- Stats strip ---- */
+    .stats-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 28px;
+      background: var(--surface);
     }
-
     .stats-inner {
-      max-width: 1000px;
+      max-width: 860px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
-
-    .stat-item {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,.03);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      height: 100%;
-    }
-
-    .stat-num-wrap {
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      margin-bottom: .4rem;
-    }
-
-    .stat-num {
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: var(--blue);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: .85rem;
-      color: var(--gray-600);
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    /* ===== QUICK INFO STRIP ===== */
-    .info-strip {
-      background: var(--blue);
-      color: #fff;
-      padding: .75rem 2rem;
-      text-align: center;
-      font-size: .88rem;
-      font-weight: 500;
-      letter-spacing: .3px;
-    }
-
-    .info-strip a {
-      color: rgba(255,255,255,.85);
-      text-decoration: underline;
-    }
-
-    /* Social icons in hero */
-    .hero-socials {
-      display: flex;
-      gap: .75rem;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--white);
-      border: 1.5px solid var(--gray-200);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      color: var(--gray-600);
-      transition: var(--transition);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .social-icon:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-    }
-
-    /* College badge */
-    .college-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 30px;
-      padding: .35rem 1rem .35rem .5rem;
-      font-size: .8rem;
-      font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: 1.25rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .college-badge .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    /* Responsive */
-    @media (max-width: 640px) {
-      .cards-grid { grid-template-columns: 1fr; }
+    @media (max-width: 600px) {
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
-      .hero-name { font-size: 2rem; }
+    }
+    .stat {
+      background: var(--bg);
+      padding: 24px 20px;
+      text-align: left;
+    }
+    .stat__num {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .stat__label { font-size: 13px; color: var(--text-dim); font-weight: 500; }
+
+    /* ---- About strip ---- */
+    .about-strip {
+      padding: 72px 28px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .about-strip h2 {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .about-strip p {
+      font-size: 15.5px;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+    .about-strip p strong { color: var(--text); }
+
+    /* ---- Footer ---- */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 28px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .footer__links { display: flex; gap: 20px; }
+    .footer__links a:hover { color: var(--text); }
+
+    /* ---- WA float ---- */
+    .wa-float {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      z-index: 900;
+      width: 52px; height: 52px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: transform 0.2s ease;
+      text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+
+    /* Scroll progress */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent-blue);
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* Custom cursor */
+    .cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: multiply;
+      transition: opacity 0.2s ease;
+    }
+    .cursor-dot--active { opacity: 0.7; }
+    @media (pointer: coarse) { .cursor-dot { display: none; } }
+
+    [data-reveal] { will-change: transform, opacity; }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal] { opacity: 1 !important; transform: none !important; }
+      .hero__badge .dot { animation: none; opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-<!-- Scroll Progress -->
 <div id="scroll-progress"></div>
 
-<!-- ======= NAVBAR ======= -->
-<nav class="navbar" id="main-nav">
-  <a href="index.html" class="navbar-logo">H<span>C</span>R</a>
+<!-- ======= NAV ======= -->
+<nav class="nav">
+  <a href="index.html" class="nav__logo">Harya <span>CR</span></a>
 
-  <div class="navbar-actions">
-    <a href="index.html" class="btn btn-ghost">Home</a>
-    <a href="services.html" class="btn btn-outline-blue" id="nav-services">
-      <i class="fa-solid fa-briefcase"></i> My Services
+  <div class="nav__links">
+    <a href="index.html" class="nav__link">Home</a>
+    <a href="services.html" class="nav__link nav__link--orange">
+      <i class="fa-solid fa-briefcase"></i> Freelance Services
     </a>
-    <a href="aiml.html" class="btn btn-primary" id="nav-aiml">
+    <a href="aiml.html" class="nav__link nav__link--blue">
       <i class="fa-solid fa-robot"></i> AI/ML Portfolio
     </a>
   </div>
 
-  <!-- Hamburger -->
-  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="nav__hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
-<!-- Mobile Menu -->
-<div class="nav-mobile-menu" id="mobile-menu">
-  <a href="index.html" class="btn btn-ghost">Home</a>
-  <a href="services.html" class="btn btn-outline-blue">My Services</a>
-  <a href="aiml.html" class="btn btn-primary">AI/ML Portfolio</a>
-</div>
-
-<!-- ======= INFO STRIP ======= -->
-<div class="info-strip">
-  🎓 B.Tech CSE — AI &amp; ML · SRM Chennai · CGPA 8.67
-  &nbsp;|&nbsp;
-  📍 Available for freelance work &amp; internships
-  &nbsp;|&nbsp;
-  <a href="mailto:haryacr@gmail.com">haryacr@gmail.com</a>
+<div class="nav__mobile" id="mobile-menu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="services.html" onclick="closeMenu()" style="color:var(--accent-orange)">Freelance Services</a>
+  <a href="aiml.html" onclick="closeMenu()" style="color:var(--accent-blue)">AI/ML Portfolio</a>
 </div>
 
 <!-- ======= HERO ======= -->
-<section class="hero-section" id="hero">
-  <div class="hero-content">
+<section class="hero">
 
-    <!-- College Badge -->
-    <div class="college-badge">
-      <span class="dot"></span>
-      SRM Institute of Science and Technology, Chennai
-    </div>
-
-    <!-- Profile Photo -->
-    <div style="position: relative; display: inline-block; margin-bottom: 1.5rem;">
-      <div class="profile-circle" style="margin-bottom: 0;">
-        <img 
-          src="images/harya-profile.jpg" 
-          alt="Harya C R"
-        />
-      </div>
-      <div class="online-dot" title="Available for work"></div>
-    </div>
-
-    <!-- Name & Tagline -->
-    <h1 class="hero-name">Harya C R</h1>
-    <p class="hero-tagline">
-      <i class="fa-solid fa-microchip"></i>
-      AI/ML Engineer &amp; Freelance Web Developer
-    </p>
-    <p class="hero-bio">
-      I build intelligent software and professional websites for businesses.<br>
-      From sleek landing pages to AI-powered automations — delivered fast &amp; affordable.
-    </p>
-
-    <!-- Social Icons -->
-    <div class="hero-socials">
-      <a href="https://github.com/Harya018" target="_blank" rel="noopener" class="social-icon" title="GitHub">
-        <i class="fa-brands fa-github"></i>
-      </a>
-      <a href="https://linkedin.com/in/haryacr" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">
-        <i class="fa-brands fa-linkedin-in"></i>
-      </a>
-      <a href="mailto:haryacr@gmail.com" class="social-icon" title="Email">
-        <i class="fa-solid fa-envelope"></i>
-      </a>
-      <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="social-icon" title="WhatsApp" style="color:#25D366;">
-        <i class="fa-brands fa-whatsapp"></i>
-      </a>
-    </div>
-
-    <!-- CTA Buttons -->
-    <div class="hero-cta">
-      <a href="services.html" class="btn btn-primary btn-hero-primary" id="hero-services-btn">
-        <i class="fa-solid fa-briefcase"></i> View My Services
-      </a>
-      <a href="aiml.html" class="btn btn-outline btn-hero-outline" id="hero-aiml-btn">
-        <i class="fa-solid fa-brain"></i> See AI/ML Work
-      </a>
-    </div>
-
+  <div class="hero__badge" data-reveal>
+    <span class="dot"></span>
+    Available for freelance work &amp; AI/ML internships
   </div>
+
+  <div class="hero__photo" data-reveal>
+    <img src="images/harya-profile.jpg" alt="Harya C R"
+         onerror="this.style.display='none'" />
+  </div>
+
+  <h1 class="hero__name" data-reveal>Harya C R</h1>
+
+  <p class="hero__tagline" data-reveal>
+    AI/ML Engineer &amp; Freelance Web Developer
+  </p>
+
+  <p class="hero__bio" data-reveal>
+    B.Tech CSE (AI &amp; ML) student at SRM Chennai. I build intelligent software systems
+    and professional websites — from multi-agent AI pipelines to business websites
+    for local Tamil Nadu businesses.
+  </p>
+
+  <div class="hero__socials" data-reveal>
+    <a href="https://github.com/Harya018" target="_blank" rel="noopener" class="social-btn" title="GitHub" data-magnetic>
+      <i class="fa-brands fa-github"></i>
+    </a>
+    <a href="https://linkedin.com/in/haryacr" target="_blank" rel="noopener" class="social-btn" title="LinkedIn" data-magnetic>
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+    <a href="mailto:haryacr@gmail.com" class="social-btn" title="Email" data-magnetic>
+      <i class="fa-solid fa-envelope"></i>
+    </a>
+    <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="social-btn" title="WhatsApp" style="color:#25D366;" data-magnetic>
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </div>
+
 </section>
 
-<!-- ======= QUICK STATS ======= -->
-<div class="stats-bar">
+<!-- ======= ROUTING CARDS ======= -->
+<div class="route-grid" data-reveal-stagger>
+
+  <a href="services.html" class="route-card route-card--blue">
+    <span class="route-card__icon">🌐</span>
+    <div class="route-card__label">For Businesses</div>
+    <h2 class="route-card__title">Need a Website or Automation?</h2>
+    <p class="route-card__desc">
+      Professional websites and business automations for local businesses.
+      Fast delivery. Affordable pricing. Starting ₹5,000.
+    </p>
+    <span class="route-card__cta">
+      See Services <i class="fa-solid fa-arrow-right"></i>
+    </span>
+  </a>
+
+  <a href="aiml.html" class="route-card route-card--dark">
+    <span class="route-card__icon">🤖</span>
+    <div class="route-card__label">For Recruiters</div>
+    <h2 class="route-card__title" style="color:#f1f5f9;">AI/ML Engineer</h2>
+    <p class="route-card__desc">
+      AI/ML undergraduate specializing in multi-agent systems, LLM applications,
+      and computer vision. CGPA 8.67. Open to internships.
+    </p>
+    <span class="route-card__cta">
+      View Portfolio <i class="fa-solid fa-arrow-right"></i>
+    </span>
+  </a>
+
+</div>
+
+<!-- ======= STATS ======= -->
+<div class="stats-strip">
   <div class="stats-inner">
-    <div class="stat-item reveal">
-      <div class="stat-num-wrap"><span class="stat-num counter-value" data-target="4">0</span><span class="stat-num">+</span></div>
-      <div class="stat-label">AI/ML Projects</div>
+    <div class="stat" data-reveal>
+      <div class="stat__num">
+        <span data-counter="6" data-counter-suffix="+">6+</span>
+      </div>
+      <div class="stat__label">AI/ML Projects</div>
     </div>
-    <div class="stat-item reveal">
-      <div class="stat-num-wrap"><span class="stat-num">8.67</span></div>
-      <div class="stat-label">CGPA at SRM</div>
+    <div class="stat" data-reveal>
+      <div class="stat__num">
+        <span data-counter="8.67" data-counter-decimals="2">8.67</span>
+      </div>
+      <div class="stat__label">CGPA at SRM</div>
     </div>
-    <div class="stat-item reveal">
-      <div class="stat-num-wrap"><span class="stat-num counter-value" data-target="5">0</span><span class="stat-num">+</span></div>
-      <div class="stat-label">Certifications</div>
+    <div class="stat" data-reveal>
+      <div class="stat__num">
+        <span data-counter="10" data-counter-suffix="+">10+</span>
+      </div>
+      <div class="stat__label">Certifications</div>
     </div>
-    <div class="stat-item reveal">
-      <div class="stat-num-wrap"><span class="stat-num counter-value" data-target="2">0</span><span class="stat-num">+</span></div>
-      <div class="stat-label">Internships</div>
+    <div class="stat" data-reveal>
+      <div class="stat__num">
+        <span data-counter="2">2</span>
+      </div>
+      <div class="stat__label">Internships</div>
     </div>
   </div>
 </div>
 
-<!-- ======= ABOUT / BIO ======= -->
-<section id="about" style="background: var(--white); border-top: 1px solid var(--gray-200); padding: 3.5rem 2rem;">
-  <div style="max-width: 820px; margin: 0 auto;">
-    <div style="display: flex; align-items: center; gap: .6rem; margin-bottom: 1.25rem;">
-      <span style="display: inline-block; width: 4px; height: 28px; background: var(--blue); border-radius: 4px;"></span>
-      <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--navy); margin: 0;">About Me</h2>
-    </div>
-    <p style="font-size: 1.05rem; color: var(--gray-600); line-height: 1.8; margin: 0;">
-      <strong style="color: var(--navy);">Harya C R</strong> is a B.Tech Computer Science (AI &amp; ML) student at
-      <strong style="color: var(--navy);">SRM Institute of Science and Technology, Chennai</strong>, building applied AI systems
-      and freelance web solutions for local businesses in Tamil Nadu. With hands-on experience across automation pipelines,
-      IoT monitoring systems, and full-stack web development, Harya bridges the gap between cutting-edge machine learning
-      research and real-world software delivery. Whether it's an LLM-powered chatbot, a computer vision pipeline, or a
-      clean business website, <strong style="color: var(--navy);">Harya C R</strong> delivers production-ready work at
-      student-friendly rates.
-    </p>
-  </div>
-</section>
-
-<!-- ======= TWO CARDS ======= -->
-<section class="cards-section" id="cards">
-  <div class="cards-grid">
-
-    <!-- Card 1: Businesses -->
-    <div class="service-card card-blue reveal-left">
-      <span class="card-icon">🌐</span>
-      <div class="card-tag">For Businesses</div>
-      <h2 class="card-title">Need a Website or Automation?</h2>
-      <p class="card-text">
-        I build professional websites and business automations for local businesses.
-        Fast delivery. Affordable pricing. Starting ₹5,000.
-      </p>
-      <a href="services.html" class="btn-card" id="card-services-btn">
-        See Services <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
-
-    <!-- Card 2: Recruiters -->
-    <div class="service-card card-navy reveal-right">
-      <span class="card-icon">🤖</span>
-      <div class="card-tag">For Recruiters</div>
-      <h2 class="card-title">AI/ML Engineer</h2>
-      <p class="card-text">
-        AI/ML undergraduate specializing in multi-agent systems, LLM applications,
-        and computer vision. Open to internships.
-      </p>
-      <a href="aiml.html" class="btn-card" id="card-aiml-btn">
-        View Portfolio <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
-
-  </div>
+<!-- ======= ABOUT ======= -->
+<section class="about-strip" data-reveal>
+  <h2>About Me</h2>
+  <p>
+    <strong>Harya C R</strong> is a B.Tech Computer Science (AI &amp; ML) student at
+    <strong>SRM Institute of Science and Technology, Chennai</strong>, building applied AI systems
+    and freelance web solutions for local businesses in Tamil Nadu. With hands-on experience
+    across automation pipelines, IoT monitoring systems, and full-stack web development, Harya
+    bridges cutting-edge machine learning research and real-world software delivery — whether
+    it's an LLM-powered chatbot, a computer vision pipeline, or a clean business website.
+  </p>
 </section>
 
 <!-- ======= FOOTER ======= -->
 <footer class="footer">
-  <p>© 2026 Harya C R &nbsp;·&nbsp; AI/ML Engineer &amp; Freelance Web Developer</p>
-  <p style="margin-top:.4rem; font-size:.8rem; opacity:.6;">
-    Chennai (Studies) · Salem, Tamil Nadu (Home)
-  </p>
+  <div>© 2026 Harya C R · Chennai (Studies) · Salem, TN (Home)</div>
+  <div class="footer__links">
+    <a href="aiml.html">AI/ML Portfolio</a>
+    <a href="services.html">Freelance</a>
+    <a href="mailto:haryacr@gmail.com">haryacr@gmail.com</a>
+  </div>
 </footer>
 
-<!-- ======= WHATSAPP FLOAT ======= -->
-<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="wa-float" id="wa-btn" title="Chat on WhatsApp">
-  <span class="wa-tooltip">Chat on WhatsApp</span>
+<!-- WA Float -->
+<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp" data-magnetic>
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- ======= SCRIPTS ======= -->
+<!-- Motion core -->
+<script src="shared/js/motion-core.js"></script>
+
 <script>
-  // Hamburger menu
   function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('open');
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
   }
 
-  // Scroll progress bar
   window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    document.getElementById('scroll-progress').style.width = progress + '%';
-  });
-
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        // stagger siblings
-        const siblings = e.target.parentElement.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-        siblings.forEach((el, i) => {
-          setTimeout(() => el.classList.add('visible'), i * 120);
-        });
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  revealEls.forEach(el => observer.observe(el));
-
-  // Counter animation
-  function animateCounter(el) {
-    const target = +el.dataset.target;
-    const duration = 1400;
-    const step = target / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-      el.textContent = Math.floor(current);
-    }, 16);
-  }
-
-  const counterObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        animateCounter(e.target);
-        counterObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.counter-value').forEach(el => counterObs.observe(el));
-
-  // Navbar shrink on scroll
-  const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      nav.style.height = '56px';
-      nav.style.boxShadow = '0 2px 12px rgba(0,0,0,.10)';
-    } else {
-      nav.style.height = '64px';
-      nav.style.boxShadow = 'none';
-    }
+    const p = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('scroll-progress').style.width = p + '%';
   });
 </script>
 

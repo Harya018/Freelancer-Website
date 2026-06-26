@@ -11,1682 +11,717 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
 
-  <!-- Shared CSS -->
-  <link rel="stylesheet" href="shared.css" />
+  <!-- Freelance Theme -->
+  <link rel="stylesheet" href="shared/css/theme-freelance.css" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
-    /* ====== SERVICES PAGE SPECIFIC ====== */
-
-    /* ---- Tab Navigation ---- */
-    .tab-nav-wrap {
-      background: var(--white);
-      border-bottom: 1px solid var(--gray-200);
-      position: sticky;
-      top: 64px;
-      z-index: 900;
+    /* Scroll progress */
+    #scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      z-index: 9999;
+      transition: width 0.1s linear;
     }
 
-    .tab-nav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      gap: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .tab-nav::-webkit-scrollbar { display: none; }
-
-    .tab-btn {
-      padding: 1rem 1.25rem;
-      font-size: .88rem;
-      font-weight: 600;
-      color: var(--gray-600);
-      border-bottom: 3px solid transparent;
-      white-space: nowrap;
-      transition: var(--transition);
-      cursor: pointer;
-      background: none;
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      font-family: inherit;
-    }
-
-    .tab-btn:hover {
-      color: var(--blue);
-      border-bottom-color: var(--blue);
-    }
-
-    .tab-btn.active {
-      color: var(--blue);
-      border-bottom-color: var(--blue);
-    }
-
-    /* ---- Tab Content ---- */
-    .tab-content {
-      display: none;
-      animation: fadeTab .35s ease;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    @keyframes fadeTab {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ---- Services Hero ---- */
-    .services-hero {
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(37,99,235,.07) 0%, transparent 70%),
-        var(--gray-50);
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-      border-bottom: 1px solid var(--gray-200);
-    }
-
-    .services-hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 900;
-      color: var(--navy);
-      letter-spacing: -1px;
-      margin-bottom: .75rem;
-    }
-
-    .services-hero p {
-      color: var(--gray-600);
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .location-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 30px;
-      padding: .35rem 1rem;
-      font-size: .82rem;
-      font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: .75rem;
-    }
-
-    /* ---- Service Cards (All tab) ---- */
-    .service-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .svc-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 16px;
-      padding: 2rem 1.75rem;
-      transition: all .3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .svc-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--blue), #60A5FA);
-      opacity: 0;
-      transition: opacity .3s;
-    }
-
-    .svc-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(37,99,235,.12);
-      border-color: transparent;
-    }
-
-    .svc-card:hover::before { opacity: 1; }
-
-    .svc-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .svc-price {
-      font-size: .82rem;
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: .5px;
-      margin-bottom: .4rem;
-      text-transform: uppercase;
-    }
-
-    .svc-title {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: .75rem;
-    }
-
-    .svc-list {
-      font-size: .88rem;
-      color: var(--gray-600);
-      line-height: 1.8;
-      padding-left: 0;
-      margin-bottom: 1.5rem;
-    }
-
-    .svc-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: .5rem;
-      margin-bottom: .25rem;
-    }
-
-    .svc-list li::before {
-      content: '✓';
-      color: var(--blue);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    /* ---- Trust Bar ---- */
-    .trust-bar {
-      background: var(--blue);
-      padding: 1.25rem 2rem;
-    }
-
-    .trust-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      text-align: center;
-    }
-
-    .trust-item {
-      color: #fff;
-      font-size: .88rem;
-      font-weight: 600;
-    }
-
-    .trust-item span {
-      display: block;
-      font-size: 1.3rem;
-      margin-bottom: .25rem;
-    }
-
-    /* ---- Pricing Tables ---- */
+    /* Pricing cards */
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin: 2rem 0 3rem;
+      gap: 20px;
+      margin-top: 48px;
+    }
+    @media (max-width: 760px) {
+      .pricing-grid { grid-template-columns: 1fr; }
     }
 
     .price-card {
-      background: var(--white);
-      border: 2px solid var(--gray-200);
-      border-radius: 16px;
-      padding: 2rem 1.75rem;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
       text-align: center;
-      transition: all .3s;
       position: relative;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
-
-    .price-card.featured {
-      border-color: var(--blue);
-      transform: scale(1.03);
-      box-shadow: 0 8px 32px rgba(37,99,235,.18);
+    .price-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
     }
-
-    .price-card.featured::before {
+    .price-card--featured {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(255,90,54,0.12);
+    }
+    .price-card--featured::before {
       content: 'Most Popular';
       position: absolute;
-      top: -14px;
+      top: -13px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--blue);
+      background: var(--accent);
       color: #fff;
-      font-size: .72rem;
+      font-size: 11px;
       font-weight: 700;
-      padding: .25rem .9rem;
-      border-radius: 20px;
-      letter-spacing: 1px;
+      padding: 3px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.06em;
     }
-
     .price-tier {
-      font-size: .8rem;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--gray-600);
-      margin-bottom: .5rem;
+      color: var(--text-dim);
+      margin-bottom: 10px;
     }
-
     .price-num {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 900;
-      color: var(--navy);
-      margin-bottom: .25rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 6px;
     }
-
-    .price-num span {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--gray-400);
-    }
+    .price-num span { font-size: 1rem; font-weight: 500; color: var(--text-dim); }
+    .price-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
 
     .price-features {
       text-align: left;
-      margin: 1.25rem 0 1.75rem;
-      font-size: .88rem;
-      color: var(--gray-600);
-      line-height: 1.9;
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 2;
+      margin-bottom: 24px;
     }
-
     .price-features li {
       display: flex;
       align-items: flex-start;
-      gap: .5rem;
+      gap: 8px;
     }
+    .price-features li i { color: var(--accent); margin-top: 4px; flex-shrink: 0; }
 
-    .price-features li i {
-      color: var(--blue);
-      margin-top: 3px;
-      flex-shrink: 0;
-    }
-
-    .btn-price {
-      width: 100%;
-      padding: .75rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: .95rem;
-      background: var(--blue);
-      color: #fff;
-      cursor: pointer;
-      transition: var(--transition);
-      border: 2px solid var(--blue);
-      display: block;
-      text-align: center;
-    }
-
-    .btn-price:hover {
-      background: var(--blue-dark);
-      border-color: var(--blue-dark);
-    }
-
-    .btn-price-outline {
-      background: transparent;
-      color: var(--navy);
-      border-color: var(--gray-200);
-    }
-
-    .btn-price-outline:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      background: var(--blue-light);
-    }
-
-    /* ---- Sample Work Cards ---- */
-    .work-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all .3s;
-    }
-
-    .work-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,.10);
-    }
-
-    .work-thumb {
-      width: 100%;
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      background: linear-gradient(135deg, var(--blue-light), #DBEAFE);
-    }
-
-    /* ---- Live iframe demo preview ---- */
-    .demo-preview-wrap {
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      border-radius: 12px 12px 0 0;
-      background: #f1f5f9;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .demo-preview-wrap iframe {
-      width: 1280px;
-      height: 720px;
-      border: none;
-      transform: scale(0.28);
-      transform-origin: top left;
-      pointer-events: none;
-      display: block;
-    }
-
-    .demo-preview-wrap:hover iframe {
-      filter: brightness(0.85);
-      transition: filter 0.3s ease;
-    }
-
-    /* shimmer while loading */
-    .demo-preview-wrap::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        #f1f5f9 25%,
-        #e2e8f0 50%,
-        #f1f5f9 75%
-      );
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-      z-index: 1;
-    }
-
-    .demo-preview-wrap.loaded::before {
-      display: none;
-    }
-
-    @keyframes shimmer {
-      0%   { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    .work-body {
-      padding: 1.25rem;
-    }
-
-    .work-type {
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--blue);
-      margin-bottom: .3rem;
-    }
-
-    .work-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: .4rem;
-    }
-
-    .work-desc {
-      font-size: .83rem;
-      color: var(--gray-600);
-      margin-bottom: 1rem;
-      line-height: 1.5;
-    }
-
-    .btn-view {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      font-size: .83rem;
-      font-weight: 600;
-      color: var(--blue);
-      background: var(--blue-light);
-      padding: .4rem .9rem;
-      border-radius: 8px;
-      transition: var(--transition);
-    }
-
-    .btn-view:hover {
-      background: var(--blue);
-      color: #fff;
-    }
-
-    /* ---- Automation Mockups ---- */
-    .auto-mockup {
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      border-radius: 12px 12px 0 0;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      font-family: inherit;
-    }
-
-    /* WhatsApp Mockup */
-    .wa-mockup {
-      background: #ECE5DD;
-    }
-    .wa-header {
-      background: #075E54;
-      color: #fff;
-      padding: .6rem 1rem;
-      font-size: .85rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
-    .wa-body {
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-    }
-    .wa-bubble {
-      max-width: 85%;
-      padding: .5rem .8rem;
-      border-radius: 8px;
-      font-size: .75rem;
-      line-height: 1.4;
-      position: relative;
-      box-shadow: 0 1px 2px rgba(0,0,0,.1);
-    }
-    .wa-bubble.right {
-      background: #DCF8C6;
-      align-self: flex-end;
-      border-top-right-radius: 0;
-    }
-    .wa-bubble.left {
-      background: #FFFFFF;
-      align-self: flex-start;
-      border-top-left-radius: 0;
-    }
-
-    /* Spreadsheet Mockup */
-    .sheet-mockup {
-      background: #fff;
-      border-bottom: 1px solid var(--gray-200);
-    }
-    .sheet-header-row {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-      background: #F8FAFC;
-      border-bottom: 2px solid #E2E8F0;
-      padding: .5rem .75rem;
-      font-size: .65rem;
-      font-weight: 700;
-      color: #475569;
-      text-transform: uppercase;
-    }
-    .sheet-row {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-      padding: .6rem .75rem;
-      font-size: .75rem;
-      border-bottom: 1px solid #F1F5F9;
-      color: #334155;
-    }
-    .sheet-badge {
-      position: absolute;
-      bottom: .75rem;
-      right: .75rem;
-      background: #DCFCE7;
-      color: #15803D;
-      font-size: .65rem;
-      font-weight: 700;
-      padding: .2rem .6rem;
-      border-radius: 20px;
-    }
-
-    /* ---- Section Header inside tab ---- */
-    .tab-section-header {
-      margin-bottom: 2rem;
-    }
-
-    /* ---- Portfolio Filter ---- */
-    .filter-bar {
-      display: flex;
-      gap: .6rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: .45rem 1.1rem;
-      border-radius: 30px;
-      font-size: .83rem;
-      font-weight: 600;
-      border: 1.5px solid var(--gray-200);
-      color: var(--gray-600);
-      cursor: pointer;
-      transition: var(--transition);
-      background: var(--white);
-    }
-
-    .filter-btn.active,
-    .filter-btn:hover {
-      background: var(--blue);
-      color: #fff;
-      border-color: var(--blue);
-    }
-
+    /* Portfolio / demo cards */
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.25rem;
+      gap: 16px;
     }
 
     .portfolio-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: all .3s;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
-
     .portfolio-card:hover {
+      border-color: var(--accent);
       transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--blue);
     }
-
-    .port-emoji {
-      font-size: 2rem;
-      margin-bottom: .75rem;
-      display: block;
-    }
-
-    .port-title {
-      font-size: 1rem;
+    .portfolio-card__icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+    .portfolio-card__type {
+      font-size: 11px;
       font-weight: 700;
-      color: var(--navy);
-      margin-bottom: .4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 6px;
     }
+    .portfolio-card__title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .portfolio-card__desc { font-size: 13px; color: var(--text-dim); line-height: 1.55; margin-bottom: 12px; }
 
-    .port-desc {
-      font-size: .83rem;
-      color: var(--gray-600);
-      margin-bottom: 1rem;
-      line-height: 1.5;
+    /* Why-us section items */
+    .why-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 48px;
     }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .4rem;
+    @media (max-width: 760px) {
+      .why-row { grid-template-columns: repeat(2, 1fr); }
     }
-
-    .tag {
-      font-size: .7rem;
-      font-weight: 600;
-      padding: .2rem .6rem;
-      border-radius: 20px;
-      background: var(--blue-light);
-      color: var(--blue);
+    @media (max-width: 420px) {
+      .why-row { grid-template-columns: 1fr; }
     }
+    .why-item {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+      transition: border-color 0.2s ease;
+    }
+    .why-item:hover { border-color: var(--accent); }
+    .why-item__icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+    .why-item__title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .why-item__desc { font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
 
-    /* ---- Contact Tab ---- */
+    /* Contact form */
     .contact-grid {
       display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 3rem;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
       align-items: start;
     }
-
-    .contact-form {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: .85rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: .4rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: .7rem 1rem;
-      border: 1.5px solid var(--gray-200);
-      border-radius: 8px;
-      font-size: .9rem;
-      font-family: inherit;
-      color: var(--navy);
-      background: var(--gray-50);
-      transition: border-color .2s;
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--blue);
-      background: var(--white);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 110px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: .85rem;
-      background: var(--blue);
-      color: #fff;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1rem;
-      font-family: inherit;
-      cursor: pointer;
-      border: none;
-      transition: var(--transition);
-    }
-
-    .btn-submit:hover {
-      background: var(--blue-dark);
-      transform: translateY(-1px);
-    }
-
-    .contact-info {
-      padding-top: .5rem;
-    }
-
-    .contact-info-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--navy);
-      margin-bottom: .5rem;
-    }
-
-    .contact-info-sub {
-      font-size: .9rem;
-      color: var(--gray-600);
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
-
-    .info-row {
-      display: flex;
-      align-items: center;
-      gap: .85rem;
-      margin-bottom: 1.1rem;
-    }
-
-    .info-icon {
-      width: 42px;
-      height: 42px;
-      background: var(--blue-light);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue);
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .info-text {
-      font-size: .9rem;
-      color: var(--navy);
-      font-weight: 500;
-    }
-
-    .info-text a { color: var(--blue); }
-
-    .available-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      background: #DCFCE7;
-      color: #15803D;
-      font-size: .82rem;
-      font-weight: 700;
-      padding: .4rem 1rem;
-      border-radius: 30px;
-      margin-top: 1.5rem;
-    }
-
-    .available-badge::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: #22C55E;
-      border-radius: 50%;
-      animation: pulse-green 2s infinite;
-    }
-
-    .btn-wa-large {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .75rem;
-      width: 100%;
-      padding: .9rem;
-      background: #25D366;
-      color: #fff;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-top: 1.5rem;
-      transition: var(--transition);
-    }
-
-    .btn-wa-large:hover {
-      background: #1EA952;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37,211,102,.35);
-    }
-
-    .response-note {
-      text-align: center;
-      font-size: .82rem;
-      color: var(--gray-400);
-      margin-top: 1rem;
-    }
-
-    /* ---- What you get ---- */
-    .what-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .what-item {
-      display: flex;
-      align-items: flex-start;
-      gap: .75rem;
-      padding: 1rem 1.25rem;
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 10px;
-    }
-
-    .what-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--blue-light);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue);
-      font-size: .9rem;
-      flex-shrink: 0;
-    }
-
-    .what-text strong {
-      display: block;
-      font-size: .9rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: .2rem;
-    }
-
-    .what-text span {
-      font-size: .82rem;
-      color: var(--gray-600);
-    }
-
-    /* ---- Use cases ---- */
-    .use-cases {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-      margin-bottom: 2rem;
-    }
-
-    .use-case-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .5rem 1.1rem;
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 30px;
-      font-size: .85rem;
-      font-weight: 600;
-      color: var(--gray-700);
-      transition: var(--transition);
-    }
-
-    .use-case-chip:hover {
-      border-color: var(--blue);
-      color: var(--blue);
-      background: var(--blue-light);
-    }
-
-    /* AI note */
-    .ai-note {
-      background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
-      border: 1px solid #BFDBFE;
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin-top: 2rem;
-      font-size: .9rem;
-      color: var(--navy);
-    }
-
-    .ai-note strong { color: var(--blue); }
-
-    /* ---- Status form ---- */
-    #form-status {
-      display: none;
-      padding: .75rem 1rem;
-      border-radius: 8px;
-      font-size: .88rem;
-      font-weight: 600;
-      margin-top: .75rem;
-      text-align: center;
-    }
-
-    #form-status.success {
-      display: block;
-      background: #DCFCE7;
-      color: #15803D;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .service-cards-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .price-card.featured { transform: scale(1); }
+    @media (max-width: 760px) {
       .contact-grid { grid-template-columns: 1fr; }
-      .trust-inner { grid-template-columns: repeat(2, 1fr); }
-      .what-grid { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 640px) {
-      .form-row { grid-template-columns: 1fr; }
-      .tab-btn { font-size: .78rem; padding: .8rem .9rem; }
+    #fs-status {
+      display: none;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
     }
+    #fs-status.success {
+      display: block;
+      background: rgba(22,163,74,0.08);
+      border: 1px solid rgba(22,163,74,0.2);
+      color: #15803d;
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      background: var(--accent);
+      padding: 16px 28px;
+    }
+    .trust-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      text-align: center;
+    }
+    @media (max-width: 640px) {
+      .trust-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+    .trust-item { color: #fff; font-size: 13px; font-weight: 600; }
+    .trust-item span { display: block; font-size: 1.2rem; margin-bottom: 4px; }
   </style>
 </head>
-<body>
+<body class="theme-freelance">
 
-<!-- Scroll Progress -->
 <div id="scroll-progress"></div>
 
-<!-- ======= NAVBAR ======= -->
-<nav class="navbar" id="main-nav">
-  <a href="index.html" class="navbar-logo">H<span>C</span>R</a>
+<!-- ======= NAV ======= -->
+<nav class="nav">
+  <a href="index.html" class="nav__logo">Harya <span>CR</span></a>
 
-  <div class="navbar-actions">
-    <a href="index.html" class="btn btn-ghost">Home</a>
-    <a href="services.html" class="btn btn-outline-blue">
-      <i class="fa-solid fa-briefcase"></i> My Services
-    </a>
-    <a href="aiml.html" class="btn btn-primary">
-      <i class="fa-solid fa-robot"></i> AI/ML Portfolio
+  <div class="nav__links">
+    <a href="index.html">Home</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#work">Sample Work</a>
+    <a href="#contact">Contact</a>
+    <a href="aiml.html">AI/ML Portfolio →</a>
+    <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website!" target="_blank" rel="noopener" class="nav__cta" data-magnetic>
+      <i class="fa-brands fa-whatsapp"></i> WhatsApp Me
     </a>
   </div>
 
-  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+  <button class="nav__hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
-<div class="nav-mobile-menu" id="mobile-menu">
-  <a href="index.html" class="btn btn-ghost">Home</a>
-  <a href="services.html" class="btn btn-outline-blue">My Services</a>
-  <a href="aiml.html" class="btn btn-primary">AI/ML Portfolio</a>
+<div class="nav__mobile" id="mobile-menu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#work" onclick="closeMenu()">Sample Work</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="aiml.html" onclick="closeMenu()">AI/ML Portfolio</a>
 </div>
 
-<!-- ======= TAB NAVIGATION ======= -->
-<div class="tab-nav-wrap">
-  <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('all', this)" id="tab-all">All Services</button>
-    <button class="tab-btn" onclick="switchTab('web', this)" id="tab-web">Website Development</button>
-    <button class="tab-btn" onclick="switchTab('auto', this)" id="tab-auto">Automation</button>
-    <button class="tab-btn" onclick="switchTab('ai', this)" id="tab-ai">AI Integration</button>
-    <button class="tab-btn" onclick="switchTab('work', this)" id="tab-work">My Work</button>
-    <button class="tab-btn" onclick="switchTab('contact', this)" id="tab-contact">Contact</button>
-  </div>
-</div>
-
-<!-- ======================== TAB: ALL SERVICES ======================== -->
-<div id="content-all" class="tab-content active">
-
-  <!-- Hero -->
-  <div class="services-hero">
-    <div class="location-chip">
-      <i class="fa-solid fa-location-dot" style="color:var(--blue)"></i>
-      Based in Tamil Nadu · Available Online
+<!-- ======= HERO ======= -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__eyebrow" data-reveal>
+      <span class="dot"></span>
+      Available for new projects · Tamil Nadu
     </div>
-    <h1>Professional Digital Services<br>for Your Business</h1>
-    <p>Fast delivery · Affordable pricing · Quality guaranteed</p>
-    <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;">
-      <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));return false;" class="btn btn-primary" style="border-radius:10px;padding:.7rem 1.75rem;">
-        <i class="fa-solid fa-paper-plane"></i> Get a Free Quote
+
+    <h1 class="hero__title" data-reveal>
+      Websites &amp; Automation<br>
+      for Tamil Nadu <span class="accent">Businesses</span>
+    </h1>
+
+    <p class="hero__sub" data-reveal>
+      Professional websites, WhatsApp automations, and booking systems —
+      built fast, priced fairly. Starting ₹5,000.
+    </p>
+
+    <div class="hero__badges" data-reveal>
+      <span class="badge"><span class="dot"></span> Available Now</span>
+      <span class="badge">⚡ 7-day delivery</span>
+      <span class="badge">📍 Salem / Chennai / Tamil Nadu</span>
+      <span class="badge">💬 WhatsApp support</span>
+    </div>
+
+    <div class="btn-row" data-reveal>
+      <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="btn btn--whatsapp" data-magnetic>
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
       </a>
-      <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="btn btn-outline" style="border-radius:10px;padding:.7rem 1.75rem;color:#15803D;border-color:#22C55E;">
-        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      <a href="#services" class="btn btn--outline" data-magnetic>
+        View Services
       </a>
     </div>
   </div>
+</section>
 
-  <section class="section">
-    <div class="container">
-      <div class="service-cards-grid">
-
-        <!-- Web Dev -->
-        <div class="svc-card reveal">
-          <span class="svc-icon">🌐</span>
-          <div class="svc-price">Starting ₹5,000</div>
-          <h2 class="svc-title">Website Development</h2>
-          <ul class="svc-list">
-            <li>Business website — mobile friendly</li>
-            <li>Google-ready (SEO basics)</li>
-            <li>Contact form integration</li>
-            <li>WhatsApp button built-in</li>
-            <li>5–7 day delivery</li>
-          </ul>
-          <a href="#" onclick="switchTab('web', document.getElementById('tab-web'));window.scrollTo(0,0);return false;" class="btn btn-primary" style="border-radius:8px;padding:.6rem 1.3rem;font-size:.88rem;">
-            Learn More <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <!-- Automation -->
-        <div class="svc-card reveal">
-          <span class="svc-icon">⚡</span>
-          <div class="svc-price">Starting ₹3,000</div>
-          <h2 class="svc-title">Business Automation</h2>
-          <ul class="svc-list">
-            <li>WhatsApp auto-reply bot</li>
-            <li>Google Sheets automation</li>
-            <li>Email sequences setup</li>
-            <li>Order confirmation systems</li>
-            <li>Workflow optimization</li>
-          </ul>
-          <a href="#" onclick="switchTab('auto', document.getElementById('tab-auto'));window.scrollTo(0,0);return false;" class="btn btn-primary" style="border-radius:8px;padding:.6rem 1.3rem;font-size:.88rem;">
-            Learn More <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-        <!-- AI Integration -->
-        <div class="svc-card reveal">
-          <span class="svc-icon">🤖</span>
-          <div class="svc-price">Custom Quote</div>
-          <h2 class="svc-title">AI Integration</h2>
-          <ul class="svc-list">
-            <li>AI chatbot for your website</li>
-            <li>Smart recommendations</li>
-            <li>Data insights dashboard</li>
-            <li>LLM-powered automation</li>
-            <li>GPT / LangChain powered</li>
-          </ul>
-          <a href="#" onclick="switchTab('ai', document.getElementById('tab-ai'));window.scrollTo(0,0);return false;" class="btn btn-primary" style="border-radius:8px;padding:.6rem 1.3rem;font-size:.88rem;">
-            Learn More <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Trust Bar -->
-  <div class="trust-bar">
-    <div class="trust-inner">
-      <div class="trust-item reveal">
-        <span>⚡</span>5–7 Day Delivery
-      </div>
-      <div class="trust-item reveal">
-        <span>💰</span>Affordable Pricing
-      </div>
-      <div class="trust-item reveal">
-        <span>📱</span>Mobile Friendly
-      </div>
-      <div class="trust-item reveal">
-        <span>🛠️</span>Free Revisions
-      </div>
+<!-- ======= MARQUEE — Business types ======= -->
+<div class="marquee-section" data-reveal>
+  <div data-marquee data-marquee-speed="55">
+    <div data-marquee-inner>
+      <span class="marquee-item">Restaurant <span class="sep">·</span></span>
+      <span class="marquee-item">Salon <span class="sep">·</span></span>
+      <span class="marquee-item">Clinic <span class="sep">·</span></span>
+      <span class="marquee-item">Retail Shop <span class="sep">·</span></span>
+      <span class="marquee-item">Coaching Center <span class="sep">·</span></span>
+      <span class="marquee-item">Delivery Service <span class="sep">·</span></span>
+      <span class="marquee-item">Real Estate <span class="sep">·</span></span>
+      <span class="marquee-item">Textile &amp; Clothing <span class="sep">·</span></span>
+      <span class="marquee-item">Catering <span class="sep">·</span></span>
+      <span class="marquee-item">Pharmacy <span class="sep">·</span></span>
+      <span class="marquee-item">Fitness Center <span class="sep">·</span></span>
+      <span class="marquee-item">Hotel &amp; Lodge <span class="sep">·</span></span>
     </div>
   </div>
-
 </div>
 
-<!-- ======================== TAB: WEBSITE DEVELOPMENT ======================== -->
-<div id="content-web" class="tab-content">
-  <div class="services-hero" style="padding:3rem 2rem 2rem;">
-    <h1 style="font-size:2rem;">Website Development</h1>
-    <p>Professional websites built for Tamil Nadu businesses. Fast, affordable, mobile-first.</p>
+<!-- ======= TRUST BAR ======= -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span>🚀</span> 7-Day Delivery</div>
+    <div class="trust-item"><span>💰</span> Starting ₹5,000</div>
+    <div class="trust-item"><span>🌐</span> Mobile-First Design</div>
+    <div class="trust-item"><span>🔧</span> Free Revisions Included</div>
   </div>
-
-  <section class="section">
-    <div class="container">
-
-      <div class="tab-section-header reveal">
-        <span class="section-label">What You Get</span>
-        <h2 class="section-title">Everything Your Business Needs Online</h2>
-      </div>
-
-      <div class="what-grid">
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-mobile-screen"></i></div><div class="what-text"><strong>Mobile Responsive</strong><span>Looks perfect on phones, tablets, and desktops</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-magnifying-glass"></i></div><div class="what-text"><strong>Google-Ready SEO</strong><span>Basic SEO setup so customers can find you</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i></div><div class="what-text"><strong>WhatsApp Integration</strong><span>One-click WhatsApp button for instant inquiries</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-envelope"></i></div><div class="what-text"><strong>Contact Form</strong><span>Leads go straight to your email</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-bolt"></i></div><div class="what-text"><strong>Fast Loading</strong><span>Optimized for speed — happy visitors, better rankings</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-rotate"></i></div><div class="what-text"><strong>Free Revisions</strong><span>Minor changes included after delivery</span></div></div>
-      </div>
-
-      <!-- Pricing -->
-      <div class="tab-section-header reveal">
-        <span class="section-label">Pricing</span>
-        <h2 class="section-title">Simple, Transparent Pricing</h2>
-      </div>
-
-      <div class="pricing-grid">
-        <!-- Basic -->
-        <div class="price-card reveal">
-          <div class="price-tier">Basic</div>
-          <div class="price-num">₹5,000 <span>onwards</span></div>
-          <ul class="price-features">
-            <li><i class="fa-solid fa-check"></i> 3 Pages (Home, About, Contact)</li>
-            <li><i class="fa-solid fa-check"></i> Contact form</li>
-            <li><i class="fa-solid fa-check"></i> Mobile responsive</li>
-            <li><i class="fa-solid fa-check"></i> WhatsApp button</li>
-            <li><i class="fa-solid fa-check"></i> 5-day delivery</li>
-          </ul>
-          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price btn-price-outline">Get Started</a>
-        </div>
-
-        <!-- Standard -->
-        <div class="price-card featured reveal">
-          <div class="price-tier">Standard</div>
-          <div class="price-num">₹8,000 <span>onwards</span></div>
-          <ul class="price-features">
-            <li><i class="fa-solid fa-check"></i> 5 Pages</li>
-            <li><i class="fa-solid fa-check"></i> Photo gallery section</li>
-            <li><i class="fa-solid fa-check"></i> WhatsApp chat button</li>
-            <li><i class="fa-solid fa-check"></i> Google Maps embed</li>
-            <li><i class="fa-solid fa-check"></i> 7-day delivery</li>
-            <li><i class="fa-solid fa-check"></i> 2 free revisions</li>
-          </ul>
-          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price">Get Started</a>
-        </div>
-
-        <!-- Premium -->
-        <div class="price-card reveal">
-          <div class="price-tier">Premium</div>
-          <div class="price-num">₹12,000 <span>onwards</span></div>
-          <ul class="price-features">
-            <li><i class="fa-solid fa-check"></i> Unlimited pages</li>
-            <li><i class="fa-solid fa-check"></i> Blog / news section</li>
-            <li><i class="fa-solid fa-check"></i> Full SEO setup</li>
-            <li><i class="fa-solid fa-check"></i> Speed optimization</li>
-            <li><i class="fa-solid fa-check"></i> 10-day delivery</li>
-            <li><i class="fa-solid fa-check"></i> 5 free revisions</li>
-          </ul>
-          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price btn-price-outline">Get Started</a>
-        </div>
-      </div>
-
-      <!-- Sample Work -->
-      <div class="tab-section-header reveal">
-        <span class="section-label">Sample Work</span>
-        <h2 class="section-title">Demo Projects</h2>
-      </div>
-
-      <div class="grid-3">
-        <div class="work-card reveal">
-          <a href="restaurant-demo.html" target="_blank" aria-label="View Sri Annapoorna Restaurant demo">
-            <div class="demo-preview-wrap">
-              <iframe
-                src="restaurant-demo.html"
-                scrolling="no"
-                tabindex="-1"
-                aria-hidden="true"
-                title="Sri Annapoorna Restaurant preview">
-              </iframe>
-            </div>
-          </a>
-          <div class="work-body">
-            <div class="work-type">Restaurant</div>
-            <div class="work-title">Sri Annapoorna Restaurant</div>
-            <div class="work-desc">Full restaurant website with menu, gallery, and online order inquiry form.</div>
-            <a href="restaurant-demo.html" target="_blank" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
-          </div>
-        </div>
-
-        <div class="work-card reveal">
-          <a href="clinic-demo.html" target="_blank" aria-label="View NutriCare Clinic demo">
-            <div class="demo-preview-wrap">
-              <iframe
-                src="clinic-demo.html"
-                scrolling="no"
-                tabindex="-1"
-                aria-hidden="true"
-                title="NutriCare Clinic preview">
-              </iframe>
-            </div>
-          </a>
-          <div class="work-body">
-            <div class="work-type">Healthcare</div>
-            <div class="work-title">Lakshmi Clinic</div>
-            <div class="work-desc">Medical clinic website with appointment booking, doctor info, and contact map.</div>
-            <a href="clinic-demo.html" target="_blank" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
-          </div>
-        </div>
-
-        <div class="work-card reveal">
-          <a href="salon-demo.html" target="_blank" aria-label="View StyleZone Salon demo">
-            <div class="demo-preview-wrap">
-              <iframe
-                src="salon-demo.html"
-                scrolling="no"
-                tabindex="-1"
-                aria-hidden="true"
-                title="StyleZone Salon preview">
-              </iframe>
-            </div>
-          </a>
-          <div class="work-body">
-            <div class="work-type">Salon</div>
-            <div class="work-title">StyleZone Salon</div>
-            <div class="work-desc">Trendy salon website with services menu, pricing, and gallery of styles.</div>
-            <a href="salon-demo.html" target="_blank" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
 </div>
 
-<!-- ======================== TAB: AUTOMATION ======================== -->
-<div id="content-auto" class="tab-content">
-  <div class="services-hero" style="padding:3rem 2rem 2rem;">
-    <h1 style="font-size:2rem;">Business Automation</h1>
-    <p>Automate repetitive tasks. Save time. Grow your business faster.</p>
-  </div>
+<!-- ======= SERVICES ======= -->
+<section id="services" class="section">
+  <div class="container">
+    <span class="section__eyebrow" data-reveal>What I Build</span>
+    <h2 class="section__title" data-reveal>Services for Your Business</h2>
+    <p class="section__desc" data-reveal>
+      Fast, professional, and tailored for Tamil Nadu businesses. Everything you need to get online and grow.
+    </p>
 
-  <section class="section">
-    <div class="container">
+    <div class="card-grid" data-reveal-stagger>
 
-      <div class="tab-section-header reveal">
-        <span class="section-label">What You Get</span>
-        <h2 class="section-title">Smart Automation for Your Business</h2>
-      </div>
-
-      <div class="what-grid">
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-brands fa-whatsapp" style="color:#25D366"></i></div><div class="what-text"><strong>WhatsApp Auto-Reply</strong><span>Instant responses to customer inquiries 24/7</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-table"></i></div><div class="what-text"><strong>Google Sheets Automation</strong><span>Auto-sync orders, contacts, and inventory</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-envelope-open-text"></i></div><div class="what-text"><strong>Email Sequences</strong><span>Automated follow-up emails and confirmations</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-box"></i></div><div class="what-text"><strong>Order Management</strong><span>Auto-confirmations and status updates</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-chart-line"></i></div><div class="what-text"><strong>Reports & Analytics</strong><span>Auto-generated weekly business reports</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-plug"></i></div><div class="what-text"><strong>App Integrations</strong><span>Connect your tools — forms, CRMs, messaging</span></div></div>
-      </div>
-
-      <!-- Use Cases -->
-      <div class="tab-section-header reveal">
-        <span class="section-label">Use Cases</span>
-        <h2 class="section-title">Perfect For...</h2>
-      </div>
-
-      <div class="use-cases">
-        <div class="use-case-chip"><i class="fa-solid fa-store"></i> Retail Shops</div>
-        <div class="use-case-chip"><i class="fa-solid fa-utensils"></i> Restaurants</div>
-        <div class="use-case-chip"><i class="fa-solid fa-scissors"></i> Salons</div>
-        <div class="use-case-chip"><i class="fa-solid fa-stethoscope"></i> Clinics</div>
-        <div class="use-case-chip"><i class="fa-solid fa-graduation-cap"></i> Coaching Centers</div>
-        <div class="use-case-chip"><i class="fa-solid fa-truck"></i> Delivery Services</div>
-        <div class="use-case-chip"><i class="fa-solid fa-home"></i> Real Estate</div>
-      </div>
-
-      <!-- Pricing -->
-      <div class="tab-section-header reveal">
-        <span class="section-label">Pricing</span>
-        <h2 class="section-title">Automation Packages</h2>
-      </div>
-
-      <div class="pricing-grid">
-        <div class="price-card reveal">
-          <div class="price-tier">Basic</div>
-          <div class="price-num">₹3,000 <span>onwards</span></div>
-          <ul class="price-features">
-            <li><i class="fa-solid fa-check"></i> WhatsApp auto-reply setup</li>
-            <li><i class="fa-solid fa-check"></i> Business hour messages</li>
-            <li><i class="fa-solid fa-check"></i> Welcome message flow</li>
-            <li><i class="fa-solid fa-check"></i> Setup & testing</li>
-          </ul>
-          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price btn-price-outline">Get Started</a>
-        </div>
-
-        <div class="price-card featured reveal">
-          <div class="price-tier">Standard</div>
-          <div class="price-num">₹6,000 <span>onwards</span></div>
-          <ul class="price-features">
-            <li><i class="fa-solid fa-check"></i> Full WhatsApp workflow</li>
-            <li><i class="fa-solid fa-check"></i> Google Sheets auto-sync</li>
-            <li><i class="fa-solid fa-check"></i> Email confirmations</li>
-            <li><i class="fa-solid fa-check"></i> Order tracking system</li>
-            <li><i class="fa-solid fa-check"></i> 2 weeks of support</li>
-          </ul>
-          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price">Get Started</a>
-        </div>
-
-        <div class="price-card reveal">
-          <div class="price-tier">Premium</div>
-          <div class="price-num">₹10,000 <span>onwards</span></div>
-          <ul class="price-features">
-            <li><i class="fa-solid fa-check"></i> Custom multi-step automation</li>
-            <li><i class="fa-solid fa-check"></i> All Standard features</li>
-            <li><i class="fa-solid fa-check"></i> CRM integration</li>
-            <li><i class="fa-solid fa-check"></i> Analytics dashboard</li>
-            <li><i class="fa-solid fa-check"></i> 1 month support</li>
-          </ul>
-          <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price btn-price-outline">Get Started</a>
-        </div>
-      </div>
-
-      <!-- Sample Work -->
-      <div class="tab-section-header reveal">
-        <span class="section-label">Sample Work</span>
-        <h2 class="section-title">Automation Projects</h2>
-      </div>
-
-      <div class="grid-2">
-        <div class="work-card reveal">
-          <div class="auto-mockup wa-mockup">
-            <div class="wa-header"><i class="fa-brands fa-whatsapp"></i> WhatsApp Bot</div>
-            <div class="wa-body">
-              <div class="wa-bubble right">Hi, I want to book a table for 4</div>
-              <div class="wa-bubble left">Sure! What time works for you? 🍽️</div>
-              <div class="wa-bubble right">7 PM tonight please</div>
-            </div>
-          </div>
-          <div class="work-body">
-            <div class="work-type">WhatsApp Bot</div>
-            <div class="work-title">Restaurant Order Bot</div>
-            <div class="work-desc">WhatsApp auto-reply bot for a restaurant — handles menu inquiries, table bookings, and order confirmations automatically.</div>
-            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
-          </div>
-        </div>
-
-        <div class="work-card reveal">
-          <div class="auto-mockup sheet-mockup">
-            <div class="sheet-header-row">
-              <div>Product</div><div>Stock</div><div>Status</div><div>Alert</div>
-            </div>
-            <div class="sheet-row">
-              <div>Rice (25kg)</div><div>45 bags</div><div>✅ Good</div><div style="color:var(--gray-400)">—</div>
-            </div>
-            <div class="sheet-row">
-              <div>Cooking Oil</div><div>8 units</div><div>⚠️ Low</div><div style="color:#D97706">Alert Sent</div>
-            </div>
-            <div class="sheet-row">
-              <div>Sugar</div><div>2 bags</div><div>🔴 Critical</div><div style="color:#DC2626;font-weight:600">Reorder Now</div>
-            </div>
-            <div class="sheet-badge">✅ Auto-updated</div>
-          </div>
-          <div class="work-body">
-            <div class="work-type">Sheets Automation</div>
-            <div class="work-title">Inventory Manager</div>
-            <div class="work-desc">Automated Google Sheets system that tracks stock levels, sends low-stock alerts, and generates daily inventory reports.</div>
-            <a href="#" class="btn-view"><i class="fa-solid fa-eye"></i> View Demo</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</div>
-
-<!-- ======================== TAB: AI INTEGRATION ======================== -->
-<div id="content-ai" class="tab-content">
-  <div class="services-hero" style="padding:3rem 2rem 2rem;">
-    <h1 style="font-size:2rem;">AI Integration</h1>
-    <p>Bring the power of AI to your business — chatbots, smart search, and intelligent automation.</p>
-  </div>
-
-  <section class="section">
-    <div class="container">
-
-      <div class="tab-section-header reveal">
-        <span class="section-label">What You Get</span>
-        <h2 class="section-title">AI-Powered Business Solutions</h2>
-      </div>
-
-      <div class="what-grid">
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-comment-dots"></i></div><div class="what-text"><strong>Website Chatbot</strong><span>AI chatbot that answers customer questions 24/7</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><div class="what-text"><strong>Smart Recommendations</strong><span>Suggest products or services based on user behavior</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-chart-bar"></i></div><div class="what-text"><strong>Data Insights</strong><span>AI-powered analytics to understand your customers</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-search"></i></div><div class="what-text"><strong>Smart Search</strong><span>Semantic search that understands natural language</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-robot"></i></div><div class="what-text"><strong>LLM Automation</strong><span>Automate writing, replies, and content with AI</span></div></div>
-        <div class="what-item reveal"><div class="what-icon"><i class="fa-solid fa-plug"></i></div><div class="what-text"><strong>Custom Integration</strong><span>Plug AI into your existing website or workflow</span></div></div>
-      </div>
-
-      <!-- Use Cases -->
-      <div class="tab-section-header reveal">
-        <span class="section-label">Use Cases</span>
-        <h2 class="section-title">AI Applications</h2>
-      </div>
-
-      <div class="use-cases">
-        <div class="use-case-chip"><i class="fa-solid fa-robot"></i> AI Customer Support</div>
-        <div class="use-case-chip"><i class="fa-solid fa-magnifying-glass"></i> Semantic Search</div>
-        <div class="use-case-chip"><i class="fa-solid fa-star"></i> Product Recommendations</div>
-        <div class="use-case-chip"><i class="fa-solid fa-pen-to-square"></i> AI Content Generation</div>
-        <div class="use-case-chip"><i class="fa-solid fa-chart-pie"></i> Business Analytics</div>
-        <div class="use-case-chip"><i class="fa-solid fa-language"></i> Multi-language Chatbot</div>
-      </div>
-
-      <!-- Pricing -->
-      <div class="tab-section-header reveal">
-        <span class="section-label">Pricing</span>
-        <h2 class="section-title">Custom AI Solutions</h2>
-      </div>
-
-      <div class="price-card reveal" style="max-width:500px;margin:0 auto 2rem;text-align:center;">
-        <div class="price-tier">All AI Projects</div>
-        <div class="price-num" style="font-size:1.6rem;">Custom Quote</div>
-        <p style="color:var(--gray-600);font-size:.9rem;margin:.75rem 0 1.25rem;">
-          AI integration pricing depends on complexity, API costs, and your business needs. Contact me for a free consultation.
+      <div class="card">
+        <span class="card__icon">🌐</span>
+        <span class="card__tag">Website Development</span>
+        <h3 class="card__title">Business Website</h3>
+        <p class="card__desc">
+          Clean, professional websites for restaurants, clinics, salons, shops, and more. Mobile-friendly, fast-loading.
         </p>
-        <a href="#" onclick="switchTab('contact', document.getElementById('tab-contact'));window.scrollTo(0,0);return false;" class="btn-price">Get a Free Quote</a>
+        <div class="pill-row">
+          <span class="pill">Landing Page</span>
+          <span class="pill">Multi-page Site</span>
+          <span class="pill">Mobile-first</span>
+          <span class="pill">Contact Form</span>
+        </div>
+        <div class="card__price">
+          <span class="card__price-label">Starting from</span>
+          <strong style="color:var(--accent);font-size:18px;">₹5,000</strong>
+        </div>
       </div>
 
-      <div class="ai-note reveal">
-        <strong>🤖 Powered by Latest AI Technology</strong><br><br>
-        All AI integrations are built using <strong>GPT-4, LangChain, and custom-trained models</strong>.
-        I'm an AI/ML undergraduate at SRM Chennai specializing in LLM applications and multi-agent systems —
-        you're getting cutting-edge AI expertise at freelancer prices.
+      <div class="card">
+        <span class="card__icon">🤖</span>
+        <span class="card__tag">Automation</span>
+        <h3 class="card__title">WhatsApp &amp; Booking Automation</h3>
+        <p class="card__desc">
+          Automated WhatsApp replies, appointment booking systems, lead capture, and customer follow-up workflows.
+        </p>
+        <div class="pill-row">
+          <span class="pill">WhatsApp Bot</span>
+          <span class="pill">Booking System</span>
+          <span class="pill">Lead Capture</span>
+          <span class="pill">Auto-replies</span>
+        </div>
+        <div class="card__price">
+          <span class="card__price-label">Starting from</span>
+          <strong style="color:var(--accent);font-size:18px;">₹8,000</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card__icon">🧠</span>
+        <span class="card__tag">AI Integration</span>
+        <h3 class="card__title">AI Chatbot &amp; Smart Features</h3>
+        <p class="card__desc">
+          Add AI-powered chatbots, product recommendation engines, or intelligent FAQ systems to your business.
+        </p>
+        <div class="pill-row">
+          <span class="pill">AI Chatbot</span>
+          <span class="pill">FAQ Bot</span>
+          <span class="pill">Recommendations</span>
+          <span class="pill">LLM Powered</span>
+        </div>
+        <div class="card__price">
+          <span class="card__price-label">Starting from</span>
+          <strong style="color:var(--accent);font-size:18px;">₹12,000</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card__icon">📊</span>
+        <span class="card__tag">Digital Tools</span>
+        <h3 class="card__title">Inventory &amp; Business Tools</h3>
+        <p class="card__desc">
+          Simple inventory trackers, order management tools, and admin dashboards — built specifically for your business.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Inventory Tracker</span>
+          <span class="pill">Order Management</span>
+          <span class="pill">Dashboard</span>
+        </div>
+        <div class="card__price">
+          <span class="card__price-label">Starting from</span>
+          <strong style="color:var(--accent);font-size:18px;">₹10,000</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card__icon">🎨</span>
+        <span class="card__tag">Design</span>
+        <h3 class="card__title">Logo &amp; Brand Identity</h3>
+        <p class="card__desc">
+          Logo design, business card layouts, social media banner templates, and a consistent brand kit.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Logo Design</span>
+          <span class="pill">Brand Colors</span>
+          <span class="pill">Social Media Kit</span>
+        </div>
+        <div class="card__price">
+          <span class="card__price-label">Starting from</span>
+          <strong style="color:var(--accent);font-size:18px;">₹3,000</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card__icon">🛒</span>
+        <span class="card__tag">E-Commerce</span>
+        <h3 class="card__title">Online Store</h3>
+        <p class="card__desc">
+          Product catalogue, cart, UPI/Razorpay payment integration, and order management for your online shop.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Product Catalogue</span>
+          <span class="pill">UPI Payments</span>
+          <span class="pill">Order Management</span>
+        </div>
+        <div class="card__price">
+          <span class="card__price-label">Starting from</span>
+          <strong style="color:var(--accent);font-size:18px;">₹15,000</strong>
+        </div>
       </div>
 
     </div>
-  </section>
-</div>
-
-<!-- ======================== TAB: MY WORK ======================== -->
-<div id="content-work" class="tab-content">
-  <div class="services-hero" style="padding:3rem 2rem 2rem;">
-    <h1 style="font-size:2rem;">My Work</h1>
-    <p>A collection of freelance projects and development work.</p>
   </div>
+</section>
 
-  <section class="section">
-    <div class="container">
+<!-- ======= WHY CHOOSE ME ======= -->
+<section class="section section--alt" style="border-top:1.5px solid var(--border);">
+  <div class="container">
+    <span class="section__eyebrow" data-reveal>Why Work With Me</span>
+    <h2 class="section__title" data-reveal>Fast. Honest. Local.</h2>
+    <p class="section__desc" data-reveal>
+      I understand Tamil Nadu businesses — and I deliver work that actually gets results.
+    </p>
 
-      <div class="filter-bar" id="portfolio-filter">
-        <button class="filter-btn active" onclick="filterPortfolio('all', this)">All</button>
-        <button class="filter-btn" onclick="filterPortfolio('website', this)">Websites</button>
-        <button class="filter-btn" onclick="filterPortfolio('automation', this)">Automation</button>
-        <button class="filter-btn" onclick="filterPortfolio('ai', this)">AI</button>
+    <div class="why-row" data-reveal-stagger>
+      <div class="why-item">
+        <span class="why-item__icon">⚡</span>
+        <div class="why-item__title">Fast Delivery</div>
+        <div class="why-item__desc">Most websites delivered within 5–7 working days, not weeks.</div>
       </div>
-
-      <div class="portfolio-grid" id="portfolio-grid">
-
-        <div class="portfolio-card reveal" data-category="website">
-          <span class="port-emoji">🍛</span>
-          <div class="port-title">Sri Annapoorna Restaurant</div>
-          <div class="port-desc">Restaurant website with online menu, gallery, and WhatsApp ordering integration.</div>
-          <div class="tags">
-            <span class="tag">Website</span>
-            <span class="tag">Restaurant</span>
-          </div>
-        </div>
-
-        <div class="portfolio-card reveal" data-category="website">
-          <span class="port-emoji">🏥</span>
-          <div class="port-title">Lakshmi Clinic</div>
-          <div class="port-desc">Medical clinic site with appointment booking and doctor profile pages.</div>
-          <div class="tags">
-            <span class="tag">Website</span>
-            <span class="tag">Healthcare</span>
-          </div>
-        </div>
-
-        <div class="portfolio-card reveal" data-category="automation">
-          <span class="port-emoji">⚡</span>
-          <div class="port-title">Restaurant Order Bot</div>
-          <div class="port-desc">WhatsApp automation handling menu queries and order confirmations 24/7.</div>
-          <div class="tags">
-            <span class="tag">Automation</span>
-            <span class="tag">WhatsApp</span>
-          </div>
-        </div>
-
-        <div class="portfolio-card reveal" data-category="ai">
-          <span class="port-emoji">🤖</span>
-          <div class="port-title">AI Customer Support Bot</div>
-          <div class="port-desc">LLM-powered chatbot for e-commerce — handles FAQs, returns, and product queries.</div>
-          <div class="tags">
-            <span class="tag">AI</span>
-            <span class="tag">LLM</span>
-            <span class="tag">Chatbot</span>
-          </div>
-        </div>
-
+      <div class="why-item">
+        <span class="why-item__icon">💬</span>
+        <div class="why-item__title">WhatsApp First</div>
+        <div class="why-item__desc">Communicate entirely on WhatsApp — no email chains, no delays.</div>
+      </div>
+      <div class="why-item">
+        <span class="why-item__icon">📱</span>
+        <div class="why-item__title">Mobile-Ready</div>
+        <div class="why-item__desc">Every site built mobile-first — your customers browse on phones.</div>
+      </div>
+      <div class="why-item">
+        <span class="why-item__icon">🔧</span>
+        <div class="why-item__title">Free Revisions</div>
+        <div class="why-item__desc">2 rounds of revisions included so the final result is exactly right.</div>
       </div>
     </div>
-  </section>
-</div>
-
-<!-- ======================== TAB: CONTACT ======================== -->
-<div id="content-contact" class="tab-content">
-  <div class="services-hero" style="padding:3rem 2rem 2rem;">
-    <h1 style="font-size:2rem;">Let's Build Something Together</h1>
-    <p>Tell me about your project and I'll get back within 24 hours.</p>
   </div>
+</section>
 
-  <section class="section">
-    <div class="container">
-      <div class="contact-grid">
+<!-- ======= PRICING ======= -->
+<section id="pricing" class="section" style="border-top:1.5px solid var(--border);">
+  <div class="container">
+    <span class="section__eyebrow" data-reveal>Transparent Pricing</span>
+    <h2 class="section__title" data-reveal>Simple, Flat Pricing</h2>
+    <p class="section__desc" data-reveal>
+      No hidden charges. No surprises. You know the cost before we start.
+    </p>
 
-        <!-- Form -->
-        <div class="contact-form reveal-left">
-          <h3 style="font-size:1.3rem;font-weight:800;color:var(--navy);margin-bottom:1.5rem;">
-            Send a Message
-          </h3>
+    <div class="pricing-grid" data-reveal-stagger>
 
-          <form id="contact-form" onsubmit="handleFormSubmit(event)">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="cf-name">Your Name *</label>
-                <input type="text" id="cf-name" placeholder="John Doe" required />
-              </div>
-              <div class="form-group">
-                <label for="cf-phone">Phone Number</label>
-                <input type="tel" id="cf-phone" placeholder="+91 XXXXX XXXXX" />
-              </div>
-            </div>
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-num">₹5,000 <span>onwards</span></div>
+        <div class="price-desc">Single-page landing site</div>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i> 1-page responsive website</li>
+          <li><i class="fa-solid fa-check"></i> Contact form + WhatsApp button</li>
+          <li><i class="fa-solid fa-check"></i> Google Maps embed</li>
+          <li><i class="fa-solid fa-check"></i> 2 revision rounds</li>
+          <li><i class="fa-solid fa-check"></i> Delivered in 5 days</li>
+        </ul>
+        <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20want%20the%20Starter%20package!" target="_blank" rel="noopener" class="btn btn--outline" style="width:100%;justify-content:center;" data-magnetic>
+          Get Started
+        </a>
+      </div>
 
-            <div class="form-group">
-              <label for="cf-email">Email Address *</label>
-              <input type="email" id="cf-email" placeholder="you@example.com" required />
-            </div>
+      <div class="price-card price-card--featured">
+        <div class="price-tier">Professional</div>
+        <div class="price-num">₹12,000 <span>onwards</span></div>
+        <div class="price-desc">Multi-page business website</div>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i> Up to 5 pages</li>
+          <li><i class="fa-solid fa-check"></i> Menu / Services / Gallery</li>
+          <li><i class="fa-solid fa-check"></i> Online booking or enquiry form</li>
+          <li><i class="fa-solid fa-check"></i> WhatsApp automation</li>
+          <li><i class="fa-solid fa-check"></i> SEO basics + Google listing</li>
+          <li><i class="fa-solid fa-check"></i> Delivered in 7 days</li>
+        </ul>
+        <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20want%20the%20Professional%20package!" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%;justify-content:center;" data-magnetic>
+          Get Started
+        </a>
+      </div>
 
-            <div class="form-group">
-              <label for="cf-service">Service Needed</label>
-              <select id="cf-service">
-                <option value="">Select a service...</option>
-                <option value="website">Website Development</option>
-                <option value="automation">Business Automation</option>
-                <option value="ai">AI Integration</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
+      <div class="price-card">
+        <div class="price-tier">Business+</div>
+        <div class="price-num">₹25,000 <span>onwards</span></div>
+        <div class="price-desc">Full-featured with AI &amp; automation</div>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check"></i> Everything in Professional</li>
+          <li><i class="fa-solid fa-check"></i> AI chatbot integration</li>
+          <li><i class="fa-solid fa-check"></i> Online store / payments</li>
+          <li><i class="fa-solid fa-check"></i> Admin dashboard</li>
+          <li><i class="fa-solid fa-check"></i> Custom automations</li>
+          <li><i class="fa-solid fa-check"></i> Ongoing support 1 month</li>
+        </ul>
+        <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20want%20the%20Business%2B%20package!" target="_blank" rel="noopener" class="btn btn--outline" style="width:100%;justify-content:center;" data-magnetic>
+          Get Started
+        </a>
+      </div>
 
-            <div class="form-group">
-              <label for="cf-message">Your Message *</label>
-              <textarea id="cf-message" placeholder="Tell me about your project, business, and what you need..." required></textarea>
-            </div>
+    </div>
+  </div>
+</section>
 
-            <button type="submit" class="btn-submit" id="submit-btn">
-              <i class="fa-solid fa-paper-plane"></i> Send Message
-            </button>
+<!-- ======= SAMPLE WORK ======= -->
+<section id="work" class="section section--alt" style="border-top:1.5px solid var(--border);">
+  <div class="container">
+    <span class="section__eyebrow" data-reveal>Sample Work</span>
+    <h2 class="section__title" data-reveal>What Your Website Could Look Like</h2>
+    <p class="section__desc" data-reveal>
+      These are demo websites showing the quality and style I build — designed for real Tamil Nadu businesses.
+    </p>
 
-            <div id="form-status"></div>
-          </form>
+    <div class="demo-grid" data-reveal-stagger>
 
-          <p class="response-note">
-            <i class="fa-solid fa-clock"></i> I typically respond within 24 hours
-          </p>
-        </div>
-
-        <!-- Contact Info -->
-        <div class="contact-info reveal-right">
-          <div class="contact-info-title">Get in Touch</div>
-          <p class="contact-info-sub">
-            I'm available for freelance projects, website builds, and business automation.
-            Reach out however you prefer!
-          </p>
-
-          <div class="info-row">
-            <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div class="info-text">
-              <a href="mailto:haryacr@gmail.com">haryacr@gmail.com</a>
-            </div>
-          </div>
-
-          <div class="info-row">
-            <div class="info-icon"><i class="fa-brands fa-linkedin-in"></i></div>
-            <div class="info-text">
-              <a href="https://linkedin.com/in/haryacr" target="_blank">linkedin.com/in/haryacr</a>
-            </div>
-          </div>
-
-          <div class="info-row">
-            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="info-text">Salem, Tamil Nadu (Home)<br>Chennai (Studies)</div>
-          </div>
-
-          <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" class="btn-wa-large">
-            <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i>
-            Chat on WhatsApp
+      <div class="demo-card">
+        <div class="demo-card__thumb">🍽️</div>
+        <div class="demo-card__body">
+          <div class="demo-card__title">Restaurant Website</div>
+          <div class="demo-card__desc">Full menu, booking form, location map, and photo gallery for a Tamil vegetarian restaurant.</div>
+          <a href="restaurant-demo.html" class="btn btn--outline" style="font-size:13px;padding:9px 18px;" data-magnetic>
+            View Demo <i class="fa-solid fa-arrow-right"></i>
           </a>
-
-          <div class="available-badge">
-            Available for new projects
-          </div>
-
         </div>
       </div>
+
+      <div class="demo-card">
+        <div class="demo-card__thumb">💆</div>
+        <div class="demo-card__body">
+          <div class="demo-card__title">Salon Website</div>
+          <div class="demo-card__desc">Services menu, online appointment booking, team profiles, and before/after gallery.</div>
+          <a href="salon-demo.html" class="btn btn--outline" style="font-size:13px;padding:9px 18px;" data-magnetic>
+            View Demo <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <div class="demo-card__thumb">🏥</div>
+        <div class="demo-card__body">
+          <div class="demo-card__title">Clinic Website</div>
+          <div class="demo-card__desc">Doctor profiles, services listing, appointment booking form, and consultation hours.</div>
+          <a href="clinic-demo.html" class="btn btn--outline" style="font-size:13px;padding:9px 18px;" data-magnetic>
+            View Demo <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
     </div>
-  </section>
-</div>
+  </div>
+</section>
+
+<!-- ======= CONTACT ======= -->
+<section id="contact" class="section" style="border-top:1.5px solid var(--border);">
+  <div class="container">
+    <span class="section__eyebrow" data-reveal>Get in Touch</span>
+    <h2 class="section__title" data-reveal>Let's Build Something</h2>
+    <p class="section__desc" data-reveal>Tell me about your business and I'll get back to you within 24 hours.</p>
+
+    <div class="contact-grid">
+
+      <div class="contact-form" data-reveal>
+        <form id="freelance-form" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label>Business Type</label>
+            <input type="text" placeholder="e.g. Restaurant, Salon, Clinic..." required />
+          </div>
+          <div class="form-group">
+            <label>What do you need?</label>
+            <textarea placeholder="Describe what you're looking for — website, automation, logo..." style="min-height:100px;" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;" id="fs-submit" data-magnetic>
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+          <div id="fs-status"></div>
+        </form>
+      </div>
+
+      <div data-reveal>
+        <p style="font-size:15px;color:var(--text-dim);line-height:1.8;margin-bottom:24px;">
+          Prefer to talk directly? WhatsApp is the fastest way to reach me.
+          I typically reply within a few hours.
+        </p>
+
+        <div class="ci-item">
+          <div class="ci-item__icon"><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i></div>
+          <div>
+            <div class="ci-item__label">WhatsApp (Fastest)</div>
+            <div class="ci-item__value"><a href="https://wa.me/916385936224" target="_blank" rel="noopener">+91 63859 36224</a></div>
+          </div>
+        </div>
+
+        <div class="ci-item">
+          <div class="ci-item__icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <div class="ci-item__label">Email</div>
+            <div class="ci-item__value"><a href="mailto:haryacr@gmail.com">haryacr@gmail.com</a></div>
+          </div>
+        </div>
+
+        <div class="ci-item">
+          <div class="ci-item__icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <div class="ci-item__label">Location</div>
+            <div class="ci-item__value">Salem &amp; Chennai, Tamil Nadu</div>
+          </div>
+        </div>
+
+        <div class="ci-item">
+          <div class="ci-item__icon"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <div class="ci-item__label">Response Time</div>
+            <div class="ci-item__value">Usually within 2–4 hours</div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="btn btn--whatsapp" style="margin-top:20px;width:100%;justify-content:center;" data-magnetic>
+          <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp Now
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- ======= FOOTER ======= -->
 <footer class="footer">
-  <p>© 2026 Harya C R &nbsp;·&nbsp; Web Developer &amp; AI Engineer</p>
-  <p style="margin-top:.4rem;font-size:.8rem;opacity:.6;">Salem, Tamil Nadu · haryacr@gmail.com</p>
+  <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center;">
+    <div class="footer__copy">
+      © 2026 <span class="accent">Harya C R</span> · Salem &amp; Chennai, Tamil Nadu
+    </div>
+    <div class="footer__links">
+      <a href="index.html">Home</a>
+      <a href="aiml.html">AI/ML Portfolio</a>
+      <a href="mailto:haryacr@gmail.com">Email</a>
+      <a href="https://wa.me/916385936224" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
 </footer>
 
-<!-- ======= WHATSAPP FLOAT ======= -->
-<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp">
-  <span class="wa-tooltip">Chat on WhatsApp</span>
+<!-- WhatsApp float -->
+<a href="https://wa.me/916385936224?text=Hi%20Harya%2C%20I%20need%20a%20website%20for%20my%20business!" target="_blank" rel="noopener" class="whatsapp-float" title="Chat on WhatsApp" data-magnetic>
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- ======= SCRIPTS ======= -->
+<!-- Motion core -->
+<script src="shared/js/motion-core.js"></script>
+
 <script>
-  // Mobile menu
   function toggleMenu() {
+    const ham = document.getElementById('hamburger');
     document.getElementById('mobile-menu').classList.toggle('open');
+    ham.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
   }
 
-  // Scroll progress
   window.addEventListener('scroll', () => {
     const p = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
     document.getElementById('scroll-progress').style.width = p + '%';
   });
 
-  // Tab switching
-  function switchTab(id, btn) {
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('content-' + id).classList.add('active');
-    if (btn) btn.classList.add('active');
-    // Trigger reveal for new content
-    setTimeout(initReveal, 50);
-  }
-
-  // Scroll reveal
-  function initReveal() {
-    const els = document.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible)');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), 50);
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    els.forEach(el => obs.observe(el));
-  }
-
-  initReveal();
-
-  // Portfolio filter
-  function filterPortfolio(cat, btn) {
-    document.querySelectorAll('#portfolio-filter .filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.portfolio-card').forEach(card => {
-      if (cat === 'all' || card.dataset.category === cat) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
-
-  // Contact form handler
   function handleFormSubmit(e) {
     e.preventDefault();
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = 'Sending...';
+    const btn = document.getElementById('fs-submit');
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
     btn.disabled = true;
     setTimeout(() => {
-      btn.textContent = '✓ Sent!';
-      const status = document.getElementById('form-status');
-      status.className = 'success';
-      status.textContent = '🎉 Message sent! I\'ll get back to you within 24 hours.';
-      document.getElementById('contact-form').reset();
-      setTimeout(() => { btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message'; btn.disabled = false; status.className = ''; }, 4000);
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Sent!';
+      const s = document.getElementById('fs-status');
+      s.className = 'success';
+      s.textContent = "Message received! I'll WhatsApp you shortly.";
+      document.getElementById('freelance-form').reset();
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+        btn.disabled = false;
+        s.className = '';
+        s.textContent = '';
+      }, 4000);
     }, 1200);
   }
-
-  // Navbar shrink
-  const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 50 ? '0 2px 12px rgba(0,0,0,.10)' : 'none';
-  });
-
-  // Remove shimmer overlay once iframe demo previews have loaded
-  document.querySelectorAll('.demo-preview-wrap iframe').forEach(iframe => {
-    iframe.addEventListener('load', () => {
-      iframe.parentElement.classList.add('loaded');
-    });
-  });
 </script>
 
 </body>
